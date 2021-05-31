@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2786d681a73aac54eba2c67cac07a7d6, type: 3}
+  m_Name: Ground
+  m_EditorClassIdentifier: 
+  MagicIndex: 3
+  MagicName: Ground
+  MagicType: Ground
+  MagicSprite: {fileID: 0}
+  MagicParticle: {fileID: 1458902281219782, guid: 8dcab516527e6a74c895d802ee0ae496,
+    type: 2}
+  Effectiveness: Water
+  Immunity: Thunder
+  BaseDamage: 1
+  MagicStatus: {fileID: 11400000, guid: 78159d3c60272a949b2595b6ef76de14, type: 2}
+  MagicSpeed: 1.75
+  MagicCharacter: R
+  Lifespan: 2

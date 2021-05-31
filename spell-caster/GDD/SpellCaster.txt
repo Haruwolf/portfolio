@@ -1,0 +1,69 @@
+Premissa do jogo:
+
+Basicamente, o jogo é baseado no sistema de elementos de TWO/HOF, como objetivo ir introduzindo as mecanicas de jogo num formato mais arcade/minigame
+O jogador fica posicionado na parte inferior da tela de costas para a camera e de frente para os obstaculos/inimigos que virão em direção a ele
+Terão 5 fileiras, e nessas fileiras aparecerão inimigos que virão em direção ao jogador, e o jogador precisa usar magias para destruir as ameaças
+De inicio serão os 5 elementos básicos:Ar, água, terra, raio e fogo, será a dificuldade fácil e terão dificuldades que o jogador
+precisa mesclar dois elementos diferentes, e até mesclar 4 elementos diferentes para poder derrotar as ameaças.
+
+Condições de derrota:
+O jogador perde quando sua vida chegar a zero, para perder vida os inimigos precisam chegar a encostar na estrutura que o personagem está protegendo.
+
+Condições de vitória:
+
+Não tem bem uma vitório, o jogador vai jogando até onde ele conseguir sobreviver, acumulando pontos e gravando  recordes.
+
+
+
+Edeias esboço:
+
+Movimento do personagem livre pelo cenário, podendo ter que proteger torre, ou alguma estrutura, tendo possibilidade até de ter um modo aventura.
+Tentar replicar gráficos de PS1, lembrando que a resolução de render é de 320x240.
+Ideias do jogo poder ser primeira pessoa, terceira pessoa ou topdown.
+Pegamos a resolução de 640x480 (4:3 ratio)
+Barra de energia
+magias com utilidades diferentes
+Montar seu proprio arsenal de magias, conforme vc destrava durante o jogo. Conforme o jogador sobe de nivel aumenta o numero de slots de magias com um limite X
+Acumulo de energia, baseado na força dos elementos, se o jogador soltar um elemento que vence o outro ele ganha 4 de energia
+se ele solta um elemento neutro a outro elemento ele ganha 1 de energia
+se ele solta um elemento que perca para o elemento do inimigo ele nao ganha energia
+vc mata o inimigo em 1 hit se vc soltar a magia com o elemento que vence o elemento do inimigo
+se vc soltar um elemento neutro vc precisa soltar mais magias para matar
+se vc soltar um elemento que perde vc nao dá dano no inimigo
+colocar HP nos inimigos para dar mais desafio
+colocar boss em todo final de fase
+ter fases no jogo
+Magias mais fortes consomem bastante energia
+modo história
+modo arcade
+progressão de magia, conforme o jogador vai soltando as magias, ele vai melhorando e destravando outros elementos
+o jogador ter um nivel, e conforme ele vai upando ele vai ganhando magias
+magias principais (dos 5 elementos) não consomem energia e recuperam se vc dá dano nos inimigos, magias com duas ou mais combinações gastam energia e dão mais dano
+Sistema de pontuação por combo de magias, usando magias eficientes e ou um combo dá mais pontuação
+clique direito do mouse cancela a magia
+Magias basicas darão efeitos extra contra inimigos da propriedade fraca ao elemento, por ex, fogo irá dar dano por segundo durante X segundos, vento empurrara o inimigo para tras.
+Pensar em maneiras de como programar a combinação de magias
+
+Metas:
+Ir jogando o prototipo e ir amadurecendo as ideias
+Definir velocidades das magias e dos inimigos
+Definir vida dos inimigos
+Objetivo: passar para a proxima fase matando todos os inimigos
+Ter um boss.
+
+
+Logica de programação:
+Manter o botão esquerdo do mouse pressionado sem ter magia selecionada, entra no modo de combinação de magia.
+
+
+MVP:
+1- Movimentação: Movimentos laterais, feitos com o mouse ou pelas setas (decidir). Fácil
+2- Conjurar magia: Criar teclas para soltar as magias, soltar magia pelo vetor frontal do personagem (magias serão progeteis por enquanto). Médio
+3- Colocar vida para o personagem ou para o que ele estiver protegendo. Fácil
+4- Colocar condição de morte. Fácil
+5- Colocar inimigos vindo em direção ao jogador. Médio
+6- Sistema "pedra papel e tesoura" (um elemento vencer o outro). Médio
+7- Ver qual é o melhor angulo da camera para usar no jogo.
+8- Colocar o sistema de energia
+9- Fazer um esquema de combinação basica
+

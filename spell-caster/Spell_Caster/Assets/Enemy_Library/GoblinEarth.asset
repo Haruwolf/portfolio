@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805c497635b8d194bacce6f4d3ee3032, type: 3}
+  m_Name: GoblinEarth
+  m_EditorClassIdentifier: 
+  EnemyType: {fileID: 11400000, guid: 8e0fbb7896c7a7d4998c229d623df8ce, type: 2}
+  EnemyHP: 5
+  EnemyModel: {fileID: 1387231887921158, guid: fc95cd01f0288d346a2416b663fc7a05, type: 2}
+  EnemySpeed: 3
+  EnemyWeight: 4
+  DestroyDistance: 3

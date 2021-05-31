@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2786d681a73aac54eba2c67cac07a7d6, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  MagicIndex: 0
+  MagicName: Water
+  MagicType: Water
+  MagicSprite: {fileID: 0}
+  MagicParticle: {fileID: 1434026237784018, guid: 84935d22484d4fd4d80577055662aa49,
+    type: 2}
+  Effectiveness: Fire
+  Immunity: Ground
+  BaseDamage: 1
+  MagicStatus: {fileID: 11400000, guid: 3255516767682994ebfd316bf1ac50b1, type: 2}
+  MagicSpeed: 1.75
+  MagicCharacter: T
+  Lifespan: 2

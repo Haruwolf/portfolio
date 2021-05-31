@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6dbe35d648e90f4c9b7d2affd2b57ba, type: 3}
+  m_Name: Slowed
+  m_EditorClassIdentifier: 
+  StatusParticle: {fileID: 1222377113009060, guid: ede799c182ed3254b97a20a3139b6d4b,
+    type: 2}
+  Speed_Penalty_Multiplier: 0.15
+  Damage_OverTime: 0
+  StatusEffect: Slowed
+  ComboWith: {fileID: 11400000, guid: 90821973b825267429284ea6ed97704c, type: 2}

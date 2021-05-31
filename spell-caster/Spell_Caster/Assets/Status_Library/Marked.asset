@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6dbe35d648e90f4c9b7d2affd2b57ba, type: 3}
+  m_Name: Marked
+  m_EditorClassIdentifier: 
+  StatusParticle: {fileID: 1652405945464792, guid: 71abced0022ec3e429b40b76a17bc5c9,
+    type: 2}
+  Speed_Penalty_Multiplier: 0.5
+  Damage_OverTime: 0
+  StatusEffect: Marked
+  ComboWith: {fileID: 11400000, guid: 367ff8e60045a4646933dbeada3b6a03, type: 2}
