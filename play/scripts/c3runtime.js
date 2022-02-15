@@ -4288,6 +4288,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Audio.Acts.SetMasterVolume,
 		C3.Plugins.Text.Acts.SetText,
 		C3.Plugins.System.Acts.SnapshotCanvas,
+		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.System.Cnds.OnCanvasSnapshot,
 		C3.Plugins.Browser.Acts.InvokeDownload,
 		C3.Plugins.System.Exps.canvassnapshot,
@@ -4336,9 +4337,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Json.Exps.Get,
 		C3.Plugins.List.Exps.SelectedText,
 		C3.Plugins.TextBox.Exps.Text,
-		C3.Plugins.System.Exps.random,
 		C3.Plugins.AJAX.Acts.Post,
-		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.Arr.Cnds.ArrForEach,
 		C3.Plugins.Arr.Acts.SetX,
 		C3.Plugins.Arr.Exps.CurX,
@@ -4346,7 +4345,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Arr.Cnds.CompareCurrent,
 		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.Arr.Exps.At,
-		C3.Plugins.Arr.Acts.Destroy
+		C3.Plugins.Arr.Acts.Destroy,
+		C3.Plugins.Audio.Cnds.IsTagPlaying
 	];
 };
 self.C3_JsPropNameTable = [
@@ -4464,6 +4464,8 @@ self.C3_JsPropNameTable = [
 	{TextInput: 0},
 	{Text: 0},
 	{IrPagina: 0},
+	{TextInputRegisterLogin: 0},
+	{TextInputRegisterSenha: 0},
 	{Virus: 0},
 	{TextEntries: 0},
 	{Listas: 0},
@@ -4769,10 +4771,6 @@ self.C3_ExpressionFuncs = [
 			const n0 = p._GetNode(0);
 			return () => n0.ExpObject(".sigla");
 		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => Math.round((2022 + f0(1, 2022)));
-		},
 		() => "register",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -4801,7 +4799,9 @@ self.C3_ExpressionFuncs = [
 			const n0 = p._GetNode(0);
 			const v1 = p._GetNode(1).GetVar();
 			return () => n0.ExpObject(v1.GetValue());
-		}
+		},
+		() => "mainmusic",
+		() => -15
 ];
 
 
