@@ -37,3 +37,8 @@ html, body, canvas {
 }
 
 
+@font-face {
+	font-family: 'arcadeclassic';
+	src: url('fonts/arcadeclassic.ttf') format('truetype');
+}
+
