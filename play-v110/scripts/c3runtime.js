@@ -3243,6 +3243,19 @@ self["C3_Shaders"]["tint"] = {
 	animated: false,
 	parameters: [["tintColor",0,"color"]]
 };
+self["C3_Shaders"]["multiply"] = {
+	glsl: "varying mediump vec2 vTex;\nuniform lowp sampler2D samplerFront;\nuniform mediump vec2 srcStart;\nuniform mediump vec2 srcEnd;\nuniform lowp sampler2D samplerBack;\nuniform mediump vec2 destStart;\nuniform mediump vec2 destEnd;\nvoid main(void)\n{\nlowp vec4 front = texture2D(samplerFront, vTex);\nmediump vec2 tex = (vTex - srcStart) / (srcEnd - srcStart);\nlowp vec4 back = texture2D(samplerBack, mix(destStart, destEnd, tex));\nfront *= back;\ngl_FragColor = front;\n}",
+	wgsl: "%%SAMPLERFRONT_BINDING%% var samplerFront : sampler;\n%%TEXTUREFRONT_BINDING%% var textureFront : texture_2d<f32>;\n%%SAMPLERBACK_BINDING%% var samplerBack : sampler;\n%%TEXTUREBACK_BINDING%% var textureBack : texture_2d<f32>;\n%%C3PARAMS_STRUCT%%\n%%FRAGMENTINPUT_STRUCT%%\n%%FRAGMENTOUTPUT_STRUCT%%\n@stage(fragment)\nfn main(input : FragmentInput) -> FragmentOutput\n{\nvar front : vec4<f32> = textureSample(textureFront, samplerFront, input.fragUV);\nvar back : vec4<f32> = textureSample(textureBack, samplerBack, c3_getBackUV(input.fragUV));\nvar output : FragmentOutput;\noutput.color = front * back;\t\t// multiply front and back\nreturn output;\n}",
+	blendsBackground: true,
+	usesDepth: false,
+	extendBoxHorizontal: 0,
+	extendBoxVertical: 0,
+	crossSampling: false,
+	mustPreDraw: false,
+	preservesOpaqueness: false,
+	animated: false,
+	parameters: []
+};
 
 }
 
@@ -4500,7 +4513,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Arr.Cnds.CompareCurrent,
 		C3.Plugins.Arr.Acts.Clear,
 		C3.Plugins.Sprite.Acts.ToggleBoolInstanceVar,
-		C3.Plugins.Sprite.Acts.SetScale
+		C3.Plugins.Sprite.Acts.SetScale,
+		C3.Plugins.Mouse.Exps.X,
+		C3.Plugins.Mouse.Exps.Y,
+		C3.Plugins.Touch.Exps.X,
+		C3.Plugins.Touch.Exps.Y,
+		C3.Plugins.Audio.Acts.Stop
 	];
 };
 self.C3_JsPropNameTable = [
@@ -4591,7 +4609,7 @@ self.C3_JsPropNameTable = [
 	{ErradoBoasPraticas: 0},
 	{PersonagensVitoria: 0},
 	{TROFÉU: 0},
-	{QuestoesRolarDado: 0},
+	{QuestoesAcerteAlvo: 0},
 	{SelecoesRolarDado: 0},
 	{AvançarQuestoes: 0},
 	{FramesToque: 0},
@@ -4645,10 +4663,20 @@ self.C3_JsPropNameTable = [
 	{giphy: 0},
 	{IDCard: 0},
 	{PecaInvisivel: 0},
+	{Alvo: 0},
+	{Alternativa: 0},
+	{Bullseye: 0},
+	{TargetNear: 0},
+	{TargetFar: 0},
+	{Mira: 0},
+	{Flecha: 0},
+	{Feedback: 0},
+	{RespostaCerta: 0},
 	{Virus: 0},
 	{TextEntries: 0},
 	{Listas: 0},
 	{Botoes: 0},
+	{Target: 0},
 	{Pontos: 0},
 	{tempoAnimacao: 0},
 	{tempoEspera: 0},
@@ -4857,6 +4885,8 @@ self.C3_ExpressionFuncs = [
 		() => "Etapa1",
 		() => 4,
 		() => "Etapa2",
+		() => 5,
+		() => "Alvo",
 		() => 6,
 		() => "Etapa3",
 		() => 8,
@@ -4934,7 +4964,6 @@ self.C3_ExpressionFuncs = [
 		() => "Boas Praticas - Gabarito - Q4",
 		() => "Boas Praticas - Gabarito - Q5",
 		() => "Boas Praticas - Gabarito - Q6",
-		() => 5,
 		() => "Boas Praticas - Gabarito - Q7",
 		() => "Boas Praticas - Gabarito - Q8",
 		() => 7,
@@ -5050,7 +5079,14 @@ self.C3_ExpressionFuncs = [
 			const n0 = p._GetNode(0);
 			const v1 = p._GetNode(1).GetVar();
 			return () => n0.ExpObject(v1.GetValue());
-		}
+		},
+		() => 500,
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => (v0.GetValue() + 1);
+		},
+		() => "Viviane",
+		() => -2000
 ];
 
 
