@@ -4008,6 +4008,10 @@ self.C3_ExpressionFuncs = [
 		() => "Feedback Correto",
 		() => 1824,
 		() => 929,
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => (v0.GetValue() * 4);
+		},
 		() => "Feedback Errado",
 		p => {
 			const n0 = p._GetNode(0);
