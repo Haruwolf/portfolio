@@ -4672,6 +4672,7 @@ self.C3_JsPropNameTable = [
 	{Flecha: 0},
 	{Feedback: 0},
 	{RespostaCerta: 0},
+	{InfoNumeros: 0},
 	{Virus: 0},
 	{TextEntries: 0},
 	{Listas: 0},
@@ -5086,6 +5087,7 @@ self.C3_ExpressionFuncs = [
 			return () => (v0.GetValue() + 1);
 		},
 		() => "Viviane",
+		() => 1000,
 		() => -2000
 ];
 
