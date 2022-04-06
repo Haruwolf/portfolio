@@ -4518,7 +4518,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Mouse.Exps.Y,
 		C3.Plugins.Touch.Exps.X,
 		C3.Plugins.Touch.Exps.Y,
-		C3.Plugins.Audio.Acts.Stop
+		C3.Plugins.Audio.Acts.Stop,
+		C3.Plugins.Audio.Acts.SetMuted
 	];
 };
 self.C3_JsPropNameTable = [
@@ -4843,6 +4844,7 @@ self.C3_ExpressionFuncs = [
 		() => "anim",
 		() => 0,
 		() => "anim2",
+		() => 0.1,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() * 3);
@@ -4894,13 +4896,11 @@ self.C3_ExpressionFuncs = [
 		() => "Certificado",
 		() => 10,
 		() => 1192,
-		() => 28,
 		() => 50,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() * 5);
 		},
-		() => 0.1,
 		() => 2500,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
