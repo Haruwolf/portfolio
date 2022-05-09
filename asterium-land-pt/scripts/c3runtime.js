@@ -3685,23 +3685,22 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Mouse,
 		C3.Plugins.Audio,
 		C3.Plugins.System.Cnds.OnLayoutStart,
-		C3.Behaviors.Tween.Acts.TweenOneProperty,
 		C3.Plugins.System.Acts.Wait,
-		C3.Behaviors.Tween.Acts.TweenTwoProperties,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Plugins.Sprite.Acts.SetOpacity,
+		C3.Behaviors.Tween.Acts.TweenOneProperty,
 		C3.Plugins.System.Acts.SetBoolVar,
-		C3.Plugins.Sprite.Acts.SetAnimFrame,
-		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.System.Acts.NextPrevLayout,
 		C3.Behaviors.Tween.Cnds.OnTweensFinished,
 		C3.Plugins.System.Cnds.CompareBoolVar,
 		C3.Plugins.Mouse.Cnds.IsOverObject,
 		C3.Plugins.System.Cnds.TriggerOnce,
+		C3.Behaviors.Tween.Acts.TweenTwoProperties,
 		C3.Behaviors.DragnDrop.Cnds.OnDrop,
 		C3.Plugins.Mouse.Acts.SetCursorSprite,
 		C3.Plugins.Sprite.Cnds.IsOverlapping,
 		C3.Plugins.Sprite.Cnds.CompareInstanceVar,
+		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Behaviors.DragnDrop.Acts.SetEnabled,
@@ -3716,9 +3715,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Exps.AnimationFrame,
 		C3.Behaviors.DragnDrop.Cnds.OnDragStart,
 		C3.Plugins.System.Acts.SetVar,
+		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.System.Acts.CreateObject,
+		C3.Plugins.Sprite.Cnds.CompareOpacity,
 		C3.Plugins.Sprite.Acts.SetInstanceVar,
-		C3.Plugins.System.Acts.RestartLayout,
+		C3.Plugins.Sprite.Cnds.CompareFrame,
+		C3.Plugins.System.Acts.GoToLayout,
 		C3.Behaviors.DragnDrop.Cnds.IsDragging,
 		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Sprite.Acts.SetX,
@@ -3866,24 +3868,19 @@ function or(l, r)
 }
 
 self.C3_ExpressionFuncs = [
-		() => "",
-		() => 100,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => v0.GetValue();
 		},
 		() => 0,
-		() => 1920,
-		() => 1080,
-		() => "AnimationRoutine",
+		() => "",
 		() => -1220,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() / 2);
 		},
 		() => 1,
-		() => -130,
-		() => 2222,
+		() => "AnimationRoutine",
 		() => 1.15,
 		p => {
 			const n0 = p._GetNode(0);
@@ -3916,12 +3913,13 @@ self.C3_ExpressionFuncs = [
 		},
 		() => 4,
 		() => -1080,
-		() => 111,
-		() => 115,
+		() => 100,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => (0.2 * f0());
 		},
+		() => 1920,
+		() => 1080,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() - 5);
@@ -3934,6 +3932,10 @@ self.C3_ExpressionFuncs = [
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() - 150);
 		},
+		() => 90,
+		() => -130,
+		() => 2222,
+		() => 2,
 		p => {
 			const n0 = p._GetNode(0);
 			const v1 = p._GetNode(1).GetVar();
@@ -3948,7 +3950,6 @@ self.C3_ExpressionFuncs = [
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() / 3);
 		},
-		() => 2,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() * 2.5);
