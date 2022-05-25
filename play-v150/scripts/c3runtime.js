@@ -4081,6 +4081,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Audio.Acts.FadeVolume,
 		C3.Plugins.Text.Exps.UID,
 		C3.Plugins.System.Acts.CreateObject,
+		C3.Plugins.Text.Exps.Y,
 		C3.Plugins.System.Cnds.EveryTick,
 		C3.Behaviors.Tween.Acts.TweenTwoProperties,
 		C3.Plugins.System.Exps.layoutwidth,
@@ -4093,7 +4094,6 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Exps.Height,
 		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.Text.Exps.X,
-		C3.Plugins.Text.Exps.Y,
 		C3.Plugins.System.Acts.SubVar,
 		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.Sprite.Acts.SetX,
@@ -4295,6 +4295,8 @@ self.C3_JsPropNameTable = [
 	{RespostaCerta: 0},
 	{InfoNumeros: 0},
 	{BinaryData: 0},
+	{NomePessoa: 0},
+	{NomePessoa2: 0},
 	{Virus: 0},
 	{TextEntries: 0},
 	{Listas: 0},
@@ -4550,6 +4552,12 @@ self.C3_ExpressionFuncs = [
 		() => "Certificado",
 		() => 10,
 		() => 1192,
+		() => 20,
+		() => 1740,
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() + 80);
+		},
 		() => 50,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -4628,6 +4636,15 @@ self.C3_ExpressionFuncs = [
 			const v1 = p._GetNode(1).GetVar();
 			return () => and(((("https://playdatabaseinfo.000webhostapp.com/" + "saveresults.php?name=") + v0.GetValue()) + "&pontos="), v1.GetValue());
 		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => ("Bem-vindo" + v0.GetValue());
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => ("Bem-vindo " + v0.GetValue());
+		},
+		() => "textanim",
 		() => 0.2,
 		p => {
 			const n0 = p._GetNode(0);
@@ -4675,7 +4692,6 @@ self.C3_ExpressionFuncs = [
 		() => 2800,
 		() => 540,
 		() => "Default",
-		() => 20,
 		() => "Gabarito - Q1",
 		() => "Gabarito - Q2",
 		() => "Gabarito - Q3",
