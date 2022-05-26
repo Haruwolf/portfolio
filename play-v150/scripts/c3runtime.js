@@ -4733,7 +4733,6 @@ self.C3_ExpressionFuncs = [
 			const n0 = p._GetNode(0);
 			return () => n0.ExpObject(".sigla");
 		},
-		() => "padrao",
 		() => "black",
 		() => "register",
 		p => {
