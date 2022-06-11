@@ -4041,7 +4041,6 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Exps.UID,
 		C3.Plugins.Text.Acts.SetText,
 		C3.Plugins.Arr.Acts.SetSize,
-		C3.Plugins.AJAX.Acts.Request,
 		C3.Plugins.System.Acts.WaitForPreviousActions,
 		C3.Plugins.Date.Exps.ToLocaleDateString,
 		C3.Plugins.Date.Exps.Now,
@@ -4050,20 +4049,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.System.Cnds.OnCanvasSnapshot,
 		C3.Plugins.AJAX.Acts.SetResponseBinary,
+		C3.Plugins.AJAX.Acts.Request,
 		C3.Plugins.AJAX.Cnds.OnComplete,
 		C3.Plugins.System.Acts.SetVar,
 		C3.Plugins.BinaryData.Exps.GetBase64,
 		C3.Plugins.AJAX.Acts.Post,
 		C3.Plugins.TextBox.Cnds.OnClicked,
-		C3.Plugins.Arr.Cnds.ArrForEach,
-		C3.Plugins.Arr.Acts.SetX,
-		C3.Plugins.Arr.Exps.CurX,
-		C3.Plugins.System.Exps.tokenat,
-		C3.Plugins.AJAX.Exps.LastData,
-		C3.Plugins.Arr.Cnds.CompareCurrent,
-		C3.Plugins.System.Cnds.Compare,
-		C3.Plugins.Arr.Exps.At,
-		C3.Plugins.Arr.Exps.CurValue,
 		C3.Plugins.System.Acts.SetLayerVisible,
 		C3.Plugins.System.Acts.SnapshotCanvas,
 		C3.Plugins.Audio.Acts.Play,
@@ -4103,6 +4094,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Arr.Cnds.CompareX,
 		C3.Plugins.Sprite.Exps.Count,
 		C3.Plugins.System.Cnds.ForEachOrdered,
+		C3.Plugins.Arr.Acts.SetX,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Behaviors.DragnDrop.Acts.SetEnabled,
 		C3.Behaviors.DragnDrop.Cnds.IsDragging,
@@ -4111,6 +4103,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.DragnDrop.Cnds.OnDrop,
 		C3.Plugins.Sprite.Acts.MoveToBottom,
 		C3.Plugins.Sprite.Cnds.IsOverlapping,
+		C3.Plugins.Arr.Exps.At,
 		C3.Plugins.Sprite.Cnds.IsBoolInstanceVarSet,
 		C3.Plugins.System.Cnds.PickByComparison,
 		C3.Plugins.Sprite.Acts.SetBoolInstanceVar,
@@ -4122,16 +4115,18 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.SetAnimSpeed,
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.Audio.Acts.StopAll,
-		C3.Plugins.List.Acts.SetCSSStyle,
 		C3.Plugins.AJAX.Acts.RequestFile,
 		C3.Plugins.Json.Acts.Parse,
+		C3.Plugins.AJAX.Exps.LastData,
 		C3.Plugins.Json.Cnds.ForEach,
 		C3.Plugins.List.Acts.AddItem,
 		C3.Plugins.Json.Exps.Get,
+		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.TextBox.Exps.Text,
+		C3.Plugins.List.Acts.Destroy,
+		C3.Plugins.TextBox.Acts.Destroy,
+		C3.Plugins.List.Acts.SetCSSStyle,
 		C3.Plugins.List.Exps.SelectedText,
-		C3.Plugins.Arr.Acts.Clear,
-		C3.Plugins.Arr.Exps.Count,
 		C3.Plugins.Sprite.Acts.ToggleBoolInstanceVar,
 		C3.Plugins.Sprite.Acts.SetScale,
 		C3.Plugins.Mouse.Exps.X,
@@ -4304,6 +4299,8 @@ self.C3_JsPropNameTable = [
 	{Target: 0},
 	{img: 0},
 	{email_to: 0},
+	{QueryEmail: 0},
+	{DomainInfoEmail: 0},
 	{message: 0},
 	{Subject: 0},
 	{Pontos: 0},
@@ -4316,6 +4313,8 @@ self.C3_JsPropNameTable = [
 	{contagemSlots: 0},
 	{origemX: 0},
 	{origemY: 0},
+	{fontSize: 0},
+	{QueryScores: 0},
 	{ExtraBoasFrame: 0},
 	{FrameFeedback: 0},
 	{PrimeiraSelecaoX: 0},
@@ -4341,16 +4340,14 @@ self.C3_JsPropNameTable = [
 	{Cidade: 0},
 	{Nome: 0},
 	{Email: 0},
-	{Estado: 0},
 	{Instituicao: 0},
+	{Estado: 0},
 	{Funcao: 0},
 	{Turno: 0},
 	{Departamento: 0},
 	{DomainInfo: 0},
-	{Senha: 0},
-	{EnteredUser: 0},
-	{EnteredSenha: 0},
-	{UserIndex: 0}
+	{DomainInfoScores: 0},
+	{Query: 0}
 ];
 }
 
@@ -4486,10 +4483,6 @@ self.C3_ExpressionFuncs = [
 		},
 		() => 99,
 		() => 1,
-		() => "checklogin",
-		() => "https://playdatabaseinfo.000webhostapp.com/getscores.php",
-		() => "checkname",
-		() => "https://playdatabaseinfo.000webhostapp.com/getname.php",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
@@ -4505,34 +4498,21 @@ self.C3_ExpressionFuncs = [
 		},
 		() => "coloqueseunomeaqui-certificado",
 		() => "snapshot",
-		() => "checkmail",
-		() => "https://playdatabaseinfo.000webhostapp.com/getmail.php",
-		() => "CASO A IMAGEM NÃO ABRA, ABRIR O E-MAIL NO GOOGLE CHROME",
-		() => "BD - CERTIFICADO",
-		() => "https://playdatabaseinfo.000webhostapp.com/c2mail.php",
+		() => "message=CASO A IMAGEM NÃO ABRA, ABRIR O E-MAIL NO GOOGLE CHROME&",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => ((("email_to=" + v0.GetValue()) + ",cs_brasil@bd.com") + "&");
+		},
+		() => "subject=BD - CERTIFICADO&",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
 			const v2 = p._GetNode(2).GetVar();
 			const v3 = p._GetNode(3).GetVar();
-			return () => ((((((("subject=" + v0.GetValue()) + "&message=") + v1.GetValue()) + "&email_to=") + v2.GetValue()) + "&img=") + v3.GetValue());
+			const v4 = p._GetNode(4).GetVar();
+			return () => (((((v0.GetValue() + v1.GetValue()) + v2.GetValue()) + v3.GetValue()) + "img=") + v4.GetValue());
 		},
-		() => "POST",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const f1 = p._GetNode(1).GetBoundMethod();
-			const n2 = p._GetNode(2);
-			return () => f0(f1(), n2.ExpObject(), "|");
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			const v1 = p._GetNode(1).GetVar();
-			return () => n0.ExpObject(v1.GetValue());
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			return () => and(n0.ExpObject(), ",contato.inova@bd.com");
-		},
+		() => "GET",
 		() => 3,
 		() => 75,
 		() => -10,
@@ -4634,8 +4614,9 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
-			return () => and(((("https://playdatabaseinfo.000webhostapp.com/" + "saveresults.php?name=") + v0.GetValue()) + "&pontos="), v1.GetValue());
+			return () => and(((("https://bdplay2.websiteseguro.com/scores.php?" + "nome=") + v0.GetValue()) + "&score="), v1.GetValue());
 		},
+		() => "POST",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => ("Bem-vindo" + v0.GetValue());
@@ -4725,16 +4706,46 @@ self.C3_ExpressionFuncs = [
 		() => -1080,
 		() => 1500,
 		() => "Animation 2",
-		() => "18px",
-		() => "#193557",
 		() => "json",
 		() => "estados",
 		p => {
 			const n0 = p._GetNode(0);
 			return () => n0.ExpObject(".sigla");
 		},
-		() => "black",
-		() => "register",
+		() => "1.5em",
+		() => "#193557",
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (("nome=" + n0.ExpObject()) + "&");
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (("turno=" + n0.ExpObject()) + "&");
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (("dept=" + n0.ExpObject()) + "&");
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (("func=" + n0.ExpObject()) + "&");
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (("estado=" + n0.ExpObject()) + "&");
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (("cidade=" + n0.ExpObject()) + "&");
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (("email=" + n0.ExpObject()) + "&");
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => ("inst=" + n0.ExpObject());
+		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
@@ -4744,12 +4755,8 @@ self.C3_ExpressionFuncs = [
 			const v5 = p._GetNode(5).GetVar();
 			const v6 = p._GetNode(6).GetVar();
 			const v7 = p._GetNode(7).GetVar();
-			const v8 = p._GetNode(8).GetVar();
-			const v9 = p._GetNode(9).GetVar();
-			return () => (((((((((((((((((((("https://playdatabaseinfo.000webhostapp.com/" + "savescores.php?nome=") + v0.GetValue()) + "&senha=") + v1.GetValue()) + "&email=") + v2.GetValue()) + "&dept=") + v3.GetValue()) + "&func=") + v4.GetValue()) + "&cidade=") + v5.GetValue()) + "&estado=") + v6.GetValue()) + "&turno=") + v7.GetValue()) + "&inst=") + v8.GetValue()) + "&nomec=") + v9.GetValue());
+			return () => (((((((("https://bdplay2.websiteseguro.com/registration.php?" + v0.GetValue()) + v1.GetValue()) + v2.GetValue()) + v3.GetValue()) + v4.GetValue()) + v5.GetValue()) + v6.GetValue()) + v7.GetValue());
 		},
-		() => "checkpass",
-		() => "https://playdatabaseinfo.000webhostapp.com/getpass.php",
 		() => 500,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
