@@ -4498,21 +4498,18 @@ self.C3_ExpressionFuncs = [
 		},
 		() => "coloqueseunomeaqui-certificado",
 		() => "snapshot",
-		() => "message=CASO A IMAGEM NÃO ABRA, ABRIR O E-MAIL NO GOOGLE CHROME&",
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => ((("email_to=" + v0.GetValue()) + ",cs_brasil@bd.com") + "&");
-		},
-		() => "subject=BD - CERTIFICADO&",
+		() => "message=CERTIFICADO - BD",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
-			const v2 = p._GetNode(2).GetVar();
-			const v3 = p._GetNode(3).GetVar();
-			const v4 = p._GetNode(4).GetVar();
-			return () => (((((v0.GetValue() + v1.GetValue()) + v2.GetValue()) + v3.GetValue()) + "img=") + v4.GetValue());
+			return () => (((((((((((((((((((((((("{" + "\"") + "email_to") + "\"") + ":") + "\"") + v0.GetValue()) + "\"") + ",") + "\"") + "message") + "\"") + ":") + "\"") + "CERTIFICADO - BD") + "\"") + ",") + "\"") + "img") + "\"") + ":") + "\"") + v1.GetValue()) + "\"") + "}");
 		},
-		() => "GET",
+		() => "https://bdplay.com.br/src/sendmail.php",
+		() => "POST",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => (((((((((((((((((((((((("{" + "\"") + "email_to") + "\"") + ":") + "\"") + "contato.inova@bd.com") + "\"") + ",") + "\"") + "message") + "\"") + ":") + "\"") + "CERTIFICADO - BD") + "\"") + ",") + "\"") + "img") + "\"") + ":") + "\"") + v0.GetValue()) + "\"") + "}");
+		},
 		() => 3,
 		() => 75,
 		() => -10,
@@ -4614,9 +4611,8 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
-			return () => and(((("https://bdplay2.websiteseguro.com/scores.php?" + "nome=") + v0.GetValue()) + "&score="), v1.GetValue());
+			return () => and(((("https://bdplay.com.br/scores.php?" + "nome=") + v0.GetValue()) + "&score="), v1.GetValue());
 		},
-		() => "POST",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => ("Bem-vindo" + v0.GetValue());
@@ -4755,7 +4751,7 @@ self.C3_ExpressionFuncs = [
 			const v5 = p._GetNode(5).GetVar();
 			const v6 = p._GetNode(6).GetVar();
 			const v7 = p._GetNode(7).GetVar();
-			return () => (((((((("https://bdplay2.websiteseguro.com/registration.php?" + v0.GetValue()) + v1.GetValue()) + v2.GetValue()) + v3.GetValue()) + v4.GetValue()) + v5.GetValue()) + v6.GetValue()) + v7.GetValue());
+			return () => (((((((("https://bdplay.com.br/registration.php?" + v0.GetValue()) + v1.GetValue()) + v2.GetValue()) + v3.GetValue()) + v4.GetValue()) + v5.GetValue()) + v6.GetValue()) + v7.GetValue());
 		},
 		() => 500,
 		p => {
