@@ -1,0 +1,88 @@
+{
+    "perguntas": [
+        {
+            "id": 1,
+            "titulo": "Quando o processo de identificação do paciente têm início?",
+            "alternativas": [
+                "No pedido médico",
+                "No início da coleta",
+                "No cadastro realizado na recepção da Instituição de coleta de sangue",
+                "Nenhuma das anteriores "
+            ],
+            "resposta": 2
+        },
+        {
+            "id": 2,
+            "titulo": "Quais dados são necessários para a verificação correta do paciente?",
+            "alternativas": [
+                "Nome Completo,Data de nascimento,  sexo, Endereço completo, Documento de identificação com foto",
+                "Data de nascimento, sexo, Documento de identificação com foto",
+                "Nome Completo, Endereço completo, sexo, Documento de identificação com foto",
+                "Documento de identificação com foto"
+            ],
+            "resposta": 0
+        },
+        {
+            "id": 3,
+            "titulo": "Quais são as situações de alto risco para identificação de pacientes ambulatoriais e/ou internados?",
+            "alternativas": [
+                "Irmãos, gêmeos ou Recém nascidos",
+                "Muitos pacientes dividindo mesmo quarto",
+                "Nomes comuns, Nomes abreviados, Nomes com escrita ou som parecidos",
+                "Todas as alternativas anteriores"
+            ],
+            "resposta": 0
+        },
+        {
+            "id": 4,
+            "titulo": "Quais situações abaixo podem favorecer uma falha na identificação:",
+            "alternativas": [
+                "Pacientes que não ouvem bem",
+                "Paciente expressando verbalmente informações de identificação",
+                "Paciente usando a carteirinha do convênio de um amigo ou familiar",
+                "alternativas a e c estão corretas"
+            ],
+            "resposta": 3
+        },
+        {
+            "id": 5,
+            "titulo": "No início da coleta, como o profissional deve confirmar a identificação do paciente?",
+            "alternativas": [
+                "Somente lendo a etiqueta do tubo e a requisição",
+                "Para paciente com  etiqueta ou pulseira de identificação o profissional deve pedir  para  confirmar verbalmente nome completo e data de nascimento",
+                "Paciente usando a carteirinha do convênio de um amigo ou familiar",
+                "alternativas a e c estão corretas"
+            ],
+            "resposta": 1
+        },
+        {
+            "id": 6,
+            "titulo": "“O profissional deve colar as etiquetas no tubo sem a necessidade de confirmar a identidade do paciente, somente olhando a requisição” .  Podemos considerar essa informação: ",
+            "alternativas": [
+                "Verdadeira",
+                "Falsa"
+            ],
+            "resposta": 1
+        },
+        {
+            "id": 7,
+            "titulo": "“Pacientes que entram pela emergência, não identificados,  devem receber um tratamento temporário, mas uma nomeação clara, até que uma identificação acurada seja realizada”. Podemos considerar essa informação: ",
+            "alternativas": [
+                "Verdadeira",
+                "Falsa"
+            ],
+            "resposta": 0
+        },
+        {
+            "id": 8,
+            "titulo": "A correta identificação do paciente é importante para evitar troca de amostras e posteriormente____________ incorretos. Essa etapa da fase __________ pode ter os erros minimizados com___________. Quais palavras respectivamente completam corretamente a sentença acima?",
+            "alternativas": [
+                "Diagnósticos, analítica, treinamentos e orientações às equipes de atendimento e coleta.",
+                "Coletas, pré- analítica, treinamentos e orientações às equipes de atendimento e coleta.",
+                "Diagnósticos, pré-analítica, treinamentos e orientações às equipes de atendimento e coleta",
+                "Diagnósticos, pós analítica, treinamentos e orientações às equipes de atendimento e coleta."
+            ],
+            "resposta": 2
+        }
+    ]
+}
