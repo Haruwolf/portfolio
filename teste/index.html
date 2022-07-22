@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://10.61.124.15:8889/pa-sis.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      
+      <link rel="stylesheet" type="text/css" href="./pa-sis_files/all.css">
+      <link rel="stylesheet" type="text/css" href="./pa-sis_files/root.css">
+      <link rel="stylesheet" type="text/css" href="./pa-sis_files/base.css">
+      <link rel="stylesheet" type="text/css" href="./pa-sis_files/font.css">
+      <link rel="stylesheet" media="screen and (min-width: 900px)" href="./pa-sis_files/barTipWideScreen.css">
+      <link rel="stylesheet" media="screen and (max-width: 1000px)" href="./pa-sis_files/barTipSmallScreen.css">
+      <script src="./pa-sis_files/barTip.js.download" async=""></script>
+      <script src="./pa-sis_files/paint.js.download" async=""></script>
+      <script src="./pa-sis_files/qualid.js.download" async=""></script>
+      <script src="./pa-sis_files/main.js.download" async=""></script>
+      <script src="./pa-sis_files/svg-pan-zoom.js.download" async=""></script>
+      <script src="./pa-sis_files/quick_telas.js.download"></script>
+      <title>pa-sis</title>
+   <style>[object HTMLStyleElement]</style></head>
+   <body bgcolor="#A5A5A5" class="flex column"><header>
+        <ul>
+          <li id="hamburger" style="color: rgb(64, 255, 64);"><i class="fa fa-bars"></i>
+          <ul>
+          <li id="filtragem"><i class="fa fa-filter"></i>
+              <ul>
+              </ul></li>
+          <li id="filtragem"><i class="fa fa-eye"></i>
+              <ul>
+              <li><a onclick="setScada()">scada</a></li>
+              <li><a onclick="setIlha()">ilhamento</a></li>
+              <li><a onclick="setAnormal()">anormal</a></li>
+              <li><a onclick="setIndQual()">indic. qualidade</a></li>
+              <li><a onclick="setUnit()">unidade</a></li>
+              </ul></li>
+          </ul></li>
+        </ul>
+   <input list="telas" id="input_telas" onchange="quickTela(&#39;input_telas&#39;)"><datalist id="telas"><option value="/index.html">index</option><option value="/ro-sm-230kv.html">ro-sm-230kv</option><option value="/ro-jr-230kv.html">ro-jr-230kv</option><option value="/ro-jr-69kv.html">ro-jr-69kv</option><option value="/mt-cx-qsaca.html">mt-cx-qsaca</option><option value="/mt-rp-qsaca.html">mt-rp-qsaca</option><option value="/matriz.html">matriz</option><option value="/mt-cx-qsaca1.html">mt-cx-qsaca1</option><option value="/ro-jp-13kv.html">ro-jp-13kv</option><option value="/mt-nb-qsacc.html">mt-nb-qsacc</option><option value="/ro-jp-230kv.html">ro-jp-230kv</option><option value="/mt-nm-qsacc.html">mt-nm-qsacc</option><option value="/mt-lc-13kv.html">mt-lc-13kv</option><option value="/ro-pb-138kv.html">ro-pb-138kv</option><option value="/mt-ss-ms69kv.html">mt-ss-ms69kv</option><option value="/mt-ss-msqsaca.html">mt-ss-msqsaca</option><option value="/mt-cx-230kv1.html">mt-cx-230kv1</option><option value="/ro-sm-qsaca.html">ro-sm-qsaca</option><option value="/mt-cx-230.html">mt-cx-230</option><option value="/mt-bp-230kv3.html">mt-bp-230kv3</option><option value="/tab_dig_reconh.html">tab_dig_reconh</option><option value="/tab_dig_reconh_1959.html">tab_dig_reconh_1959</option><option value="/tab_dig_reconh_X.html">tab_dig_reconh_X</option><option value="/mt-td_138kv.html">mt-td_138kv</option><option value="/mt-sp-qsacc.html">mt-sp-qsacc</option><option value="/ro-aq-230kv.html">ro-aq-230kv</option><option value="/ro-sm-qsacc.html">ro-sm-qsacc</option><option value="/mt-cm-qsaca.html">mt-cm-qsaca</option><option value="/mt-cm-qsacc.html">mt-cm-qsacc</option><option value="/mt-senm.html">mt-senm</option><option value="/mt-ss-ms230kv.html">mt-ss-ms230kv</option><option value="/mt-ju-13kv2.html">mt-ju-13kv2</option><option value="/ro-pb-230kv.html">ro-pb-230kv</option><option value="/mt-cx-br201.html">mt-cx-br201</option><option value="/ro-pb-230kv1.html">ro-pb-230kv1</option><option value="/mt-ss-msqsacc.html">mt-ss-msqsacc</option><option value="/mt-pt-geral.html">mt-pt-geral</option><option value="/ro-pb-qsaca.html">ro-pb-qsaca</option><option value="/mt-cx-qsacc1.html">mt-cx-qsacc1</option><option value="/ro-pb-qsacc.html">ro-pb-qsacc</option><option value="/mt-bp-qsaca.html">mt-bp-qsaca</option><option value="/mt-bp-qsacc.html">mt-bp-qsacc</option><option value="/ro-sm_seuh_1.html">ro-sm_seuh_1</option><option value="/ro-tj.html">ro-tj</option><option value="/mt-ss-qsacc.html">mt-ss-qsacc</option><option value="/mt-cm-138kv.html">mt-cm-138kv</option><option value="/ro-pv-13kv.html">ro-pv-13kv</option><option value="/mt-cx-qsacc2.html">mt-cx-qsacc2</option><option value="/mt-cx-qsacc3.html">mt-cx-qsacc3</option><option value="/mt-nm-230kv1.html">mt-nm-230kv1</option><option value="/ro-aq-69kv.html">ro-aq-69kv</option><option value="/ro-tj-saux.html">ro-tj-saux</option><option value="/mt-ju-230.html">mt-ju-230</option><option value="/ro-pv-13kv1.html">ro-pv-13kv1</option><option value="/mt-ju-qsaca.html">mt-ju-qsaca</option><option value="/mt-ju-qsacc.html">mt-ju-qsacc</option><option value="/mt-lc-qsacc.html">mt-lc-qsacc</option><option value="/mt-lc-sqsaca.html">mt-lc-sqsaca</option><option value="/ro-pv-13kv2.html">ro-pv-13kv2</option><option value="/mt-lc-sqsacc.html">mt-lc-sqsacc</option><option value="/ro-pv-13kv3.html">ro-pv-13kv3</option><option value="/mt-sp-230kv.html">mt-sp-230kv</option><option value="/ro-jp-230kv1.html">ro-jp-230kv1</option><option value="/mt-sis.html">mt-sis</option><option value="/ro-pv-230kv1.html">ro-pv-230kv1</option><option value="/mt-ju-13kv.html">mt-ju-13kv</option><option value="/ro-an-13kv.html">ro-an-13kv</option><option value="/ro-pv-230kv2.html">ro-pv-230kv2</option><option value="/mt-mtsaux.html">mt-mtsaux</option><option value="/mt-rp-230kv.html">mt-rp-230kv</option><option value="/ro-jp-69kv.html">ro-jp-69kv</option><option value="/mt-rp-qsacc.html">mt-rp-qsacc</option><option value="/ro-vn-13kv.html">ro-vn-13kv</option><option value="/ro-vn-230kv.html">ro-vn-230kv</option><option value="/mt-sp-230kv2.html">mt-sp-230kv2</option><option value="/mt-bp-13kv.html">mt-bp-13kv</option><option value="/ro-an-230kv.html">ro-an-230kv</option><option value="/ro-pv-69kv2.html">ro-pv-69kv2</option><option value="/mt-cx-230kv2.html">mt-cx-230kv2</option><option value="/ro-pv-pie_230.html">ro-pv-pie_230</option><option value="/ro-sis.html">ro-sis</option><option value="/ro-an-34kv.html">ro-an-34kv</option><option value="/ro-pv-saux.html">ro-pv-saux</option><option value="/mt-vd-qsaca.html">mt-vd-qsaca</option><option value="/ro-aq-13kv.html">ro-aq-13kv</option><option value="/ro-rb-230kv.html">ro-rb-230kv</option><option value="/mt-lc-qsaca.html">mt-lc-qsaca</option><option value="/ro-jp-138kv.html">ro-jp-138kv</option><option value="/ro-vn-230kv1.html">ro-vn-230kv1</option><option value="/mt-bp-138kv.html">mt-bp-138kv</option><option value="/ro-rb-34kv.html">ro-rb-34kv</option><option value="/ro-aq-230_69.html">ro-aq-230_69</option><option value="/mt-sp-qsaca.html">mt-sp-qsaca</option><option value="/mt-ss-qsaca.html">mt-ss-qsaca</option><option value="/ro-sm-13kv.html">ro-sm-13kv</option><option value="/mt-ss-ms13kv.html">mt-ss-ms13kv</option><option value="/mt-ss-msgeral.html">mt-ss-msgeral</option><option value="/mt-cx-138kv1.html">mt-cx-138kv1</option><option value="/mt-cx-138kv2.html">mt-cx-138kv2</option><option value="/ro-jp-69kv1.html">ro-jp-69kv1</option><option value="/mt-cx-qsacc.html">mt-cx-qsacc</option><option value="/mt-vd-qsacc.html">mt-vd-qsacc</option><option value="/ro-jr-13kv.html">ro-jr-13kv</option><option value="/mt-mtqsaca.html">mt-mtqsaca</option><option value="/ro-an-138kv.html">ro-an-138kv</option><option value="/ro-jp-138kv1.html">ro-jp-138kv1</option><option value="/ro-vn-69kv.html">ro-vn-69kv</option><option value="/ro-sm_seuh_13.html">ro-sm_seuh_13</option><option value="/ro-sm_seuh_c1.html">ro-sm_seuh_c1</option><option value="/ro-vn-69kv1.html">ro-vn-69kv1</option><option value="/ro-vn-qsaca.html">ro-vn-qsaca</option><option value="/ro-vn-qsacc.html">ro-vn-qsacc</option><option value="/ro-vn-sis.html">ro-vn-sis</option><option value="/OEOE.html">OEOE</option><option value="/BV13kV_GE.html">BV13kV_GE</option><option value="/BV_UNI_13.html">BV_UNI_13</option><option value="/ro-ct-patiocc.html">ro-ct-patiocc</option><option value="/SECT_DIAGRAMA.html">SECT_DIAGRAMA</option><option value="/mt-cx-13.html">mt-cx-13</option><option value="/SE_CPV_230KV.html">SE_CPV_230KV</option><option value="/SE_CPV_2SA.html">SE_CPV_2SA</option><option value="/SE_CPV_2SC.html">SE_CPV_2SC</option><option value="/SE_CPV_2SCF.html">SE_CPV_2SCF</option><option value="/mt-sept.html">mt-sept</option><option value="/mt-sess.html">mt-sess</option><option value="/mt-sevd.html">mt-sevd</option><option value="/DIAGRAMA_GERAL_UTSA.html">DIAGRAMA_GERAL_UTSA</option><option value="/Controle_Polo1.html">Controle_Polo1</option><option value="/BV_UNI_13_2.html">BV_UNI_13_2</option><option value="/HVDC_CT-AD.html">HVDC_CT-AD</option><option value="/Inicio.html">Inicio</option><option value="/Menu_Principal.html">Menu_Principal</option><option value="/ro-ad-bipolo.html">ro-ad-bipolo</option><option value="/ro-ad-polo2.html">ro-ad-polo2</option><option value="/ro-ct-patioca.html">ro-ct-patioca</option><option value="/ro-ct-polo1.html">ro-ct-polo1</option><option value="/ro-uhsu.html">ro-uhsu</option><option value="/mt-cx-138.html">mt-cx-138</option><option value="/mt-secx.html">mt-secx</option><option value="/mt-sebn.html">mt-sebn</option><option value="/mt-secm.html">mt-secm</option><option value="/mt-selc.html">mt-selc</option><option value="/mt-senb.html">mt-senb</option><option value="/mt-sesp.html">mt-sesp</option><option value="/mt-setd.html">mt-setd</option><option value="/tab_grupos.html">tab_grupos</option><option value="/tab_grupos_1826.html">tab_grupos_1826</option><option value="/tab_grupos_1870.html">tab_grupos_1870</option><option value="/tab_grupos_X.html">tab_grupos_X</option><option value="/Controle_Bipolo_teste.html">Controle_Bipolo_teste</option><option value="/Controle_Polo2.html">Controle_Polo2</option><option value="/SEAD_DIAGRAMA_original.html">SEAD_DIAGRAMA_original</option><option value="/mt-sebp.html">mt-sebp</option><option value="/mt-seju.html">mt-seju</option><option value="/mt-serp.html">mt-serp</option><option value="/BV_UNI_230.html">BV_UNI_230</option><option value="/Arquitetura_IHM.html">Arquitetura_IHM</option><option value="/ro-ad-polo1.html">ro-ad-polo1</option><option value="/SEAD_DIAGRAMA.html">SEAD_DIAGRAMA</option><option value="/ro-ct-polo2.html">ro-ct-polo2</option><option value="/CT_Bipolo_1.html">CT_Bipolo_1</option><option value="/ro-ct-bipolo.html">ro-ct-bipolo</option><option value="/MCCL7_01_B2-2.html">MCCL7_01_B2-2</option><option value="/GraficoTensoes.html">GraficoTensoes</option><option value="/RF_PF.html">RF_PF</option><option value="/tab_ana.html">tab_ana</option><option value="/tab_ana_1920.html">tab_ana_1920</option><option value="/tab_ana_X.html">tab_ana_X</option><option value="/RF_PR.html">RF_PR</option><option value="/tab_anorm.html">tab_anorm</option><option value="/tab_anorm_1913.html">tab_anorm_1913</option><option value="/tab_anorm_1826.html">tab_anorm_1826</option><option value="/tab_anorm_X.html">tab_anorm_X</option><option value="/RF_Unifilar.html">RF_Unifilar</option><option value="/tab_anot.html">tab_anot</option><option value="/tab_anot_1.html">tab_anot_1</option><option value="/tab_anot_102.html">tab_anot_102</option><option value="/tab_anot_X.html">tab_anot_X</option><option value="/SEAC.html">SEAC</option><option value="/SELD.html">SELD</option><option value="/SEBC.html">SEBC</option><option value="/SELI.html">SELI</option><option value="/tab_cgs.html">tab_cgs</option><option value="/tab_cgs_1826.html">tab_cgs_1826</option><option value="/tab_cgs_X.html">tab_cgs_X</option><option value="/SEBS.html">SEBS</option><option value="/SELT.html">SELT</option><option value="/tab_dig.html">tab_dig</option><option value="/tab_dig_1959.html">tab_dig_1959</option><option value="/tab_dig_X.html">tab_dig_X</option><option value="/rr-sis.html">rr-sis</option><option value="/SECH.html">SECH</option><option value="/SEMC.html">SEMC</option><option value="/SECO.html">SECO</option><option value="/SEMR.html">SEMR</option><option value="/SECO-2.html">SECO-2</option><option value="/SEIN.html">SEIN</option><option value="/SEPD.html">SEPD</option><option value="/SEIZ.html">SEIZ</option><option value="/SEPF.html">SEPF</option><option value="/SEIZ_CL7-01.html">SEIZ_CL7-01</option><option value="/SEIZ_CL7-02.html">SEIZ_CL7-02</option><option value="/SEIZ-CL703B-COR.html">SEIZ-CL703B-COR</option><option value="/SEPR.html">SEPR</option><option value="/COCL7_02_B1-2-sistB.html">COCL7_02_B1-2-sistB</option><option value="/COCL7_02_B3-2.html">COCL7_02_B3-2</option><option value="/COL_500KV-3.html">COL_500KV-3</option><option value="/ET_IZ_500KV.html">ET_IZ_500KV</option><option value="/to-sis.html">to-sis</option><option value="/MC138-2.html">MC138-2</option><option value="/MC500-2.html">MC500-2</option><option value="/MCCL7_01_A1-22.html">MCCL7_01_A1-22</option><option value="/MCCL7_01_A1-2-sistAeB.html">MCCL7_01_A1-2-sistAeB</option><option value="/MCCL7_01_B1-2.html">MCCL7_01_B1-2</option><option value="/MCCL7_01_B1-2-sistAeB.html">MCCL7_01_B1-2-sistAeB</option><option value="/SEIZ-CL704B-COR.html">SEIZ-CL704B-COR</option><option value="/MCCL7_01_B3-2.html">MCCL7_01_B3-2</option><option value="/SEIZ_CS2_01.html">SEIZ_CS2_01</option><option value="/MCCL7_01_A2-2.html">MCCL7_01_A2-2</option><option value="/MCCL7_01_B1-22.html">MCCL7_01_B1-22</option><option value="/MC_CL703-2.html">MC_CL703-2</option><option value="/SEIZ_CS2_02.html">SEIZ_CS2_02</option><option value="/BC_INDICE.html">BC_INDICE</option><option value="/BC_UNIFILAR_500.html">BC_UNIFILAR_500</option><option value="/CN_UNIF_230.html">CN_UNIF_230</option><option value="/COCL7_01_A1-2.html">COCL7_01_A1-2</option><option value="/COCL7_01_A2-2.html">COCL7_01_A2-2</option><option value="/COCL7_01_A3-2.html">COCL7_01_A3-2</option><option value="/COCL7_01_B1-2.html">COCL7_01_B1-2</option><option value="/COCL7_01_B2-2.html">COCL7_01_B2-2</option><option value="/COCL7_01_B3-2.html">COCL7_01_B3-2</option><option value="/COCL7_02_A1-2.html">COCL7_02_A1-2</option><option value="/COCL7_02_A1-2-ateh-260219.html">COCL7_02_A1-2-ateh-260219</option><option value="/COCL7_02_A1-2-sistA.html">COCL7_02_A1-2-sistA</option><option value="/COCL7_02_A2-2.html">COCL7_02_A2-2</option><option value="/COCL7_02_A3-2.html">COCL7_02_A3-2</option><option value="/COCL7_02_B1-2.html">COCL7_02_B1-2</option><option value="/COCL7_02_B1-2-ateh-270219.html">COCL7_02_B1-2-ateh-270219</option><option value="/COCL7_02_B2-2.html">COCL7_02_B2-2</option><option value="/COL_CL705-2.html">COL_CL705-2</option><option value="/IZ69.html">IZ69</option><option value="/MCCL7_01_A1-2.html">MCCL7_01_A1-2</option><option value="/MCCL7_01_A3-2.html">MCCL7_01_A3-2</option><option value="/ma-sis.html">ma-sis</option><option value="/pa-sis.html">pa-sis</option><option value="/MR_138.html">MR_138</option><option value="/MR_13_8.html">MR_13_8</option><option value="/MR_230.html">MR_230</option><option value="/MR_500.html">MR_500</option><option value="/PD69.html">PD69</option><option value="/PD_CL703A.html">PD_CL703A</option><option value="/PD_CL703B.html">PD_CL703B</option><option value="/PF_138kV.html">PF_138kV</option><option value="/PF_230kV.html">PF_230kV</option><option value="/PF_69kV.html">PF_69kV</option><option value="/PR_UNI_13_8.html">PR_UNI_13_8</option><option value="/PR_UNI_69.html">PR_UNI_69</option><option value="/RF_CH.html">RF_CH</option><option value="/RF_IZ.html">RF_IZ</option><option value="/RF_LD.html">RF_LD</option><option value="/RF_LI.html">RF_LI</option><option value="/RF_MR.html">RF_MR</option><option value="/RF_PD.html">RF_PD</option><option value="/SEIZ_CS2_03.html">SEIZ_CS2_03</option><option value="/SEIZ_RE714.html">SEIZ_RE714</option><option value="/SEPD-CS2-01.html">SEPD-CS2-01</option><option value="/SEPD-CS2-02.html">SEPD-CS2-02</option><option value="/SERG.html">SERG</option><option value="/SESCC.html">SESCC</option><option value="/SESD.html">SESD</option><option value="/SESO.html">SESO</option><option value="/SISTEMA_230.html">SISTEMA_230</option><option value="/SISTEMA_500.html">SISTEMA_500</option><option value="/SISTEMA_500-lj2.html">SISTEMA_500-lj2</option><option value="/SISTEMA_fluxos.html">SISTEMA_fluxos</option><option value="/Unifilar.html">Unifilar</option><option value="/AT_UNI_13.html">AT_UNI_13</option><option value="/AT_UNI_230kV_SAGE_AT.html">AT_UNI_230kV_SAGE_AT</option><option value="/AT_UNI_230_NOVA.html">AT_UNI_230_NOVA</option><option value="/AT_UNI_69.html">AT_UNI_69</option><option value="/AT_UNI_GERAL_SAGE_AT.html">AT_UNI_GERAL_SAGE_AT</option><option value="/AY_UNI_GERAL.html">AY_UNI_GERAL</option><option value="/BV13kV.html">BV13kV</option><option value="/BV_ELN_230kV.html">BV_ELN_230kV</option><option value="/BV_UNI_69.html">BV_UNI_69</option><option value="/BV_UNIFILAR_13_1.html">BV_UNIFILAR_13_1</option><option value="/BV_UNIFILAR_13_2.html">BV_UNIFILAR_13_2</option><option value="/BV_UNIFILAR_230.html">BV_UNIFILAR_230</option><option value="/BV_UNIFILAR_69_1.html">BV_UNIFILAR_69_1</option><option value="/BV_UNIFILAR_69_2.html">BV_UNIFILAR_69_2</option><option value="/BV_UNIFILAR_GERAL.html">BV_UNIFILAR_GERAL</option><option value="/BV_UNI_GERAL.html">BV_UNI_GERAL</option><option value="/Carajas_13.html">Carajas_13</option><option value="/Carajas_230.html">Carajas_230</option><option value="/Castanhal230.html">Castanhal230</option><option value="/cj_13.html">cj_13</option><option value="/CJ_13.html">CJ_13</option><option value="/cj_230.html">cj_230</option><option value="/CJ_230.html">CJ_230</option><option value="/CJ_230_Carajas.html">CJ_230_Carajas</option><option value="/CJ_230_CJ.html">CJ_230_CJ</option><option value="/CJ_230_Interlig.html">CJ_230_Interlig</option><option value="/CN_ELN_UNI_230_GERAL.html">CN_ELN_UNI_230_GERAL</option><option value="/CN_UNI_13-138KV.html">CN_UNI_13-138KV</option><option value="/CN_UNI_230_GERAL_Castanhal.html">CN_UNI_230_GERAL_Castanhal</option><option value="/GM230.html">GM230</option><option value="/gm_akece.html">gm_akece</option><option value="/GM_AKECE.html">GM_AKECE</option><option value="/GM_CONTROLE.html">GM_CONTROLE</option><option value="/GM_DIFB_230.html">GM_DIFB_230</option><option value="/GM-UNIF_GERAL.html">GM-UNIF_GERAL</option><option value="/IG_UNI_230.html">IG_UNI_230</option><option value="/IG_UNI_230_SAGE_IG.html">IG_UNI_230_SAGE_IG</option><option value="/IN230.html">IN230</option><option value="/IN500.html">IN500</option><option value="/JT_UNI_138.html">JT_UNI_138</option><option value="/JT_UNI_230.html">JT_UNI_230</option><option value="/LE_UNI_138.html">LE_UNI_138</option><option value="/LE_UNI_230.html">LE_UNI_230</option><option value="/mb500c3.html">mb500c3</option><option value="/MB500C3.html">MB500C3</option><option value="/mbcl703a.html">mbcl703a</option><option value="/MBCL703A.html">MBCL703A</option><option value="/MB_CL703_A.html">MB_CL703_A</option><option value="/mbcl703b.html">mbcl703b</option><option value="/MBCL703B.html">MBCL703B</option><option value="/MB_CL704.html">MB_CL704</option><option value="/MT/NB_ELN_UNI_GERAL.html">NB_ELN_UNI_GERAL</option><option value="/MT/NB_ELN_VCA.html">NB_ELN_VCA</option><option value="/MT/BP_CL6_01.html">BP_CL6_01</option><option value="/MT/NB_ELN_VCC.html">NB_ELN_VCC</option><option value="/MT/BP_CL6_02.html">BP_CL6_02</option><option value="/MT/NM_ELN_13_8KV_SACA.html">NM_ELN_13_8KV_SACA</option><option value="/MT/BP_CL6_03.html">BP_CL6_03</option><option value="/MT/NM_ELN_230KV_1.html">NM_ELN_230KV_1</option><option value="/MT/matriz.html">matriz</option><option value="/MT/JU_AT601.html">JU_AT601</option><option value="/MT/BP_ELN_138kV.html">BP_ELN_138kV</option><option value="/MT/JU_AT601_13kV.html">JU_AT601_13kV</option><option value="/MT/AR_13kV.html">AR_13kV</option><option value="/MT/BP_ELN_230kV_1.html">BP_ELN_230kV_1</option><option value="/MT/JU_AT602.html">JU_AT602</option><option value="/MT/BP_ELN_13_8kV.html">BP_ELN_13_8kV</option><option value="/MT/JU_AT602_13kV.html">JU_AT602_13kV</option><option value="/MT/BP_ELN_230kV_2.html">BP_ELN_230kV_2</option><option value="/MT/NM_ELN_230KV_2.html">NM_ELN_230KV_2</option><option value="/MT/BP_ELN_GERAL.html">BP_ELN_GERAL</option><option value="/MT/NM_ELN_69KV.html">NM_ELN_69KV</option><option value="/MT/BP_ELN_QSACA.html">BP_ELN_QSACA</option><option value="/MT/NM_ELN_69KV*.html">NM_ELN_69KV*</option><option value="/MT/BP_ELN_QSACC.html">BP_ELN_QSACC</option><option value="/MT/NM_ELN_69KV_.html">NM_ELN_69KV_</option><option value="/MT/BP_PTC.html">BP_PTC</option><option value="/MT/BP_PTC_5756.html">BP_PTC_5756</option><option value="/MT/BP_PTC_5769.html">BP_PTC_5769</option><option value="/mbcs201.html">mbcs201</option><option value="/MB_CS201.html">MB_CS201</option><option value="/MB_CS201_GERAL.html">MB_CS201_GERAL</option><option value="/MB_ECE_500.html">MB_ECE_500</option><option value="/MB_PERFIL_500.html">MB_PERFIL_500</option><option value="/MB_UNI_13.html">MB_UNI_13</option><option value="/MB_UNI_230.html">MB_UNI_230</option><option value="/MB_Uni_500.html">MB_Uni_500</option><option value="/MB_UNI_500.html">MB_UNI_500</option><option value="/MB_UNI_500_C3-C4.html">MB_UNI_500_C3-C4</option><option value="/MB_UNI_500_C4.html">MB_UNI_500_C4</option><option value="/MB_UNI_500_Maraba.html">MB_UNI_500_Maraba</option><option value="/MB_Uni_500_QQ.html">MB_Uni_500_QQ</option><option value="/MB_UNI_69.html">MB_UNI_69</option><option value="/MB_UNI_69-13.html">MB_UNI_69-13</option><option value="/MB_UNI_GERAL.html">MB_UNI_GERAL</option><option value="/MM_UNI_230.html">MM_UNI_230</option><option value="/MM_UNI_69.html">MM_UNI_69</option><option value="/MT_UNI_230_GERAL.html">MT_UNI_230_GERAL</option><option value="/MT_UNIFILAR_GERAL_230kV.html">MT_UNIFILAR_GERAL_230kV</option><option value="/MT_UNIFILAR_GMMTLI602.html">MT_UNIFILAR_GMMTLI602</option><option value="/MT_UNI_GERAL_500kV.html">MT_UNI_GERAL_500kV</option><option value="/RU_UNI_138.html">RU_UNI_138</option><option value="/RU_UNI_230_GE.html">RU_UNI_230_GE</option><option value="/SE_230KV.html">SE_230KV</option><option value="/SEJT_138.html">SEJT_138</option><option value="/SR_CONT_230KV.html">SR_CONT_230KV</option><option value="/SR_DIFB_230.html">SR_DIFB_230</option><option value="/SR_UNI_138.html">SR_UNI_138</option><option value="/SR_UNI_138_SAGE_SR.html">SR_UNI_138_SAGE_SR</option><option value="/SR_UNI_138_SE.html">SR_UNI_138_SE</option><option value="/SR_UNI_230KV_1.html">SR_UNI_230KV_1</option><option value="/SR_UNI_230_SAGE_SR.html">SR_UNI_230_SAGE_SR</option><option value="/SR_UNI_230_SE.html">SR_UNI_230_SE</option><option value="/SR_UNIF_GERAL.html">SR_UNIF_GERAL</option><option value="/SR_UNIF_GERAL_TF6012.html">SR_UNIF_GERAL_TF6012</option><option value="/SR_UNI_GERAL.html">SR_UNI_GERAL</option><option value="/tc2.html">tc2</option><option value="/TC2.html">TC2</option><option value="/tc2_1.html">tc2_1</option><option value="/TC2_1.html">TC2_1</option><option value="/tc3_500.html">tc3_500</option><option value="/TC_ELN_138kV.html">TC_ELN_138kV</option><option value="/TC_ELN_138kV_OEOS.html">TC_ELN_138kV_OEOS</option><option value="/TC_ELN_230kV.html">TC_ELN_230kV</option><option value="/TC_ELN_500kV.html">TC_ELN_500kV</option><option value="/TC_ELN_69kV.html">TC_ELN_69kV</option><option value="/TC_ELN_GERAL.html">TC_ELN_GERAL</option><option value="/TC_ELN_SEC_500kV.html">TC_ELN_SEC_500kV</option><option value="/TC_ELN_UNI_GERAL.html">TC_ELN_UNI_GERAL</option><option value="/TM_UNI_230.html">TM_UNI_230</option><option value="/TM_UNI_34.5.html">TM_UNI_34</option><option value="/UG_UNI_230.html">UG_UNI_230</option><option value="/UNI_500KV.html">UNI_500KV</option><option value="/Uni_AC500.html">Uni_AC500</option><option value="/Uni_Alt.html">Uni_Alt</option><option value="/Uni_Alt_Altamira.html">Uni_Alt_Altamira</option><option value="/Uni_Cam.html">Uni_Cam</option><option value="/Uni_Cam_ComBC2.html">Uni_Cam_ComBC2</option><option value="/Uni_CH230.html">Uni_CH230</option><option value="/Uni_CH69.html">Uni_CH69</option><option value="/Uni_CH_geral.html">Uni_CH_geral</option><option value="/Uni_Emerg_VC.html">Uni_Emerg_VC</option><option value="/UNIF_GERAL.html">UNIF_GERAL</option><option value="/Uni_Guama13.html">Uni_Guama13</option><option value="/Uni_Guama_13.html">Uni_Guama_13</option><option value="/Uni_Guama230.html">Uni_Guama230</option><option value="/Uni_Guama230_1.html">Uni_Guama230_1</option><option value="/Uni_Guama_Geral.html">Uni_Guama_Geral</option><option value="/Uni_Imperat230.html">Uni_Imperat230</option><option value="/Uni_Imperat500.html">Uni_Imperat500</option><option value="/Uni_Imperat69.html">Uni_Imperat69</option><option value="/Uni_Maraba230.html">Uni_Maraba230</option><option value="/Uni_Maraba500.html">Uni_Maraba500</option><option value="/Uni_Maraba500_B.html">Uni_Maraba500_B</option><option value="/Uni_Maraba500_C4.html">Uni_Maraba500_C4</option><option value="/Uni_Maraba69.html">Uni_Maraba69</option><option value="/Uni_Maraba_Geral.html">Uni_Maraba_Geral</option><option value="/Uni_MB230.html">Uni_MB230</option><option value="/Uni_MBCL703A.html">Uni_MBCL703A</option><option value="/Uni_MBCL703B.html">Uni_MBCL703B</option><option value="/Uni_MBCL704.html">Uni_MBCL704</option><option value="/Uni_RU13.html">Uni_RU13</option><option value="/Uni_Rur.html">Uni_Rur</option><option value="/UNI_SAGE_VDC_500KV.html">UNI_SAGE_VDC_500KV</option><option value="/Uni_SMaria13.html">Uni_SMaria13</option><option value="/Uni_SMaria230.html">Uni_SMaria230</option><option value="/Uni_SMaria230_1.html">Uni_SMaria230_1</option><option value="/Uni_Tam.html">Uni_Tam</option><option value="/Uni_Tuc.html">Uni_Tuc</option><option value="/Uni_Tuc13.html">Uni_Tuc13</option><option value="/Uni_Tuc230.html">Uni_Tuc230</option><option value="/Uni_Tuc69.html">Uni_Tuc69</option><option value="/Uni_Tucurui2.html">Uni_Tucurui2</option><option value="/Uni_Tucurui500.html">Uni_Tucurui500</option><option value="/Uni_TucVdc2.html">Uni_TucVdc2</option><option value="/Uni_TucVdc2_Tuc.html">Uni_TucVdc2_Tuc</option><option value="/Uni_TucVila.html">Uni_TucVila</option><option value="/Uni_TucVila_tuc.html">Uni_TucVila_tuc</option><option value="/Uni_TV.html">Uni_TV</option><option value="/Uni_Ug230.html">Uni_Ug230</option><option value="/Uni_Utinga13.html">Uni_Utinga13</option><option value="/Uni_utinga230.html">Uni_utinga230</option><option value="/Uni_Utinga230.html">Uni_Utinga230</option><option value="/Uni_UtingaUG203.html">Uni_UtingaUG203</option><option value="/VC230-1.html">VC230-1</option><option value="/VC230-2.html">VC230-2</option><option value="/VC230-69-13.html">VC230-69-13</option><option value="/vccs201.html">vccs201</option><option value="/VC_CS201_GERAL.html">VC_CS201_GERAL</option><option value="/VC_CS202.html">VC_CS202</option><option value="/VCGeral.html">VCGeral</option><option value="/VC_SI_GERAL2.html">VC_SI_GERAL2</option><option value="/VC_SI_UNI_500KV_2.html">VC_SI_UNI_500KV_2</option><option value="/VC_SI_UNI_GERAL.html">VC_SI_UNI_GERAL</option><option value="/VC_UNI_230KV.html">VC_UNI_230KV</option><option value="/VC_UNI_230KV_2.html">VC_UNI_230KV_2</option><option value="/VC_UNI_500KV_Vdc.html">VC_UNI_500KV_Vdc</option><option value="/VC_UNI_GERAL_VC.html">VC_UNI_GERAL_VC</option><option value="/XG_UNI_500.html">XG_UNI_500</option><option value="/Uni_VConde13.html">Uni_VConde13</option><option value="/Uni_VConde230.html">Uni_VConde230</option><option value="/Uni_VConde230KV.html">Uni_VConde230KV</option><option value="/Uni_VConde500_230.html">Uni_VConde500_230</option><option value="/Uni_VCondeGeral.html">Uni_VCondeGeral</option><option value="/VC2.html">VC2</option><option value="/vc2.html">vc2</option><option value="/VC_CS201.html">VC_CS201</option><option value="/vccs202.html">vccs202</option><option value="/VC_CS202_GERAL.html">VC_CS202_GERAL</option><option value="/VC_SI_GERAL.html">VC_SI_GERAL</option><option value="/VC_SI_UNI_500KV.html">VC_SI_UNI_500KV</option><option value="/VC_SI_UNI_500KV_3.html">VC_SI_UNI_500KV_3</option><option value="/VC_SI_UNI_GERAL2.html">VC_SI_UNI_GERAL2</option><option value="/VC_UNI_500KV.html">VC_UNI_500KV</option><option value="/VC_UNI_GERAL.html">VC_UNI_GERAL</option><option value="/XN_UNI_500.html">XN_UNI_500</option><option value="/ma-sepd-230.html">ma-sepd-230</option><option value="/SE_CPV_BTB1.html">SE_CPV_BTB1</option><option value="/ma-sepd-69.html">ma-sepd-69</option><option value="/SE_CPV_BTB2.html">SE_CPV_BTB2</option><option value="/SE_CPV_BTB2_TIRISTORES.html">SE_CPV_BTB2_TIRISTORES</option><option value="/SE_CPV_BTB_FH_230KV.html">SE_CPV_BTB_FH_230KV</option><option value="/pa-seat.html">pa-seat</option><option value="/pa-seat-69.html">pa-seat-69</option><option value="/pa-seat-old.html">pa-seat-old</option><option value="/ma-sepf.html">ma-sepf</option><option value="/pa-seat1.html">pa-seat1</option><option value="/pa-secj.html">pa-secj</option><option value="/pa-secn.html">pa-secn</option><option value="/ma-sepf-138.html">ma-sepf-138</option><option value="/pa-semb.html">pa-semb</option><option value="/pa-semb-230.html">pa-semb-230</option><option value="/pa-semb-69.html">pa-semb-69</option><option value="/ma-sepf-138-69.html">ma-sepf-138-69</option><option value="/pa-semm-69.html">pa-semm-69</option><option value="/pa-semt.html">pa-semt</option><option value="/pa-seon.html">pa-seon</option><option value="/ma-sepf-230.html">ma-sepf-230</option><option value="/pa-sesr.html">pa-sesr</option><option value="/pa-sesr-138.html">pa-sesr-138</option><option value="/pa-setc.html">pa-setc</option><option value="/ma-semr-138.html">ma-semr-138</option><option value="/pa-setc-230-ppt.html">pa-setc-230-ppt</option><option value="/pa-setc-34.html">pa-setc-34</option><option value="/ma-sepf-69.html">ma-sepf-69</option><option value="/pa-setm-34.html">pa-setm-34</option><option value="/pa-setm-futuro.html">pa-setm-futuro</option><option value="/ma-sepr.html">ma-sepr</option><option value="/pa-seug.html">pa-seug</option><option value="/pa-sevc.html">pa-sevc</option><option value="/pa-sevc-69.html">pa-sevc-69</option><option value="/ma-sepr-230.html">ma-sepr-230</option><option value="/pa-uhcu.html">pa-uhcu</option><option value="/tu-uhtu.html">tu-uhtu</option><option value="/tu-uhtu1.html">tu-uhtu1</option><option value="/ma-sepr-69.html">ma-sepr-69</option><option value="/ma-sebc-500.html">ma-sebc-500</option><option value="/ma-sebc_saux.html">ma-sebc_saux</option><option value="/ma-sebs.html">ma-sebs</option><option value="/ma-serg.html">ma-serg</option><option value="/ma-seiz-69.html">ma-seiz-69</option><option value="/ma-seld.html">ma-seld</option><option value="/ma-seld-230.html">ma-seld-230</option><option value="/ma-semr-230.html">ma-semr-230</option><option value="/ma-seli-69-20180920.html">ma-seli-69-20180920</option><option value="/ma-seli-691109.html">ma-seli-691109</option><option value="/ma-selt-69.html">ma-selt-69</option><option value="/ma-seso.html">ma-seso</option><option value="/VC_UNI_230KV_1.html">VC_UNI_230KV_1</option><option value="/VC_UNI_GERAL_VDC.html">VC_UNI_GERAL_VDC</option><option value="/Uni_VConde200.html">Uni_VConde200</option><option value="/Uni_VConde230_69_13.html">Uni_VConde230_69_13</option><option value="/Uni_VConde500.html">Uni_VConde500</option><option value="/Uni_VConde69.html">Uni_VConde69</option><option value="/Uni_Xingu500.html">Uni_Xingu500</option><option value="/SE_CPV_BTB.html">SE_CPV_BTB</option><option value="/SE_CPV_BTB.wvs.html">SE_CPV_BTB</option><option value="/SE_CPV_BTB1_TIRISTORES.html">SE_CPV_BTB1_TIRISTORES</option><option value="/ma-semr-69.html">ma-semr-69</option><option value="/SE_CPV_BTB_FH_525KV.html">SE_CPV_BTB_FH_525KV</option><option value="/SE_CPV_BTB_PROTECAO.html">SE_CPV_BTB_PROTECAO</option><option value="/SE_CPV_BTB_TESTE_28112019.html">SE_CPV_BTB_TESTE_28112019</option><option value="/ma-sepd.html">ma-sepd</option><option value="/pa-seat-qsaca.html">pa-seat-qsaca</option><option value="/pa-seat-qsacc.html">pa-seat-qsacc</option><option value="/pa-segm.html">pa-segm</option><option value="/pa-seig.html">pa-seig</option><option value="/pa-sejt.html">pa-sejt</option><option value="/pa-semb-ef.html">pa-semb-ef</option><option value="/pa-semb-eg.html">pa-semb-eg</option><option value="/pa-semm.html">pa-semm</option><option value="/pa-seru.html">pa-seru</option><option value="/pa-seru-138.html">pa-seru-138</option><option value="/pa-sese.html">pa-sese</option><option value="/pa-setc-138.html">pa-setc-138</option><option value="/pa-setc-230.html">pa-setc-230</option><option value="/pa-setc-230-old.html">pa-setc-230-old</option><option value="/pa-setc-69.html">pa-setc-69</option><option value="/pa-setm.html">pa-setm</option><option value="/pa-setm-old.html">pa-setm-old</option><option value="/pa-setv.html">pa-setv</option><option value="/pa-setvk.html">pa-setvk</option><option value="/pa-sevc-ae.html">pa-sevc-ae</option><option value="/pa-sevc-b1d.html">pa-sevc-b1d</option><option value="/pa-sexg.html">pa-sexg</option><option value="/tu-uhtu2.html">tu-uhtu2</option><option value="/ma-seac.html">ma-seac</option><option value="/ma-sebc.html">ma-sebc</option><option value="/ma-sech.html">ma-sech</option><option value="/ma-seiz.html">ma-seiz</option><option value="/ma-seiz-230.html">ma-seiz-230</option><option value="/ma-seld-ce.html">ma-seld-ce</option><option value="/ma-seli.html">ma-seli</option><option value="/ma-seli-69.html">ma-seli-69</option><option value="/ma-selt.html">ma-selt</option><option value="/ma-semr.html">ma-semr</option><option value="/CX_ELN_138kV_1.html">CX_ELN_138kV_1</option><option value="/CX_ELN_138kV_2.html">CX_ELN_138kV_2</option><option value="/CX_ELN_138kV_TELAO.html">CX_ELN_138kV_TELAO</option><option value="/TS_CX_138_01.html">TS_CX_138_01</option><option value="/TS_CX_230_01.html">TS_CX_230_01</option><option value="/pa-sis.wvs.html">pa-sis</option></datalist></input></header>
+   
+<nav id="top">
+   <ul>
+   </ul>
+</nav>
+   <div class="flex row">
+   <div id="menu-container">
+   <button id="tooltipButton" style="font-size:10px" onclick="showHideTooltip()"><i class="fa fa-comment"></i></button>
+      <div class="bartip">
+        <button id="showButton" style="font-size: 10px; display: flex;" onclick="showDivTip()"><i class="fa fa-chart-bar"></i></button>
+        <div id="divTip" class="bartipHide">
+          <svg id="svgBarTip" x="0" y="45" width="50" height="400" viewBox="0 0 50 400">
+              <rect width="100%" height="100%" fill="silver"></rect>
+              <text x="30" y="15" font-size="15" onclick="hideDivTip()" class="far icon"></text>
+              <g id="bartp" transform="translate(25,200) rotate(180)">
+                 <rect id="eRect" opacity="0.4" fill="purple" x="-15" y="-50" width="30" height="100" transform="scale(1,3)"></rect>
+                 <rect id="uRect" opacity="0.4" fill="red" x="-15" y="-50" width="30" height="100" transform="scale(1,3)"></rect>
+                 <rect id="aRect" opacity="0.4" fill="yellow" x="-15" y="-50" width="30" height="100" transform="scale(1,3)"></rect>
+                 <rect id="vRect" opacity="0.4" fill="white" stroke-width="5" x="-2.5" y="-50" width="5" height="0" transform="scale(1,3)"></rect>
+                 <text id="ieLbl" dominant-baseline="auto" text-anchor="middle" fill="white" x="0" y="-150" transform="rotate(540 0 -150)" font-size="15">0</text>
+                 <text id="iuLbl" dominant-baseline="auto" text-anchor="middle" fill="white" x="0" y="-150" transform="rotate(540 0 -150)" font-size="15">0</text>
+                 <text id="iaLbl" dominant-baseline="auto" text-anchor="middle" fill="white" x="0" y="-150" transform="rotate(540 0 -150)" font-size="15">0</text>
+                 <text id="saLbl" dominant-baseline="hanging" text-anchor="middle" fill="white" x="0" y="150" transform="rotate(540 0 150)" font-size="15">100</text>
+                 <text id="suLbl" dominant-baseline="hanging" text-anchor="middle" fill="white" x="0" y="150" transform="rotate(540 0 150)" font-size="15">100</text>
+                 <text id="seLbl" dominant-baseline="hanging" text-anchor="middle" fill="white" x="0" y="150" transform="rotate(540 0 150)" font-size="15">100</text>
+                 <text id="vaLbl" alignment-baseline="middle" text-anchor="middle" fill="black" x="0" y="-150" transform="rotate(540 0 -150)" font-size="15">0</text>
+              </g>
+          </svg>
+        </div>
+      </div>
+   </div>
+      <svg id="unifilar" width="1434.0" height="716.0" onload="svg_pan_zoom()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="overflow: hidden; "><defs>
+        <filter id="f1" x="-10%" y="-10%" width="120%" height="120%"><fegaussianblur stdDeviation="2"></fegaussianblur></filter>
+        <marker id="arrowNLRG" markerWidth="10" markerHeight="10" refX="1" refY="2" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,4 L4,2 z" stroke-width="0" fill="var(--cor_NLRG)"></path>
+        </marker>
+        <marker id="arrowESC" markerWidth="10" markerHeight="10" refX="1" refY="2" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,4 L4,2 z" stroke-width="0" fill="var(--cor_ESC)"></path>
+        </marker>
+        <marker id="arrowURG" markerWidth="10" markerHeight="10" refX="1" refY="2" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,4 L4,2 z" stroke-width="0" fill="var(--cor_URG)"></path>
+        </marker>
+        <marker id="arrowADV" markerWidth="10" markerHeight="10" refX="1" refY="2" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,4 L4,2 z" stroke-width="0" fill="var(--cor_ADV)"></path>
+        </marker>
+        <marker id="arrowNORM" markerWidth="10" markerHeight="10" refX="1" refY="2" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,4 L4,2 z" stroke-width="0" fill="var(--cor_NORM)"></path>
+        </marker>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="1" refY="2" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,4 L4,2 z" stroke-width="0" fill="#f00"></path>
+        </marker>
+      <style id="svg-pan-zoom-controls-styles" type="text/css">.svg-pan-zoom-control { cursor: pointer; fill: black; fill-opacity: 0.333; } .svg-pan-zoom-control:hover { fill-opacity: 0.8; } .svg-pan-zoom-control-background { fill: white; fill-opacity: 0.5; } .svg-pan-zoom-control-background { fill-opacity: 0.8; }</style></defs><g id="viewport-20220722185200680" class="svg-pan-zoom_viewport" transform="matrix(1.0091484869809992,0,0,1.0091484869809992,-48.11890258359537,16.642497245901325)" style="transform: matrix(1.00915, 0, 0, 1.00915, -48.1189, 16.6425);">
+      
+      <polygon id="ID9103" data-sage:tipo="Decorativo" points="375.0,32.0 447.0,32.0 447.0,94.0 375.0,94.0" fill="#C9C1B7" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <path id="ID8751" stroke-width="4" d="M 408.0 534.0 L 408.0 681.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8731" stroke-width="4" d="M 264.0 600.0 L 264.0 685.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <polygon id="ID8952" data-sage:tipo="Decorativo" points="1279.5,464.0 1393.5,464.0 1393.5,562.0 1279.5,562.0" fill="#C9C1B7" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8938" data-sage:tipo="Decorativo" points="383.0,394.0 483.0,394.0 483.0,466.0 383.0,466.0" fill="#C9C1B7" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8918" data-sage:tipo="Decorativo" points="91.0,158.0 208.1,158.0 208.1,380.0 91.0,380.0" fill="#C9C1B7" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <path id="ID8674" stroke-width="4" d="M 1039.0 490.0 L 1039.0 537.0 " stroke="#FF0002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8673" stroke-width="4" d="M 1010.0 490.0 L 1010.0 537.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <a xlink:href="/visbase/pa-semb.html">
+         <text id="ID3818" data-sage:tipo="Texto" data-sage:name="texto7" x="54.0" y="58.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Marabá
+ </text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID3935&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCMB704P&#39;)">
+        <text id="ID3935" data-sage:tipo="Medida" data-sage:name="TCMB704P" data-sage:dec="0" x="139.0" y="92.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <polygon id="ID4249" data-sage:tipo="Decorativo" points="1257.1,202.0 1292.9,202.0 1292.9,382.0 1257.1,382.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <path id="ID5523" stroke-width="4" d="M 33.8 90.0 L 33.8 676.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID3824" stroke-width="4" d="M 568.0 91.0 L 568.0 492.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <text id="ID8155" data-sage:tipo="Texto" data-sage:name="texto7" x="444.5" y="186.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <path id="ID8340" stroke-width="4" d="M 239.8 272.0 L 239.8 466.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8342" stroke-width="4" d="M 239.8 92.0 L 239.8 244.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <circle id="ID8356" cx="196.0" cy="224.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8357" cx="240.0" cy="224.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID8705" data-sage:stroke=""></circle>
+      <circle id="ID8365" cx="198.0" cy="308.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8366" cx="240.0" cy="308.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID9000" data-sage:stroke=""></circle>
+      <circle id="ID8368" cx="34.0" cy="106.0" r="2.0" stroke="#000002" fill="#000002" data-sage:stroke=""></circle>
+      <circle id="ID8369" cx="240.0" cy="106.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8371de" stroke-width="1" d="M 137.0 106.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8371para" stroke-width="1" d="M 137.0 106.0 L 240.0 106.0 L 34.0 106.0" data-sage:d_ori="M 137.0 106.0 L 240.0 106.0 L 34.0 106.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8372" cx="240.0" cy="136.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8373" cx="34.0" cy="136.0" r="2.0" stroke="#000002" fill="#000002" data-sage:stroke=""></circle>
+      <path id="ID8374de" stroke-width="1" d="M 137.0 136.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8374para" stroke-width="1" d="M 137.0 136.0 L 240.0 136.0 L 34.0 136.0" data-sage:d_ori="M 137.0 136.0 L 240.0 136.0 L 34.0 136.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8375" cx="240.0" cy="440.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8376" cx="34.0" cy="440.0" r="2.0" stroke="#000002" fill="#000002" data-sage:stroke=""></circle>
+      <path id="ID8377de" stroke-width="1" d="M 137.0 440.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8377para" stroke-width="1" d="M 137.0 440.0 L 240.0 440.0 L 34.0 440.0" data-sage:d_ori="M 137.0 440.0 L 240.0 440.0 L 34.0 440.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8378" cx="240.0" cy="406.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID8975" data-sage:stroke=""></circle>
+      <circle id="ID8379" cx="34.0" cy="406.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8380de" stroke-width="1" d="M 137.0 406.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8380para" stroke-width="1" d="M 137.0 406.0 L 240.0 406.0 L 34.0 406.0" data-sage:d_ori="M 137.0 406.0 L 240.0 406.0 L 34.0 406.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID8400" stroke-width="4" d="M 1376.7 237.0 L 1376.7 352.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8401" stroke-width="4" d="M 1409.1 305.0 L 1409.1 352.0 " stroke="#FF0002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8405" stroke-width="4" d="M 1409.1 237.0 L 1409.1 284.0 " stroke="#020099" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <circle id="ID8406" cx="470.0" cy="106.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8407" cx="470.0" cy="136.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8408de" stroke-width="1" d="M 355.0 106.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8408para" stroke-width="1" d="M 355.0 106.0 L 240.0 106.0 L 470.0 106.0" data-sage:d_ori="M 355.0 106.0 L 240.0 106.0 L 470.0 106.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <path id="ID8409de" stroke-width="1" d="M 355.0 136.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8409para" stroke-width="1" d="M 355.0 136.0 L 240.0 136.0 L 470.0 136.0" data-sage:d_ori="M 355.0 136.0 L 240.0 136.0 L 470.0 136.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <path id="ID8411" stroke-width="4" d="M 657.8 100.0 L 657.8 366.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <circle id="ID8412" cx="240.0" cy="170.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8413" cx="240.0" cy="224.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8414" cx="240.0" cy="308.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8415" cx="658.0" cy="170.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8416" cx="658.0" cy="224.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8417" cx="658.0" cy="308.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID9156" data-sage:stroke=""></circle>
+      <path id="ID8418de" stroke-width="1" d="M 449.0 170.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8418para" stroke-width="1" d="M 449.0 170.0 L 240.0 170.0 L 658.0 170.0" data-sage:d_ori="M 449.0 170.0 L 240.0 170.0 L 658.0 170.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID8420de" stroke-width="1" d="M 449.0 308.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8420para" stroke-width="1" d="M 449.0 308.0 L 240.0 308.0 L 658.0 308.0" data-sage:d_ori="M 449.0 308.0 L 240.0 308.0 L 658.0 308.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <g id="ID8422" data-sage:tipo="eqpGenerico" transform="rotate(-90, 673.0, 225.0)" stroke-width="1" stroke="#000002" fill="none" data-sage:stroke="">
+        <circle cx="673.0" cy="221.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+        <circle cx="673.0" cy="229.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8424" stroke-width="4" d="M 687.8 100.0 L 687.8 370.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8426" data-sage:tipo="eqpGenerico" transform="rotate(-90, 1393.3, 260.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="1393.3" cy="256.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="1393.3" cy="264.0" r="8.0" stroke="#020099" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <text id="ID8437" data-sage:tipo="Texto" data-sage:name="texto7" x="444.5" y="214.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#3
+ </text>
+      <text id="ID8439" data-sage:tipo="Texto" data-sage:name="texto7" x="444.5" y="296.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID8441" data-sage:tipo="Texto" data-sage:name="texto7" x="180.5" y="98.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#4
+ </text>
+      <text id="ID8443" data-sage:tipo="Texto" data-sage:name="texto7" x="356.5" y="94.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID8445" data-sage:tipo="Texto" data-sage:name="texto7" x="356.5" y="152.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID8447" data-sage:tipo="Texto" data-sage:name="texto7" x="180.5" y="146.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#3
+ </text>
+      <text id="ID8449" data-sage:tipo="Texto" data-sage:name="texto7" x="180.5" y="398.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID8451" data-sage:tipo="Texto" data-sage:name="texto7" x="180.5" y="450.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <a xlink:href="/visbase/pa-setc.html">
+         <text id="ID8453" data-sage:tipo="Texto" data-sage:name="texto7" x="258.0" y="58.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Tucuruí
+ </text>
+      </a>
+      <text id="ID8455" data-sage:tipo="Texto" data-sage:name="texto7" x="484.0" y="35.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Xingu
+ </text>
+      <a xlink:href="/visbase/pa-seat.html">
+         <text id="ID8457" data-sage:tipo="Texto" data-sage:name="texto7" x="570.0" y="58.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Altamira
+ </text>
+      </a>
+      <a xlink:href="/visbase/pa-sevc.html">
+         <text id="ID8459" data-sage:tipo="Texto" data-sage:name="texto7" x="678.0" y="58.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Vila do Conde
+ </text>
+      </a>
+      <path id="ID8464" stroke-width="4" d="M 285.8 336.0 L 285.8 478.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8466" data-sage:tipo="eqpGenerico" data-sage:adjacent="ID8975 ID8976" transform="rotate(-90, 253.0, 406.0)" stroke-width="1" stroke="#000002" fill="none" data-sage:stroke="">
+        <circle cx="253.0" cy="402.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+        <circle cx="253.0" cy="410.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <g id="ID8480" data-sage:tipo="eqpGenerico" transform="rotate(-90, 1024.1, 512.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="1024.1" cy="508.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="1024.1" cy="516.0" r="8.0" stroke="#FF0002" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8481" stroke-width="4" d="M 339.0 389.5 L 339.0 422.5 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8488" data-sage:tipo="eqpGenerico" transform="rotate(-90, 806.1, 119.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="806.1" cy="115.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="806.1" cy="123.0" r="8.0" stroke="#020099" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8489" stroke-width="4" d="M 820.0 100.0 L 820.0 140.0 " stroke="#020099" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8490" stroke-width="4" d="M 791.0 98.0 L 791.0 215.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <a xlink:href="/visbase/pa-segm.html">
+         <text id="ID8492" data-sage:tipo="Texto" data-sage:name="texto7" x="806.0" y="58.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Guamá
+ </text>
+      </a>
+      <path id="ID8500" stroke-width="4" d="M 927.0 100.0 L 927.0 327.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8509" stroke-width="4" d="M 902.0 288.0 L 902.0 328.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8511" data-sage:tipo="eqpGenerico" transform="rotate(-90, 915.0, 309.0)" stroke-width="1" stroke="#000002" fill="none" data-sage:stroke="">
+        <circle cx="915.0" cy="305.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+        <circle cx="915.0" cy="313.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <g id="ID8517" data-sage:tipo="eqpGenerico" transform="rotate(-90, 940.1, 264.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="940.1" cy="260.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="940.1" cy="268.0" r="8.0" stroke="#020099" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8518" stroke-width="4" d="M 955.0 237.0 L 955.0 284.0 " stroke="#020099" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8528" data-sage:tipo="eqpGenerico" transform="rotate(-90, 1058.1, 119.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="1058.1" cy="115.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="1058.1" cy="123.0" r="8.0" stroke="#020099" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8529" stroke-width="4" d="M 1072.0 98.0 L 1072.0 138.0 " stroke="#020099" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8530" stroke-width="4" d="M 1043.0 98.0 L 1043.0 271.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <a xlink:href="/visbase/pa-seug.html">
+         <text id="ID8532" data-sage:tipo="Texto" data-sage:name="texto7" x="1056.0" y="58.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Utinga
+ </text>
+      </a>
+      <g id="ID8543" data-sage:tipo="eqpGenerico" transform="rotate(-90, 1196.1, 119.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="1196.1" cy="115.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="1196.1" cy="123.0" r="8.0" stroke="#020099" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8545" stroke-width="4" d="M 1183.0 98.0 L 1183.0 209.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <a xlink:href="/visbase/pa-semm.html">
+         <text id="ID8546" data-sage:tipo="Texto" data-sage:name="texto7" x="1196.0" y="58.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Miramar
+ </text>
+      </a>
+      <a xlink:href="/visbase/pa-semt.html">
+         <text id="ID8550" data-sage:tipo="Texto" data-sage:name="texto7" x="928.0" y="58.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Marituba
+ </text>
+      </a>
+      <path id="ID8552" stroke-width="4" d="M 1272.8 228.0 L 1272.8 373.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <text id="ID8556" data-sage:tipo="Texto" data-sage:name="texto7" x="1273.9" y="193.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Castanhal
+ </text>
+      <a xlink:href="/visbase/pa-sesr.html">
+         <text id="ID8567" data-sage:tipo="Texto" data-sage:name="texto7" x="1396.8" y="202.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Santa Maria
+ </text>
+      </a>
+      <path id="ID8576" stroke-width="4" d="M 761.0 416.0 L 761.0 525.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <a xlink:href="/visbase/pa-setm.html">
+         <text id="ID8577" data-sage:tipo="Texto" data-sage:name="texto7" x="776.0" y="384.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Transamazônica
+ </text>
+      </a>
+      <g id="ID8588" data-sage:tipo="eqpGenerico" transform="rotate(-90, 458.1, 431.0)" stroke-width="1" stroke="#000002" fill="none" data-sage:stroke="">
+        <circle cx="458.1" cy="427.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+        <circle cx="458.1" cy="435.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8590" stroke-width="4" d="M 471.0 416.0 L 471.0 447.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8433" data-sage:tipo="eqpGenerico" transform="rotate(-270, 272.1, 354.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="272.1" cy="350.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="272.1" cy="358.0" r="8.0" stroke="#FF0002" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8434" stroke-width="4" d="M 257.0 339.0 L 257.0 370.0 " stroke="#FF0002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8635" data-sage:tipo="eqpGenerico" transform="rotate(-90, 1392.1, 333.4)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="1392.1" cy="329.4" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="1392.1" cy="337.4" r="8.0" stroke="#FF0002" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8648" stroke-width="4" d="M 1210.0 100.0 L 1210.0 140.0 " stroke="#020099" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8659" data-sage:tipo="eqpGenerico" transform="rotate(-90, 910.1, 434.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="910.1" cy="430.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="910.1" cy="438.0" r="8.0" stroke="#FF0002" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8660" stroke-width="4" d="M 895.0 415.5 L 895.0 456.5 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <a xlink:href="/visbase/pa-seru.html">
+         <text id="ID8661" data-sage:tipo="Texto" data-sage:name="texto7" x="910.0" y="386.3" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Rurópolis
+ </text>
+      </a>
+      <path id="ID8662" stroke-width="4" d="M 926.0 416.0 L 926.0 456.0 " stroke="#FF0002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8618" data-sage:tipo="eqpGenerico" transform="rotate(-90, 774.1, 472.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="774.1" cy="468.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="774.1" cy="476.0" r="8.0" stroke="#020099" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8619" stroke-width="4" d="M 789.0 453.0 L 789.0 492.0 " stroke="#020099" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <circle id="ID8676" cx="1010.0" cy="512.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:stroke=""></circle>
+      <circle id="ID8677" cx="1040.0" cy="528.0" r="2.0" stroke="#FF0002" fill="#FF0002" data-sage:adjacent="ID9146" data-sage:stroke=""></circle>
+      <text id="ID8678" data-sage:tipo="Texto" data-sage:name="texto7" x="1026.0" y="479.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Tapajos II
+ </text>
+      <path id="ID8688" stroke-width="4" d="M 1154.0 490.0 L 1154.0 537.0 " stroke="#FF0002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <circle id="ID8689" cx="1154.0" cy="528.0" r="2.0" stroke="#FF0002" fill="#FF0002" data-sage:adjacent="ID9146" data-sage:stroke=""></circle>
+      <path id="ID8712" stroke-width="4" d="M 63.8 540.0 L 63.8 589.6 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8717" data-sage:tipo="eqpGenerico" transform="rotate(-90, 48.1, 563.0)" stroke-width="1" stroke="#000002" fill="none" data-sage:stroke="">
+        <circle cx="48.1" cy="559.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+        <circle cx="48.1" cy="567.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <circle id="ID8733" cx="236.0" cy="616.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <text id="ID8735" data-sage:tipo="Texto" data-sage:name="texto7" x="254.0" y="589.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Itacaiúnas
+ </text>
+      <g id="ID8729" data-sage:tipo="eqpGenerico" transform="rotate(-90, 250.1, 639.0)" stroke-width="1" stroke="#000002" fill="none" data-sage:stroke="">
+        <circle cx="250.1" cy="635.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+        <circle cx="250.1" cy="643.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8730" stroke-width="4" d="M 236.0 598.0 L 236.0 683.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <a xlink:href="/visbase/pa-secj.html">
+         <text id="ID8752" data-sage:tipo="Texto" data-sage:name="texto7" x="422.0" y="502.8" class="FONTE_DEFAULT" text-anchor="middle" fill="#000000">Carajás
+ </text>
+      </a>
+      <g id="ID8753" data-sage:tipo="eqpGenerico" transform="rotate(-90, 422.1, 556.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="422.1" cy="552.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="422.1" cy="560.0" r="8.0" stroke="#FF0002" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8754" stroke-width="4" d="M 437.0 539.0 L 437.0 570.0 " stroke="#FF0002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8775" stroke-width="4" d="M 562.0 576.0 L 562.0 685.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <text id="ID8776" data-sage:tipo="Texto" data-sage:name="texto7" x="562.0" y="543.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Integradora
+ </text>
+      <path id="ID8791" stroke-width="4" d="M 692.0 618.0 L 692.0 691.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <text id="ID8795" data-sage:tipo="Texto" data-sage:name="texto7" x="692.0" y="605.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Onça Puma
+ </text>
+      <text id="ID8804" data-sage:tipo="Texto" data-sage:name="texto7" x="1156.0" y="477.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Tapajos
+ </text>
+      <text id="ID8806" data-sage:tipo="Texto" data-sage:name="texto7" x="1336.5" y="479.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Curuá-Una
+ </text>
+      <g id="ID8399" data-sage:tipo="eqpGenerico" transform="rotate(-90, 700.1, 126.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="700.1" cy="122.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="700.1" cy="130.0" r="8.0" stroke="#020099" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8428" stroke-width="4" d="M 715.0 103.0 L 715.0 146.0 " stroke="#020099" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <polygon id="ID8809" data-sage:tipo="Decorativo" points="1173.0,64.0 1219.0,64.0 1219.0,238.0 1173.0,238.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <a xlink:href="javascript:dlg(&#39;ID8811&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TC3_HZ_M1_2_20&#39;)">
+        <text id="ID8811" data-sage:tipo="Medida" data-sage:name="TC3_HZ_M1_2_20" data-sage:dec="0" x="139.0" y="124.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8813&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCMB702P&#39;)">
+        <text id="ID8813" data-sage:tipo="Medida" data-sage:name="TCMB702P" data-sage:dec="0" x="139.0" y="428.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8815&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCMB701P&#39;)">
+        <text id="ID8815" data-sage:tipo="Medida" data-sage:name="TCMB701P" data-sage:dec="0" x="139.0" y="394.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8817&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UHTUCP2E&#39;)">
+        <text id="ID8817" data-sage:tipo="Medida" data-sage:name="UHTUCP2E" data-sage:dec="0" x="117.0" y="228.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8819&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UHTUCP1E&#39;)">
+        <text id="ID8819" data-sage:tipo="Medida" data-sage:name="UHTUCP1E" data-sage:dec="0" x="119.0" y="310.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8821&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UHTUCP&#39;)">
+        <text id="ID8821" data-sage:tipo="Medida" data-sage:name="UHTUCP" data-sage:dec="0" x="153.0" y="265.5" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <text id="ID8823" data-sage:tipo="Texto" data-sage:name="texto7" x="150.8" y="288.9" class="FONTE_PQ_DESC" text-anchor="middle" fill="#000000">1a Etapa
+ </text>
+      <text id="ID8825" data-sage:tipo="Texto" data-sage:name="texto7" x="150.8" y="206.9" class="FONTE_PQ_DESC" text-anchor="middle" fill="#000000">2a Etapa
+ </text>
+      <a xlink:href="javascript:dlg(&#39;ID8828&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MBINLI701MP&#39;)">
+        <text id="ID8828" data-sage:tipo="Medida" data-sage:name="MBINLI701MP" data-sage:dec="0" x="137.0" y="604.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8829&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MBINLI702MP&#39;)">
+        <text id="ID8829" data-sage:tipo="Medida" data-sage:name="MBINLI702MP" data-sage:dec="0" x="137.0" y="674.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8831&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MBCJ601P&#39;)">
+        <text id="ID8831" data-sage:tipo="Medida" data-sage:name="MBCJ601P" data-sage:dec="0" x="237.0" y="554.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8833&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CJINLI601MP&#39;)">
+        <text id="ID8833" data-sage:tipo="Medida" data-sage:name="CJINLI601MP" data-sage:dec="0" x="337.0" y="602.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8835&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CJINLI602MP&#39;)">
+        <text id="ID8835" data-sage:tipo="Medida" data-sage:name="CJINLI602MP" data-sage:dec="0" x="337.0" y="630.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8837&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CJINLI603MP&#39;)">
+        <text id="ID8837" data-sage:tipo="Medida" data-sage:name="CJINLI603MP" data-sage:dec="0" x="337.0" y="662.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8840&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCXGLI701MZP&#39;)">
+        <text id="ID8840" data-sage:tipo="Medida" data-sage:name="TCXGLI701MZP" data-sage:dec="0" x="321.0" y="98.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8841&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCXGLI702LZP&#39;)">
+        <text id="ID8841" data-sage:tipo="Medida" data-sage:name="TCXGLI702LZP" data-sage:dec="0" x="321.0" y="126.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8843&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=ATXGLA601MP&#39;)">
+        <text id="ID8843" data-sage:tipo="Medida" data-sage:name="ATXGLA601MP" data-sage:dec="0" x="532.6" y="108.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8846&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCVC701P&#39;)">
+        <text id="ID8846" data-sage:tipo="Medida" data-sage:name="TCVC701P" data-sage:dec="0" x="443.0" y="158.7" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8847&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=VCTC703P&#39;)">
+        <text id="ID8847" data-sage:tipo="Medida" data-sage:name="VCTC703P" data-sage:dec="0" x="445.0" y="249.3" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8849&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TC7DJ06B00PT&#39;)">
+        <text id="ID8849" data-sage:tipo="Medida" data-sage:name="TC7DJ06B00PT" data-sage:dec="0" x="445.0" y="326.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8853&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CJIG601W&#39;)">
+        <text id="ID8853" data-sage:tipo="Medida" data-sage:name="CJIG601W" data-sage:dec="0" x="493.0" y="602.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8854&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CJIGLT602MP&#39;)">
+        <text id="ID8854" data-sage:tipo="Medida" data-sage:name="CJIGLT602MP" data-sage:dec="0" x="493.0" y="632.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8855&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CJIGLT603MP&#39;)">
+        <text id="ID8855" data-sage:tipo="Medida" data-sage:name="CJIGLT603MP" data-sage:dec="0" x="493.0" y="664.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8860&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=IGONLT601MP&#39;)">
+        <text id="ID8860" data-sage:tipo="Medida" data-sage:name="IGONLT601MP" data-sage:dec="0" x="639.0" y="632.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8861&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=IGONLT602MP&#39;)">
+        <text id="ID8861" data-sage:tipo="Medida" data-sage:name="IGONLT602MP" data-sage:dec="0" x="639.0" y="662.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8864&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=VCGM601P&#39;)">
+        <text id="ID8864" data-sage:tipo="Medida" data-sage:name="VCGM601P" data-sage:dec="0" x="745.0" y="146.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8868&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MTGMLI601MP&#39;)">
+        <text id="ID8868" data-sage:tipo="Medida" data-sage:name="MTGMLI601MP" data-sage:dec="0" x="859.0" y="148.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8869&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MTGMLI602MP&#39;)">
+        <text id="ID8869" data-sage:tipo="Medida" data-sage:name="MTGMLI602MP" data-sage:dec="0" x="857.0" y="222.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8872&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UGMMLT601MP&#39;)">
+        <text id="ID8872" data-sage:tipo="Medida" data-sage:name="UGMMLT601MP" data-sage:dec="0" x="1107.0" y="148.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8873&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MTUGLI602MP&#39;)">
+        <text id="ID8873" data-sage:tipo="Medida" data-sage:name="MTUGLI602MP" data-sage:dec="0" x="989.0" y="222.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8876&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MTUGLI601MP&#39;)">
+        <text id="ID8876" data-sage:tipo="Medida" data-sage:name="MTUGLI601MP" data-sage:dec="0" x="989.0" y="148.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8877&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UGMMLT602MP&#39;)">
+        <text id="ID8877" data-sage:tipo="Medida" data-sage:name="UGMMLT602MP" data-sage:dec="0" x="1107.0" y="222.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8879&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=VCGM602P&#39;)">
+        <text id="ID8879" data-sage:tipo="Medida" data-sage:name="VCGM602P" data-sage:dec="0" x="745.0" y="222.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8881&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=VCCN601P&#39;)">
+        <text id="ID8881" data-sage:tipo="Medida" data-sage:name="VCCN601P" data-sage:dec="0" x="983.0" y="376.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8883&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MTCNLI601MP6_EQT&#39;)">
+        <text id="ID8883" data-sage:tipo="Medida" data-sage:name="MTCNLI601MP6_EQT" data-sage:dec="0" x="1099.0" y="328.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8886&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=ATTMLT601MP&#39;)">
+        <text id="ID8886" data-sage:tipo="Medida" data-sage:name="ATTMLT601MP" data-sage:dec="0" x="669.0" y="416.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8887&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=ATTMLA602MP&#39;)">
+        <text id="ID8887" data-sage:tipo="Medida" data-sage:name="ATTMLA602MP" data-sage:dec="0" x="669.0" y="492.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8889&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TMRULT601MP&#39;)">
+        <text id="ID8889" data-sage:tipo="Medida" data-sage:name="TMRULT601MP" data-sage:dec="0" x="829.0" y="416.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8890&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TMLI601MP&#39;)">
+        <text id="ID8890" data-sage:tipo="Medida" data-sage:name="TMLI601MP" data-sage:dec="0" x="884.0" y="530.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8892&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CNSRLI601MP&#39;)">
+        <text id="ID8892" data-sage:tipo="Medida" data-sage:name="CNSRLI601MP" data-sage:dec="0" x="1324.2" y="252.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8893&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UGCNLI601MP&#39;)">
+        <text id="ID8893" data-sage:tipo="Medida" data-sage:name="UGCNLI601MP" data-sage:dec="0" x="1157.0" y="280.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8894&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CNSRLI602MP&#39;)">
+        <text id="ID8894" data-sage:tipo="Medida" data-sage:name="CNSRLI602MP" data-sage:dec="0" x="1324.2" y="326.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8895&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CUTALI501MP&#39;)">
+        <text id="ID8895" data-sage:tipo="Medida" data-sage:name="CUTALI501MP" data-sage:dec="0" x="1231.9" y="504.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8897&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UHPICP&#39;)">
+        <text id="ID8897" data-sage:tipo="Medida" data-sage:name="UHPICP" data-sage:dec="0" x="419.0" y="456.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8899&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCAT701MP7&#39;)">
+        <text id="ID8899" data-sage:tipo="Medida" data-sage:name="TCAT701MP7" data-sage:dec="0" x="425.0" y="356.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <text id="ID8903" data-sage:tipo="Texto" data-sage:name="texto7" x="417.0" y="409.9" class="FONTE_LABEL" text-anchor="middle" fill="#000000">Pimental
+ </text>
+      <a xlink:href="javascript:dlg(&#39;ID8906&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UHCUCP&#39;)">
+        <text id="ID8906" data-sage:tipo="Medida" data-sage:name="UHCUCP" data-sage:dec="0" x="1363.3" y="544.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8908&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=ATPMLI601MP&#39;)">
+        <text id="ID8908" data-sage:tipo="Medida" data-sage:name="ATPMLI601MP" data-sage:dec="0" x="521.0" y="418.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <text id="ID8916" data-sage:tipo="Texto" data-sage:name="texto7" x="143.6" y="175.9" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">UHE Tucuruí
+ </text>
+      <polygon id="ID8920" data-sage:tipo="Decorativo" points="13.0,64.0 72.8,64.0 72.8,686.0 13.0,686.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8922" data-sage:tipo="Decorativo" points="221.0,64.0 302.1,64.0 302.1,492.0 221.0,492.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8924" data-sage:tipo="Decorativo" points="1031.0,64.0 1081.0,64.0 1081.0,278.0 1031.0,278.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8926" data-sage:tipo="Decorativo" points="1364.4,210.0 1427.0,210.0 1427.0,364.0 1364.4,364.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8928" data-sage:tipo="Decorativo" points="551.0,64.0 587.0,64.0 587.0,506.0 551.0,506.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8930" data-sage:tipo="Decorativo" points="895.0,64.0 961.0,64.0 961.0,334.0 895.0,334.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8932" data-sage:tipo="Decorativo" points="637.0,64.0 721.0,64.0 721.0,384.0 637.0,384.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8934" data-sage:tipo="Decorativo" points="781.0,64.0 825.0,64.0 825.0,238.0 781.0,238.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8936" data-sage:tipo="Decorativo" points="463.0,42.0 507.0,42.0 507.0,152.0 463.0,152.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8942" data-sage:tipo="Decorativo" points="399.0,511.4 443.0,511.4 443.0,693.4 399.0,693.4" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8944" data-sage:tipo="Decorativo" points="543.0,550.0 581.0,550.0 581.0,692.0 543.0,692.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8948" data-sage:tipo="Decorativo" points="887.0,392.0 933.0,392.0 933.0,466.0 887.0,466.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <polygon id="ID8950" data-sage:tipo="Decorativo" points="753.0,392.0 799.0,392.0 799.0,536.0 753.0,536.0" fill="none" stroke="#236B8E" data-sage:stroke=""></polygon>
+      <g id="ID8388" data-sage:tipo="eqpGenerico" transform="rotate(-90, 484.1, 121.0)" stroke-width="1" stroke="#000002" fill="none" data-sage:stroke="">
+        <circle cx="484.1" cy="117.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+        <circle cx="484.1" cy="125.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8389" stroke-width="4" d="M 470.0 52.0 L 470.0 145.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8390" stroke-width="4" d="M 497.0 98.0 L 497.0 145.0 " stroke="#00A500" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID8471" stroke-width="4" d="M 257.0 445.0 L 257.0 474.0 " stroke="#020099" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8470" data-sage:tipo="eqpGenerico" transform="rotate(-270, 272.1, 460.0)" stroke-width="1" stroke="#00A500" fill="none" data-sage:stroke="">
+        <circle cx="272.1" cy="456.0" r="8.0" stroke="#00A500" fill="none" data-sage:stroke=""></circle>
+        <circle cx="272.1" cy="464.0" r="8.0" stroke="#020099" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <text id="ID8978" data-sage:tipo="Texto" data-sage:name="texto7" x="114.3" y="265.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Total
+ </text>
+      <path id="ID8988" stroke-width="4" d="M 166.0 476.0 L 166.0 533.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <text id="ID8993" data-sage:tipo="Texto" data-sage:name="texto7" x="166.0" y="471.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Imperatriz
+ </text>
+      <a xlink:href="javascript:dlg(&#39;ID8996&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MBIZ701P&#39;)">
+        <text id="ID8996" data-sage:tipo="Medida" data-sage:name="MBIZ701P" data-sage:dec="0" x="101.2" y="474.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8998&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MBIZ702P&#39;)">
+        <text id="ID8998" data-sage:tipo="Medida" data-sage:name="MBIZ702P" data-sage:dec="0" x="101.2" y="542.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <g id="ID8602" data-sage:tipo="eqpGenerico" stroke="#FFFF00" fill="none" data-sage:stroke="">
+        <circle cx="420.0" cy="429.0" r="11.0"></circle>
+        <path d="m 414.0 429.0 q 3,-6 6,0 t 6,0"></path>
+      </g>
+      <path id="ID8603" stroke-width="1" d="M 432.0 430.0 L 442.0 430.0 " stroke="#FFFF02" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8332" data-sage:tipo="eqpGenerico" data-sage:adjacent="ID9000" transform="rotate(-90, 184.1, 308.0)" stroke-width="1" stroke="#FFFF02" fill="none" data-sage:stroke="">
+        <circle cx="184.1" cy="304.0" r="8.0" stroke="#FFFF02" fill="none" data-sage:stroke=""></circle>
+        <circle cx="184.1" cy="312.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8334" stroke-width="4" d="M 197.0 295.0 L 197.0 376.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8335" data-sage:tipo="eqpGenerico" stroke="#FFFF00" fill="none" data-sage:stroke="">
+        <circle cx="152.0" cy="307.0" r="11.0"></circle>
+        <path d="m 146.0 307.0 q 3,-6 6,0 t 6,0"></path>
+      </g>
+      <path id="ID8336" stroke-width="1" d="M 164.0 308.0 L 174.0 308.0 " stroke="#FFFF02" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8314" data-sage:tipo="eqpGenerico" data-sage:adjacent="ID8705" transform="rotate(-90, 182.1, 224.0)" stroke-width="1" stroke="#FFFF02" fill="none" data-sage:stroke="">
+        <circle cx="182.1" cy="220.0" r="8.0" stroke="#FFFF02" fill="none" data-sage:stroke=""></circle>
+        <circle cx="182.1" cy="228.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8320" stroke-width="4" d="M 195.0 201.0 L 195.0 248.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8312" data-sage:tipo="eqpGenerico" stroke="#FFFF00" fill="none" data-sage:stroke="">
+        <circle cx="150.0" cy="223.0" r="11.0"></circle>
+        <path d="m 144.0 223.0 q 3,-6 6,0 t 6,0"></path>
+      </g>
+      <path id="ID8322" stroke-width="1" d="M 162.0 224.0 L 172.0 224.0 " stroke="#FFFF02" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8700" data-sage:tipo="eqpGenerico" transform="rotate(-270, 1324.0, 514.0)" stroke-width="1" stroke="#FFFF02" fill="none" data-sage:stroke="">
+        <circle cx="1324.0" cy="510.0" r="8.0" stroke="#FFFF02" fill="none" data-sage:stroke=""></circle>
+        <circle cx="1324.0" cy="518.0" r="8.0" stroke="#FF0002" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8701" stroke-width="4" d="M 1309.6 491.0 L 1309.6 538.0 " stroke="#FF0002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <g id="ID8703" data-sage:tipo="eqpGenerico" stroke="#FFFF00" fill="none" data-sage:stroke="">
+        <circle cx="1361.0" cy="513.0" r="11.0"></circle>
+        <path d="m 1355.0 513.0 q 3,-6 6,0 t 6,0"></path>
+      </g>
+      <path id="ID8704" stroke-width="1" d="M 1340.9 514.0 L 1352.1 514.0 " stroke="#FFFF02" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <circle id="ID8460" cx="568.0" cy="120.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8461" cx="498.0" cy="120.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:stroke=""></circle>
+      <path id="ID8462de" stroke-width="1" d="M 533.0 120.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8462para" stroke-width="1" d="M 533.0 120.0 L 498.0 120.0 L 568.0 120.0" data-sage:d_ori="M 533.0 120.0 L 498.0 120.0 L 568.0 120.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <circle id="ID8473" cx="286.0" cy="370.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:stroke=""></circle>
+      <circle id="ID8474" cx="568.0" cy="370.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8475de" stroke-width="1" d="M 427.0 370.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8475para" stroke-width="1" d="M 427.0 370.0 L 286.0 370.0 L 568.0 370.0" data-sage:d_ori="M 427.0 370.0 L 286.0 370.0 L 568.0 370.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <circle id="ID8476" cx="286.0" cy="406.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:adjacent="ID8976 ID8999" data-sage:stroke=""></circle>
+      <circle id="ID8482" cx="338.0" cy="406.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID8999" data-sage:stroke=""></circle>
+      <circle id="ID8493" cx="686.0" cy="158.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8494" cx="790.0" cy="158.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8495" cx="686.0" cy="202.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8496" cx="792.0" cy="202.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8497de" stroke-width="1" d="M 738.0 158.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8497para" stroke-width="1" d="M 738.0 158.0 L 686.0 158.0 L 790.0 158.0" data-sage:d_ori="M 738.0 158.0 L 686.0 158.0 L 790.0 158.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID8498de" stroke-width="1" d="M 739.0 202.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8498para" stroke-width="1" d="M 739.0 202.0 L 686.0 202.0 L 792.0 202.0" data-sage:d_ori="M 739.0 202.0 L 686.0 202.0 L 792.0 202.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8501" cx="928.0" cy="158.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8502" cx="926.0" cy="202.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8505" cx="686.0" cy="356.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8512" cx="902.0" cy="308.0" r="2.0" stroke="#000002" fill="#000002" data-sage:adjacent="ID9156" data-sage:stroke=""></circle>
+      <circle id="ID8520" cx="926.0" cy="308.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8526" cx="1042.0" cy="158.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8527" cx="1044.0" cy="202.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8533de" stroke-width="1" d="M 985.0 158.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8533para" stroke-width="1" d="M 985.0 158.0 L 928.0 158.0 L 1042.0 158.0" data-sage:d_ori="M 985.0 158.0 L 928.0 158.0 L 1042.0 158.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID8534de" stroke-width="1" d="M 985.0 202.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8534para" stroke-width="1" d="M 985.0 202.0 L 926.0 202.0 L 1044.0 202.0" data-sage:d_ori="M 985.0 202.0 L 926.0 202.0 L 1044.0 202.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8541" cx="1182.0" cy="158.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8542" cx="1182.0" cy="202.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8547de" stroke-width="1" d="M 1112.0 158.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8547para" stroke-width="1" d="M 1112.0 158.0 L 1042.0 158.0 L 1182.0 158.0" data-sage:d_ori="M 1112.0 158.0 L 1042.0 158.0 L 1182.0 158.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID8548de" stroke-width="1" d="M 1113.0 202.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8548para" stroke-width="1" d="M 1113.0 202.0 L 1044.0 202.0 L 1182.0 202.0" data-sage:d_ori="M 1113.0 202.0 L 1044.0 202.0 L 1182.0 202.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8553" cx="1271.7" cy="308.0" r="2.2" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8554de" stroke-width="1" d="M 1098.8 308.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8554para" stroke-width="1" d="M 1098.8 308.0 L 926.0 308.0 L 1271.7 308.0" data-sage:d_ori="M 1098.8 308.0 L 926.0 308.0 L 1271.7 308.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <circle id="ID8557" cx="1042.0" cy="262.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8558" cx="1273.8" cy="262.0" r="2.2" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8559de" stroke-width="1" d="M 1157.9 262.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8559para" stroke-width="1" d="M 1157.9 262.0 L 1042.0 262.0 L 1273.8 262.0" data-sage:d_ori="M 1157.9 262.0 L 1042.0 262.0 L 1273.8 262.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8560" cx="1273.8" cy="356.0" r="2.2" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8561de" stroke-width="1" d="M 979.9 356.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8561para" stroke-width="1" d="M 979.9 356.0 L 686.0 356.0 L 1273.8 356.0" data-sage:d_ori="M 979.9 356.0 L 686.0 356.0 L 1273.8 356.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8562" cx="1376.7" cy="262.0" r="2.2" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8563" cx="1376.7" cy="308.0" r="2.2" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8564de" stroke-width="1" d="M 1325.2 262.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8564para" stroke-width="1" d="M 1325.2 262.0 L 1273.8 262.0 L 1376.7 262.0" data-sage:d_ori="M 1325.2 262.0 L 1273.8 262.0 L 1376.7 262.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID8565de" stroke-width="1" d="M 1324.2 308.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8565para" stroke-width="1" d="M 1324.2 308.0 L 1271.7 308.0 L 1376.7 308.0" data-sage:d_ori="M 1324.2 308.0 L 1271.7 308.0 L 1376.7 308.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8573" cx="760.0" cy="472.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8575" cx="760.0" cy="430.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8579" cx="568.0" cy="472.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8610" cx="472.0" cy="430.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID9127" data-sage:stroke=""></circle>
+      <circle id="ID8613" cx="568.0" cy="430.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID9127" data-sage:stroke=""></circle>
+      <path id="ID8614de" stroke-width="1" d="M 664.0 430.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8614para" stroke-width="1" d="M 664.0 430.0 L 568.0 430.0 L 760.0 430.0" data-sage:d_ori="M 664.0 430.0 L 568.0 430.0 L 760.0 430.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID8615de" stroke-width="1" d="M 664.0 472.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8615para" stroke-width="1" d="M 664.0 472.0 L 568.0 472.0 L 760.0 472.0" data-sage:d_ori="M 664.0 472.0 L 568.0 472.0 L 760.0 472.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8657" cx="894.0" cy="430.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8663de" stroke-width="1" d="M 827.0 430.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8663para" stroke-width="1" d="M 827.0 430.0 L 760.0 430.0 L 894.0 430.0" data-sage:d_ori="M 827.0 430.0 L 760.0 430.0 L 894.0 430.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8671" cx="1040.0" cy="500.0" r="2.0" stroke="#FF0002" fill="#FF0002" data-sage:adjacent="ID9145" data-sage:stroke=""></circle>
+      <circle id="ID8675" cx="762.0" cy="512.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8681de" stroke-width="1" d="M 886.0 512.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8681para" stroke-width="1" d="M 886.0 512.0 L 762.0 512.0 L 1010.0 512.0" data-sage:d_ori="M 886.0 512.0 L 762.0 512.0 L 1010.0 512.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <circle id="ID8687" cx="1154.0" cy="500.0" r="2.0" stroke="#FF0002" fill="#FF0002" data-sage:adjacent="ID9145" data-sage:stroke=""></circle>
+      <circle id="ID8692" cx="1154.0" cy="516.0" r="2.0" stroke="#FF0002" fill="#FF0002" data-sage:stroke=""></circle>
+      <circle id="ID8707" cx="1309.7" cy="515.5" r="2.2" stroke="#FF0002" fill="#FF0002" data-sage:stroke=""></circle>
+      <path id="ID8708de" stroke-width="1" d="M 1231.8 515.8" stroke="#FF0002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8708para" stroke-width="1" d="M 1231.8 515.8 L 1309.7 515.5 L 1154.0 516.0" data-sage:d_ori="M 1231.8 515.8 L 1309.7 515.5 L 1154.0 516.0" stroke="#FF0002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8728" cx="264.0" cy="612.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:stroke=""></circle>
+      <circle id="ID8732" cx="236.0" cy="616.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8736" cx="34.0" cy="616.0" r="2.0" stroke="#000002" fill="#000002" data-sage:stroke=""></circle>
+      <circle id="ID8737" cx="34.0" cy="656.0" r="2.0" stroke="#000002" fill="#000002" data-sage:stroke=""></circle>
+      <circle id="ID8738" cx="236.0" cy="656.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8739de" stroke-width="1" d="M 135.0 616.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8739para" stroke-width="1" d="M 135.0 616.0 L 34.0 616.0 L 236.0 616.0" data-sage:d_ori="M 135.0 616.0 L 34.0 616.0 L 236.0 616.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <path id="ID8740de" stroke-width="1" d="M 135.0 656.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8740para" stroke-width="1" d="M 135.0 656.0 L 34.0 656.0 L 236.0 656.0" data-sage:d_ori="M 135.0 656.0 L 34.0 656.0 L 236.0 656.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <circle id="ID8748" cx="408.0" cy="674.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8749" cx="408.0" cy="564.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8750" cx="408.0" cy="666.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8755" cx="64.0" cy="564.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:stroke=""></circle>
+      <path id="ID8756de" stroke-width="1" d="M 236.0 564.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8756para" stroke-width="1" d="M 236.0 564.0 L 64.0 564.0 L 408.0 564.0" data-sage:d_ori="M 236.0 564.0 L 64.0 564.0 L 408.0 564.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8757" cx="264.0" cy="612.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:stroke=""></circle>
+      <circle id="ID8758" cx="264.0" cy="642.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:stroke=""></circle>
+      <circle id="ID8759" cx="264.0" cy="674.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:stroke=""></circle>
+      <circle id="ID8760" cx="408.0" cy="612.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8772" cx="562.0" cy="674.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8773" cx="562.0" cy="612.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8779de" stroke-width="1" d="M 485.0 612.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8779para" stroke-width="1" d="M 485.0 612.0 L 408.0 612.0 L 562.0 612.0" data-sage:d_ori="M 485.0 612.0 L 408.0 612.0 L 562.0 612.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID8780de" stroke-width="1" d="M 485.0 674.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8780para" stroke-width="1" d="M 485.0 674.0 L 408.0 674.0 L 562.0 674.0" data-sage:d_ori="M 485.0 674.0 L 408.0 674.0 L 562.0 674.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <circle id="ID8800" cx="562.0" cy="612.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID8979" data-sage:stroke=""></circle>
+      <polygon id="ID8801" data-sage:tipo="eqpGenerico" data-sage:name="term3" points="624.0 604.0 624.0 612.0 628.0 612.0 624.0 620.0 620.0 612.0 624.0 612.0" transform="rotate(-90,624.0,612.0)" data-sage:adjacent="ID8979" stroke-width="2" stroke="#00A500" fill="#00A500" data-sage:stroke="">      </polygon>
+      <a xlink:href="javascript:dlg(&#39;ID8953&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCBR703VBV&#39;)">
+        <text id="ID8953" data-sage:tipo="Medida" data-sage:name="TCBR703VBV" data-sage:dec="0" x="242.0" y="85.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8954&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MBBR701VBV&#39;)">
+        <text id="ID8954" data-sage:tipo="Medida" data-sage:name="MBBR701VBV" data-sage:dec="0" x="34.0" y="81.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8955&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCBR701VBV&#39;)">
+        <text id="ID8955" data-sage:tipo="Medida" data-sage:name="TCBR701VBV" data-sage:dec="0" x="238.0" y="484.3" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8956&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=XGDBMKBVBC&#39;)">
+        <text id="ID8956" data-sage:tipo="Medida" data-sage:name="XGDBMKBVBC" data-sage:dec="0" x="488.0" y="83.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8957&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TCBR6016CYMVFBVBI&#39;)">
+        <text id="ID8957" data-sage:tipo="Medida" data-sage:name="TCBR6016CYMVFBVBI" data-sage:dec="0" x="286.0" y="325.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8959&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CJBR601VBV&#39;)">
+        <text id="ID8959" data-sage:tipo="Medida" data-sage:name="CJBR601VBV" data-sage:dec="0" x="424.0" y="527.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8960&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=ATBR601MVFBV6&#39;)">
+        <text id="ID8960" data-sage:tipo="Medida" data-sage:name="ATBR601MVFBV6" data-sage:dec="0" x="568.0" y="81.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8961&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=VCBR701V&#39;)">
+        <text id="ID8961" data-sage:tipo="Medida" data-sage:name="VCBR701V" data-sage:dec="0" x="652.0" y="81.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8962&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=VCBR601VBN&#39;)">
+        <text id="ID8962" data-sage:tipo="Medida" data-sage:name="VCBR601VBN" data-sage:dec="0" x="686.0" y="81.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8963&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=GMBR601VBV&#39;)">
+        <text id="ID8963" data-sage:tipo="Medida" data-sage:name="GMBR601VBV" data-sage:dec="0" x="804.0" y="81.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8964&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MTBR601MVB1_EQT&#39;)">
+        <text id="ID8964" data-sage:tipo="Medida" data-sage:name="MTBR601MVB1_EQT" data-sage:dec="0" x="926.0" y="81.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8965&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UGBR601VBI&#39;)">
+        <text id="ID8965" data-sage:tipo="Medida" data-sage:name="UGBR601VBI" data-sage:dec="0" x="1052.0" y="81.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8966&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MMBR601MVFBV&#39;)">
+        <text id="ID8966" data-sage:tipo="Medida" data-sage:name="MMBR601MVFBV" data-sage:dec="0" x="1192.0" y="81.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8967&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CNBR601MVFBV&#39;)">
+        <text id="ID8967" data-sage:tipo="Medida" data-sage:name="CNBR601MVFBV" data-sage:dec="0" x="1273.9" y="221.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8968&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=SRBR601MVFBV6&#39;)">
+        <text id="ID8968" data-sage:tipo="Medida" data-sage:name="SRBR601MVFBV6" data-sage:dec="0" x="1387.9" y="227.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8969&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=CUTF502MVAB5&#39;)">
+        <text id="ID8969" data-sage:tipo="Medida" data-sage:name="CUTF502MVAB5" data-sage:dec="0" x="1309.7" y="551.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8970&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=TMBR601MVFBV&#39;)">
+        <text id="ID8970" data-sage:tipo="Medida" data-sage:name="TMBR601MVFBV" data-sage:dec="0" x="776.0" y="409.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8971&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=RUBR601MVFBV&#39;)">
+        <text id="ID8971" data-sage:tipo="Medida" data-sage:name="RUBR601MVFBV" data-sage:dec="0" x="908.0" y="409.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <a xlink:href="javascript:dlg(&#39;ID8973&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=IGBR601MVBV&#39;)">
+        <text id="ID8973" data-sage:tipo="Medida" data-sage:name="IGBR601MVBV" data-sage:dec="0" x="562.0" y="567.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <path id="ID8975" stroke-width="1" d="M 241.0 406.0 L 241.0 406.0 L 240.0 406.0 " stroke="none" fill="none" data-sage:stroke=""></path>
+      <path id="ID8976" stroke-width="1" d="M 265.0 406.0 L 265.0 406.0 L 286.0 406.0 " stroke="#00A500" fill="none" data-sage:stroke=""></path>
+      <path id="ID8979" stroke-width="1" d="M 562.0 612.0 L 562.0 612.0 L 616.0 612.0 " stroke="#00A500" fill="none" data-sage:stroke=""></path>
+      <circle id="ID8981" cx="34.0" cy="486.0" r="2.0" stroke="#000002" fill="#000002" data-sage:stroke=""></circle>
+      <circle id="ID8982" cx="34.0" cy="524.0" r="2.0" stroke="#000002" fill="#000002" data-sage:stroke=""></circle>
+      <circle id="ID8986" cx="166.0" cy="486.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID8989" cx="166.0" cy="524.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID8990de" stroke-width="1" d="M 100.0 486.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8990para" stroke-width="1" d="M 100.0 486.0 L 34.0 486.0 L 166.0 486.0" data-sage:d_ori="M 100.0 486.0 L 34.0 486.0 L 166.0 486.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <path id="ID8991de" stroke-width="1" d="M 100.0 524.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID8991para" stroke-width="1" d="M 100.0 524.0 L 34.0 524.0 L 166.0 524.0" data-sage:d_ori="M 100.0 524.0 L 34.0 524.0 L 166.0 524.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <path id="ID8999" stroke-width="1" d="M 286.0 406.0 L 286.0 406.0 L 338.0 406.0 " stroke="#00A500" fill="none" data-sage:stroke=""></path>
+      <path id="ID8705" stroke-width="1" d="M 194.1 224.0 L 194.1 224.0 L 240.0 224.0 " stroke="#000002" fill="none" data-sage:stroke=""></path>
+      <path id="ID9000" stroke-width="1" d="M 196.1 308.0 L 196.1 308.0 L 240.0 308.0 " stroke="#000002" fill="none" data-sage:stroke=""></path>
+      <text id="ID9003" data-sage:tipo="Texto" data-sage:name="texto7" x="744.5" y="172.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9004" data-sage:tipo="Texto" data-sage:name="texto7" x="744.5" y="194.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID9007" data-sage:tipo="Texto" data-sage:name="texto7" x="856.5" y="172.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9008" data-sage:tipo="Texto" data-sage:name="texto7" x="856.5" y="194.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID9011" data-sage:tipo="Texto" data-sage:name="texto7" x="986.5" y="172.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9012" data-sage:tipo="Texto" data-sage:name="texto7" x="986.5" y="194.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID9015" data-sage:tipo="Texto" data-sage:name="texto7" x="1128.5" y="174.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9016" data-sage:tipo="Texto" data-sage:name="texto7" x="1128.5" y="194.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID9020" data-sage:tipo="Texto" data-sage:name="texto7" x="102.5" y="500.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9022" data-sage:tipo="Texto" data-sage:name="texto7" x="102.5" y="514.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID9025" data-sage:tipo="Texto" data-sage:name="texto7" x="136.5" y="646.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID9026" data-sage:tipo="Texto" data-sage:name="texto7" x="136.5" y="630.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9029" data-sage:tipo="Texto" data-sage:name="texto7" x="286.5" y="622.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9036" data-sage:tipo="Texto" data-sage:name="texto7" x="454.5" y="624.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9037" data-sage:tipo="Texto" data-sage:name="texto7" x="454.5" y="684.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#3
+ </text>
+      <text id="ID9038" data-sage:tipo="Texto" data-sage:name="texto7" x="454.5" y="654.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID9041" data-sage:tipo="Texto" data-sage:name="texto7" x="666.5" y="684.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <circle id="ID8914" cx="1432.0" cy="714.0" r="2.0" stroke="#A5A5A5" fill="#000002" data-sage:stroke=""></circle>
+      <circle id="ID9069" cx="408.0" cy="642.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID9071" cx="264.0" cy="644.0" r="2.0" stroke="#00A500" fill="#00A500" data-sage:stroke=""></circle>
+      <circle id="ID9075" cx="564.0" cy="642.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID9076" cx="562.0" cy="674.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID9077de" stroke-width="1" d="M 486.0 642.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID9077para" stroke-width="1" d="M 486.0 642.0 L 408.0 642.0 L 564.0 642.0" data-sage:d_ori="M 486.0 642.0 L 408.0 642.0 L 564.0 642.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <circle id="ID9079" cx="692.0" cy="674.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <circle id="ID9080" cx="692.0" cy="642.0" r="2.0" stroke="none" fill="none" data-sage:stroke=""></circle>
+      <path id="ID9081de" stroke-width="1" d="M 628.0 642.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID9081para" stroke-width="1" d="M 628.0 642.0 L 564.0 642.0 L 692.0 642.0" data-sage:d_ori="M 628.0 642.0 L 564.0 642.0 L 692.0 642.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <path id="ID9082de" stroke-width="1" d="M 627.0 674.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID9082para" stroke-width="1" d="M 627.0 674.0 L 562.0 674.0 L 692.0 674.0" data-sage:d_ori="M 627.0 674.0 L 562.0 674.0 L 692.0 674.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <text id="ID9083" data-sage:tipo="Texto" data-sage:name="texto7" x="286.5" y="684.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#3
+ </text>
+      <text id="ID9084" data-sage:tipo="Texto" data-sage:name="texto7" x="286.5" y="654.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <text id="ID9087" data-sage:tipo="Texto" data-sage:name="texto7" x="666.5" y="632.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <g id="ID9092" data-sage:tipo="eqpGenerico" stroke="#FFFF00" fill="none" data-sage:stroke="">
+        <circle cx="402.0" cy="65.0" r="11.0"></circle>
+        <path d="m 396.0 65.0 q 3,-6 6,0 t 6,0"></path>
+      </g>
+      <path id="ID9093" stroke-width="1" d="M 414.0 66.0 L 424.0 66.0 " stroke="#FFFF02" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <a xlink:href="javascript:dlg(&#39;ID9096&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UHBMCP&#39;)">
+        <text id="ID9096" data-sage:tipo="Medida" data-sage:name="UHBMCP" data-sage:dec="0" x="401.0" y="88.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <path id="ID9098" stroke-width="4" d="M 425.0 52.0 L 425.0 81.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <circle id="ID9099" cx="426.0" cy="68.0" r="2.0" stroke="#000002" fill="#000002" data-sage:adjacent="ID9101" data-sage:stroke=""></circle>
+      <circle id="ID9100" cx="470.0" cy="68.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID9101" data-sage:stroke=""></circle>
+      <path id="ID9101" stroke-width="1" d="M 426.0 68.0 L 426.0 68.0 L 470.0 68.0 " stroke="#000002" fill="none" data-sage:stroke=""></path>
+      <text id="ID9105" data-sage:tipo="Texto" data-sage:name="texto7" x="411.0" y="45.6" class="FONTE_IDENT_NEG" text-anchor="middle" fill="#000000">Belo Monte
+ </text>
+      <text id="ID1928" data-sage:tipo="Texto" data-sage:name="texto7" x="726.8" y="34.0" class="FONTE_SUBTITULO" text-anchor="middle" fill="#0200CC">Sistema Para
+ </text>
+      <path id="ID9110" data-sage:tipo="eqpGenerico" d="M 40,67.5 L 50,67.5 C 50,67.5 50,57.5 60,57.5 C 75,57.5 80,77.5 70,77.5 C 60,77.5 65,57.5 80,57.5 C 95,57.5 100,77.5 90,77.5 C 80,77.5 85,57.5 100,57.5 C 115,57.5 120,77.5 110,77.5 C 100,77.5 105,57.5 120,57.5 C 135,57.5 140,77.5 130,77.5 C 120,77.5 125,57.5 140,57.5 C 149.90861,57.5 150,67.5 150,67.5 L 160,67.5" transform="rotate(-90.0,240.0,258.0) translate(224.0, 238.0) scale(.15,.30)" stroke-width="5" stroke="#000002" fill="none" data-sage:stroke=""></path>
+      <path id="ID9111" stroke-width="1" d="M 240.0 250.0 L 240.0 242.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID9112" stroke-width="1" d="M 240.0 272.0 L 240.0 266.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <a xlink:href="javascript:dlg(&#39;ID9116&#39;,&#39;/visbase/entry/atrib.py?ent=pds&amp;id=TCDB701POS&#39;)">
+          <path id="ID9116" data-sage:tipo="Disjuntor" pointer-events="bounding-box" d="M 262.0 256.0 l 4.0 0.0 l 0.0 8.0 l -4.0 0.0 l 0.0 4.0 l 0.0 -4.0 l -4.0 0.0 l 0.0 -8.0 l 4.0 0.0 l 0.0 -4.0 z" transform="rotate(0, 262.0, 260.0)" data-sage:adjacent="ID9121 ID9122" stroke-width="1" stroke="#000002" fill="#000002" data-sage:stroke="" style="stroke: green; fill: none;"></path>
+      </a>
+      <circle id="ID9117" cx="240.0" cy="238.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID9121" data-sage:stroke=""></circle>
+      <circle id="ID9118" cx="240.0" cy="282.0" r="2.0" stroke="none" fill="none" data-sage:adjacent="ID9122" data-sage:stroke=""></circle>
+      <path id="ID9121" stroke-width="1" d="M 240.0 238.0 L 262.0 238.0 L 262.0 252.0 " stroke="#000002" fill="none" data-sage:stroke=""></path>
+      <path id="ID9122" stroke-width="1" d="M 240.0 282.0 L 262.0 282.0 L 262.0 268.0 " stroke="#000002" fill="none" data-sage:stroke=""></path>
+      <text id="ID9125" data-sage:tipo="Texto" data-sage:name="texto7" x="668.5" y="444.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9126" data-sage:tipo="Texto" data-sage:name="texto7" x="668.5" y="464.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <path id="ID9127" stroke-width="1" d="M 472.0 430.0 L 472.0 430.0 L 568.0 430.0 " stroke="#00A500" fill="none" data-sage:stroke=""></path>
+      <a xlink:href="javascript:dlg(&#39;ID9134&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=UHTUCPGA&#39;)">
+        <text id="ID9134" data-sage:tipo="Medida" data-sage:name="UHTUCPGA" data-sage:dec="0" x="119.0" y="364.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <g id="ID9135" data-sage:tipo="eqpGenerico" stroke="#FFFF00" fill="none" data-sage:stroke="">
+        <circle cx="152.0" cy="361.0" r="11.0"></circle>
+        <path d="m 146.0 361.0 q 3,-6 6,0 t 6,0"></path>
+      </g>
+      <path id="ID9136" stroke-width="1" d="M 164.0 362.0 L 174.0 362.0 " stroke="#FFFF02" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <text id="ID9138" data-sage:tipo="Texto" data-sage:name="texto7" x="150.8" y="340.9" class="FONTE_PQ_DESC" text-anchor="middle" fill="#000000">Grupos Auxiliares
+ </text>
+      <g id="ID9139" data-sage:tipo="eqpGenerico" transform="rotate(-90, 184.1, 362.0)" stroke-width="1" stroke="#FFFF02" fill="none" data-sage:stroke="">
+        <circle cx="184.1" cy="358.0" r="8.0" stroke="#FFFF02" fill="none" data-sage:stroke=""></circle>
+        <circle cx="184.1" cy="366.0" r="8.0" stroke="#000002" fill="none" data-sage:stroke=""></circle>
+      </g>
+      <path id="ID8601" stroke-width="4" d="M 443.0 415.0 L 443.0 446.0 " stroke="#000002" fill="none" data-sage:tipo="Decorativo" data-sage:stroke=""></path>
+      <path id="ID9140de" stroke-width="1" d="M 336.0 612.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID9140para" stroke-width="1" d="M 336.0 612.0 L 408.0 612.0 L 264.0 612.0" data-sage:d_ori="M 336.0 612.0 L 408.0 612.0 L 264.0 612.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <path id="ID9141de" stroke-width="1" d="M 336.0 642.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID9141para" stroke-width="1" d="M 336.0 642.0 L 408.0 642.0 L 264.0 642.0" data-sage:d_ori="M 336.0 642.0 L 408.0 642.0 L 264.0 642.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <path id="ID9142de" stroke-width="1" d="M 336.0 674.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID9142para" stroke-width="1" d="M 336.0 674.0 L 408.0 674.0 L 264.0 674.0" data-sage:d_ori="M 336.0 674.0 L 408.0 674.0 L 264.0 674.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT"></path>
+      <path id="ID9143de" stroke-width="1" d="M 859.0 158.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID9143para" stroke-width="1" d="M 859.0 158.0 L 928.0 158.0 L 790.0 158.0" data-sage:d_ori="M 859.0 158.0 L 928.0 158.0 L 790.0 158.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID9144de" stroke-width="1" d="M 859.0 202.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID9144para" stroke-width="1" d="M 859.0 202.0 L 926.0 202.0 L 792.0 202.0" data-sage:d_ori="M 859.0 202.0 L 926.0 202.0 L 792.0 202.0" stroke="#00A500" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID9145" stroke-width="1" d="M 1040.0 500.0 L 1040.0 500.0 L 1154.0 500.0 " stroke="#FF0002" fill="none" data-sage:stroke=""></path>
+      <path id="ID9146" stroke-width="1" d="M 1040.0 528.0 L 1040.0 528.0 L 1154.0 528.0 " stroke="#FF0002" fill="none" data-sage:stroke=""></path>
+      <text id="ID9149" data-sage:tipo="Texto" data-sage:name="texto7" x="1326.5" y="278.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#1
+ </text>
+      <text id="ID9150" data-sage:tipo="Texto" data-sage:name="texto7" x="1326.5" y="298.7" class="FONTE_TEXTO_PEQUENO" text-anchor="middle" fill="#000000">#2
+ </text>
+      <a xlink:href="javascript:dlg(&#39;ID9154&#39;,&#39;/visbase/entry/atrib.py?ent=pas&amp;id=MTVCLI701MP7_EQT&#39;)">
+        <text id="ID9154" data-sage:tipo="Medida" data-sage:name="MTVCLI701MP7_EQT" data-sage:dec="0" x="777.0" y="298.9" class="FONTE_VALOR" text-anchor="middle" fill="#FFFFFF" data-sage:linfa="-7000" data-sage:linfu="-8000" data-sage:linfe="-9000" data-sage:lsupa="7000" data-sage:lsupu="8000" data-sage:lsupe="9000" data-sage:value="0" style="fill: gray; stroke: none;">0</text>
+      </a>
+      <path id="ID9155de" stroke-width="1" d="M 449.0 224.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:tipo="LT"></path>
+      <path id="ID9155para" stroke-width="1" d="M 449.0 224.0 L 658.0 224.0 L 240.0 224.0" data-sage:d_ori="M 449.0 224.0 L 658.0 224.0 L 240.0 224.0" stroke="#000002" data-sage:stroke="" fill="none" data-sage:seta="SIM" data-sage:tipo="LT" data-sage:arrowRgalr="arrowNLRG"></path>
+      <path id="ID9156" stroke-width="1" d="M 658.0 308.0 L 658.0 308.0 L 902.0 308.0 " stroke="#000002" fill="none" data-sage:stroke=""></path>
+   </g><g id="svg-pan-zoom-controls" transform="translate(1364 640) scale(0.75)" class="svg-pan-zoom-control"><g id="svg-pan-zoom-zoom-in" transform="translate(30.5 5) scale(0.015)" class="svg-pan-zoom-control"><rect x="0" y="0" width="1500" height="1400" class="svg-pan-zoom-control-background"></rect><path d="M1280 576v128q0 26 -19 45t-45 19h-320v320q0 26 -19 45t-45 19h-128q-26 0 -45 -19t-19 -45v-320h-320q-26 0 -45 -19t-19 -45v-128q0 -26 19 -45t45 -19h320v-320q0 -26 19 -45t45 -19h128q26 0 45 19t19 45v320h320q26 0 45 19t19 45zM1536 1120v-960 q0 -119 -84.5 -203.5t-203.5 -84.5h-960q-119 0 -203.5 84.5t-84.5 203.5v960q0 119 84.5 203.5t203.5 84.5h960q119 0 203.5 -84.5t84.5 -203.5z" class="svg-pan-zoom-control-element"></path></g><g id="svg-pan-zoom-reset-pan-zoom" transform="translate(5 35) scale(0.4)" class="svg-pan-zoom-control"><rect x="2" y="2" width="182" height="58" class="svg-pan-zoom-control-background"></rect><path d="M33.051,20.632c-0.742-0.406-1.854-0.609-3.338-0.609h-7.969v9.281h7.769c1.543,0,2.701-0.188,3.473-0.562c1.365-0.656,2.048-1.953,2.048-3.891C35.032,22.757,34.372,21.351,33.051,20.632z" class="svg-pan-zoom-control-element"></path><path d="M170.231,0.5H15.847C7.102,0.5,0.5,5.708,0.5,11.84v38.861C0.5,56.833,7.102,61.5,15.847,61.5h154.384c8.745,0,15.269-4.667,15.269-10.798V11.84C185.5,5.708,178.976,0.5,170.231,0.5z M42.837,48.569h-7.969c-0.219-0.766-0.375-1.383-0.469-1.852c-0.188-0.969-0.289-1.961-0.305-2.977l-0.047-3.211c-0.03-2.203-0.41-3.672-1.142-4.406c-0.732-0.734-2.103-1.102-4.113-1.102h-7.05v13.547h-7.055V14.022h16.524c2.361,0.047,4.178,0.344,5.45,0.891c1.272,0.547,2.351,1.352,3.234,2.414c0.731,0.875,1.31,1.844,1.737,2.906s0.64,2.273,0.64,3.633c0,1.641-0.414,3.254-1.242,4.84s-2.195,2.707-4.102,3.363c1.594,0.641,2.723,1.551,3.387,2.73s0.996,2.98,0.996,5.402v2.32c0,1.578,0.063,2.648,0.19,3.211c0.19,0.891,0.635,1.547,1.333,1.969V48.569z M75.579,48.569h-26.18V14.022h25.336v6.117H56.454v7.336h16.781v6H56.454v8.883h19.125V48.569z M104.497,46.331c-2.44,2.086-5.887,3.129-10.34,3.129c-4.548,0-8.125-1.027-10.731-3.082s-3.909-4.879-3.909-8.473h6.891c0.224,1.578,0.662,2.758,1.316,3.539c1.196,1.422,3.246,2.133,6.15,2.133c1.739,0,3.151-0.188,4.236-0.562c2.058-0.719,3.087-2.055,3.087-4.008c0-1.141-0.504-2.023-1.512-2.648c-1.008-0.609-2.607-1.148-4.796-1.617l-3.74-0.82c-3.676-0.812-6.201-1.695-7.576-2.648c-2.328-1.594-3.492-4.086-3.492-7.477c0-3.094,1.139-5.664,3.417-7.711s5.623-3.07,10.036-3.07c3.685,0,6.829,0.965,9.431,2.895c2.602,1.93,3.966,4.73,4.093,8.402h-6.938c-0.128-2.078-1.057-3.555-2.787-4.43c-1.154-0.578-2.587-0.867-4.301-0.867c-1.907,0-3.428,0.375-4.565,1.125c-1.138,0.75-1.706,1.797-1.706,3.141c0,1.234,0.561,2.156,1.682,2.766c0.721,0.406,2.25,0.883,4.589,1.43l6.063,1.43c2.657,0.625,4.648,1.461,5.975,2.508c2.059,1.625,3.089,3.977,3.089,7.055C108.157,41.624,106.937,44.245,104.497,46.331z M139.61,48.569h-26.18V14.022h25.336v6.117h-18.281v7.336h16.781v6h-16.781v8.883h19.125V48.569z M170.337,20.14h-10.336v28.43h-7.266V20.14h-10.383v-6.117h27.984V20.14z" class="svg-pan-zoom-control-element"></path></g><g id="svg-pan-zoom-zoom-out" transform="translate(30.5 70) scale(0.015)" class="svg-pan-zoom-control"><rect x="0" y="0" width="1500" height="1400" class="svg-pan-zoom-control-background"></rect><path d="M1280 576v128q0 26 -19 45t-45 19h-896q-26 0 -45 -19t-19 -45v-128q0 -26 19 -45t45 -19h896q26 0 45 19t19 45zM1536 1120v-960q0 -119 -84.5 -203.5t-203.5 -84.5h-960q-119 0 -203.5 84.5t-84.5 203.5v960q0 119 84.5 203.5t203.5 84.5h960q119 0 203.5 -84.5 t84.5 -203.5z" class="svg-pan-zoom-control-element"></path></g></g></svg></div>
+      
+   <footer>
+      <text id="clock">clock</text>
+   </footer>
+   <div id="ctrl"></div>
+   <div class="svg-tooltip" style="top: 157px; left: 398px; display: none;"></div>
+   
+<script>
+function svg_pan_zoom(){
+saveOriginal();
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+} else {
+(function(){
+    window.zoom= svgPanZoom('#unifilar', {
+      zoomEnabled: true,
+      controlIconsEnabled: true,
+      fit: true,
+      center: true,
+    });
+})();
+}
+}
+var head = document.querySelector('header');
+if (head) {
+var frag = document.createDocumentFragment();
+var holder = document.createElement("input");
+holder.setAttribute("list","telas");
+holder.setAttribute("id","input_telas");
+holder.setAttribute("onchange","quickTela('input_telas')");
+holder.innerHTML = html;  //html definido em quick_telas.js
+frag.appendChild(holder);
+head.appendChild(frag);
+}
+
+function quickTela(listid) {
+  var listObj = document.getElementById(listid);
+  console.log(listObj.value);
+  var datalist = listObj.list;
+  for (var j = 0; j < datalist.options.length; j++) {
+      if (listObj.value == datalist.options[j].value) {
+          window.location.href = listObj.value;
+          break;
+      }
+  }
+     console.log("nao escolheu nenhuma tela");
+}
+
+[].forEach.call(document.querySelectorAll("[data-sage\\:tipo='Medida']"), function(item) {
+  item.addEventListener("mouseenter", function() { barTip(this); }); });
+
+function hideDivTip(){ // x - esconder div com o bartip dos limites
+    var element = document.getElementById("divTip");
+    element.classList.add("bartipHide");
+    var showBut = document.getElementById("showButton");
+    showBut.style.display="flex";
+}
+function showDivTip(){ // mostrar div com o bartip dos limites
+    var element = document.getElementById("divTip");
+    element.classList.remove("bartipHide");
+    var showBut = document.getElementById("showButton");
+    showBut.style.display="none";
+}
+
+var tooltip = document.querySelector(".svg-tooltip");
+[].forEach.call(document.querySelectorAll("[data-sage\\:tipo]"), function(item) {
+  
+  item.addEventListener("mouseenter", function() {
+    if (window.showTooltip && item.dataset.hasOwnProperty("sage:name"))  {
+        tooltip.innerHTML = item.getAttribute("data-sage:name");
+        tooltip.style.display = "block";
+    }
+  });
+  
+  item.addEventListener("mousemove", function(e) {
+    let bb = item.getBoundingClientRect();
+    let posy;
+    if (item.tagName=="text") posy = bb.y + bb.height;
+    else                      posy = e.clientY;
+  	 tooltip.style.top =  posy + "px";
+    tooltip.style.left = e.clientX + "px";
+  });
+  
+  // when mouse leave hide the tooltip
+  item.addEventListener("mouseleave", function(){
+  	 tooltip.style.display = "none";
+  });
+});
+window.showTooltip = false;
+function showHideTooltip () {
+   window.showTooltip = !window.showTooltip;
+   let ttip = document.getElementById('tooltipButton');
+   if (window.showTooltip)
+      ttip.innerHTML = "<i class='fa fa-comment-slash'></i>"
+   else
+      ttip.innerHTML = "<i class='fa fa-comment'></i>"
+}
+</script>
+
+<scribe-shadow id="shadow-root-scribe-elem" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 2147483647; overflow: visible;"></scribe-shadow></body></html>

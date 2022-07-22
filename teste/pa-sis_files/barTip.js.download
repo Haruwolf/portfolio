@@ -1,0 +1,157 @@
+/* desenha bartip */
+function barTip(obj) {
+    let angle = 180;   //rotacao 270 horiz, 180 vertic cresc bot2top
+    let retx = 25;
+    let rety = 200;
+    let lblGap = 0;
+    let fontSize = 15;
+    let escala = 3;   //multiplo altura original (100)
+
+    let bartp = document.getElementById('bartp');
+
+    let step = 100;
+    let se = 100;
+    let su = 100;
+    let sa = 100;
+    let ia = 0;
+    let iu = 0;
+    let ie = 0;
+    let val = 0;
+    if (obj.dataset.hasOwnProperty("sage:lsupe"))    se  = obj.dataset["sage:lsupe"]*1; 
+    if (obj.dataset.hasOwnProperty("sage:lsupu"))    su  = obj.dataset["sage:lsupu"]*1; 
+    if (obj.dataset.hasOwnProperty("sage:lsupa"))    sa  = obj.dataset["sage:lsupa"]*1;     
+    if (obj.dataset.hasOwnProperty("sage:linfa"))    ia  = obj.dataset["sage:linfa"]*1; 
+    if (obj.dataset.hasOwnProperty("sage:linfu"))    iu  = obj.dataset["sage:linfu"]*1; 
+    if (obj.dataset.hasOwnProperty("sage:linfe"))    ie  = obj.dataset["sage:linfe"]*1; 
+    if (obj.dataset.hasOwnProperty("sage:value")) val = obj.dataset["sage:value"]*1; 
+    let tval = val; //texto val (val extrapola o min ou max, truncar)
+    if (val>se) {val=se; document.getElementById('vaLbl').setAttribute('alignment-baseline','auto');}
+    if (val<ie) {val=ie; document.getElementById('vaLbl').setAttribute('alignment-baseline','hanging');}
+
+    //reset 
+    //const svgBT = document.getElementById('svgBarTip');
+    //svgBT.setAttribute('viewBox','0 0 50 400');
+    //svgBT.setAttribute('width','50');
+    //svgBT.setAttribute('height','400');
+    let rects = bartp.getElementsByTagName('rect');
+    for(let i=0; i<rects.length; i++) {
+        rects[i].setAttribute("x",-15);
+        rects[i].setAttribute("y",-50);
+        rects[i].setAttribute("width",30);
+        rects[i].setAttribute("height",100);
+        rects[i].setAttribute("transform","scale(1,"+escala+")");
+    }
+    let y = 0;
+
+    //label escala inferior
+    y = document.getElementById('eRect').getAttribute('y')*1;
+    let tie = document.getElementById('ieLbl'); //text ie
+    tie.setAttribute("x", lblGap);
+    tie.setAttribute("y", y*escala);
+    tie.textContent = ie;
+
+    //label escala superior
+    y = y + document.getElementById('eRect').getAttribute('height')*1;
+    let tse = document.getElementById('seLbl'); //text se
+    tse.setAttribute("x", lblGap);
+    tse.setAttribute("y", y*escala);
+    tse.textContent = se;
+
+    //faixa urgencia
+    let t = se - ie;
+    let diu = (iu - ie)/t * step;
+    let ou = document.getElementById('uRect');
+    y = ou.getAttribute('y')*1+diu;
+    ou.setAttribute('y', y);
+    let dsu = (su - ie)/t * step;
+    ou.setAttribute('height',dsu-diu);
+
+    //label urgencia inferior
+    let tiu = document.getElementById('iuLbl'); //text iu
+    tiu.setAttribute("x", lblGap);
+    tiu.setAttribute("y", y*escala);
+    tiu.textContent = iu;
+
+    //label urgencia superior
+    let tsu = document.getElementById('suLbl'); //text su
+    tsu.setAttribute("x", lblGap);
+    tsu.setAttribute("y", (y+(dsu-diu))*escala);
+    tsu.textContent = su;
+
+    //faixa advertencia
+    let dia = (ia - ie)/t * step;
+    let oa = document.getElementById('aRect');
+    y = oa.getAttribute('y')*1+dia;
+    oa.setAttribute('y', y);
+    let dsa = (sa - ie)/t * step;
+    oa.setAttribute('height',dsa-dia);
+
+    //label advertencia inferior
+    let tia = document.getElementById('iaLbl'); //text ia
+    tia.setAttribute("x", lblGap);
+    tia.setAttribute("y", y*escala);
+    tia.textContent = ia;
+
+    //label advertencia superior
+    let tsa = document.getElementById('saLbl'); //text sa
+    tsa.setAttribute("x", lblGap);
+    tsa.setAttribute("y", (y+(dsa-dia))*escala);
+    tsa.textContent = sa;
+
+    //val
+    let dv = (val - ie)/t * step;
+    let ov = document.getElementById('vRect');
+    y = ov.getAttribute('y')*1+dv;
+    //ov.setAttribute('y',y);
+    ov.setAttribute('x',-2.5);
+    ov.setAttribute('width',5);
+    ov.setAttribute('height',dv);
+
+    //lbl val
+    let olv = document.getElementById('vaLbl');
+    //switch (angle) { // val arrows
+    //    // >
+    //    case 0:   olv.innerHTML = tval + '&#x25B6;'; break;
+    //    // \/
+    //    case 90:  
+    //              let dx=ov.getAttribute('x');
+    //              olv.innerHTML = tval+'<tspan dy="'+fontSize+'"'
+    //                                  + ' dx="'+dx+'"'
+    //                                  + ' text-anchor="middle"'
+    //                                  + '">&#x25BC;</tspan>'; 
+    //              console.log(olv.innerHTML);
+    //                                  break;
+    //    // <
+    //    case 180: olv.innerHTML = '&#x25C0;' + tval; break;        
+    //    // /\
+    //    case 270: olv.innerHTML = '&#x25B2;' +'<tspan dy="'+fontSize+'"'
+    //                                  + ' dx="'+ov.getAttribute('x')+'"'
+    //                                  + ' text-anchor="middle"'
+    //                                  + '">'+tval+'</tspan>'; break;   
+    //}
+    olv.innerHTML = tval;
+    
+    olv.setAttribute("x", -1.5*lblGap);
+    olv.setAttribute("y", escala*y);
+
+
+    //posicionar e colocar a barra na orientacao (angle)
+    if (angle==0) {
+        bartp.setAttribute("transform","translate("+retx+","+rety+")");
+    } else {
+        bartp.setAttribute("transform","translate("+retx+","+rety+") rotate("+angle+")");
+    }
+
+    //posicionar os labels (numeros)
+    let txts = bartp.getElementsByTagName('text');
+    let ang = angle *3;
+    for(let i=0; i<txts.length; i++) {
+        transf = "rotate("+ang+" "+txts[i].getAttribute('x')+" "+txts[i].getAttribute('y')+")"
+        txts[i].setAttribute("transform",transf);
+        txts[i].setAttribute("font-size",fontSize);
+    }
+
+    transf = 'scale(1,1)';
+}
+
+

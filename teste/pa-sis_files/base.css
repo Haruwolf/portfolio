@@ -1,0 +1,133 @@
+@keyframes highlight {
+0% {opacity: 0}
+15%, 70% {opacity: 1}
+85%, 100% {opacity: 0}
+}
+.highlight {
+animation: highlight 2s ease infinite;
+}
+
+.indq {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.tela_botao:hover {
+  filter: brightness(0.5);
+}
+
+.button {   border: 1px solid #006;   background: #CCF;   margin: 5px 10px;   border-radius: 5px;}
+.button:hover {   background: #FF6;}
+.normal {   stroke: #000000;   fill:   #00FF00;   stroke-width: 1;}
+.fechado {   fill:   #FF0000;}
+.aberto {   fill:   #00FF00;   stroke-dasharray: 5;}
+.fatal {   stroke: #9400D3; /*Dark Violet*/   fill:   #9400D3;}
+.urgencia {   stroke: #FF0000; /*Red*/   fill:   #FF0000;}
+.advertencia {   stroke: #FFFF00; /*Yellow*/   fill:   #FFFF00;}
+div.tscroll { overflow-y: scroll;}
+thead th{ color:#F3F781;}
+tbody tr{ color:white; font-family:'monospace';}
+tbody tr:nth-child(odd){ background-color:#3D4544;}
+a:link    { color:white; text-decoration:none;}
+a:active  { color:white; text-decoration:none;}
+a:visited { color:white; text-decoration:none;}
+a:hover   { color:green; text-decoration:none;}
+.flex { display: flex;}
+.row { flex-direction:row;}
+.column { flex-direction:column;}
+/* The CSS for the main menu */
+ul {
+  text-align: left;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /*
+  border: 2px solid black;
+  border-radius: 10px;
+  */
+}
+
+ul li {
+  font: bold 12px/18px sans-serif;
+  display: inline-block;
+  margin-right: -4px;
+  position: relative;
+  padding: 15px 20px;
+  cursor: pointer;
+  color: #fff;
+}
+
+ul li:hover {
+  background: black;
+  z-index: 10;
+}
+
+/* The CSS for the sub menu. */
+ul li ul {
+  padding: 0;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 150px;
+  display: none;
+  visibility: hidden;
+}
+
+ul li ul li {
+  background: black;
+  display: block;
+  color: #fff;
+}
+
+ul li ul li:hover { background: black; }
+
+ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/*third level menu items*/
+ul ul ul {
+top:0;left:100%;
+}
+
+ul li:hover ul ul {
+display:none;
+}
+
+ul ul li:hover ul {
+display:block;
+}
+
+footer {
+    background-color: yellow;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    }
+
+.svg-tooltip {
+  position: absolute;
+  display: none;
+  border-radius: 3px;
+  border:#d3d3d3 solid 1px;
+  background: #fff;
+  color: black;
+  font-family: Helvetica, Arial, Verdana;
+  font-size: smaller;
+  padding: 8px;
+  pointer-events:none;
+  box-shadow: 0 8px 17px 0 #eee, 0 6px 20px 0 #000; 
+}
+
+#menu-container {
+    display: flex;              /* establish flex container */
+    flex-direction: column;     /* stack flex items vertically */
+    justify-content: center;    /* center items vertically, in this case */
+    max-width: 50px;
+    top: 0;
+    left: 0;
+}
+
+
+

@@ -1,0 +1,24 @@
+
+function corDig(data) {
+    let style = window.getComputedStyle(document.documentElement); // root
+    let color = 'white';
+    if (data['a1_flags']%2 == 0) color=style.getPropertyValue('--cor_aberto');
+    else                         color=style.getPropertyValue('--cor_fechado');
+    return color;
+}
+
+function corAna(data)  { 
+    if (Number.isInteger(data['rgalr'])==false) return "powderblue";
+        var style = window.getComputedStyle(document.documentElement); // root
+        switch(data['rgalr']) {
+          case 0: return style.getPropertyValue('--cor_NLRG'); // K_REG_NLRG
+          case 1: return style.getPropertyValue('--cor_ESC'); //IESC K_REG_IESC
+          case 2: return style.getPropertyValue('--cor_URG'); //IURG K_REG_IURG
+          case 3: return style.getPropertyValue('--cor_ADV'); //IADV K_REG_IADV
+          case 4: return style.getPropertyValue('--cor_NORM'); // K_REG_NORM
+          case 5: return style.getPropertyValue('--cor_ADV'); //SADV K_REG_SADV
+          case 6: return style.getPropertyValue('--cor_URG'); //SURG K_REG_SURG
+          case 7: return style.getPropertyValue('--cor_ESC'); //SESC K_REG_SESC
+          default:return "powderblue";
+        }
+}
