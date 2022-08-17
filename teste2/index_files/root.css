@@ -1,0 +1,29 @@
+:root {
+    --cor_fechado: red;
+    --cor_aberto:  green;
+
+    --cor_ILHA_FG :gray;
+    --cor_ILHA_0  :black;
+    --cor_ILHA_1  :white;
+    --cor_ILHA_2  :aqua;
+    --cor_ILHA_3  :orangered;
+    --cor_ILHA_4  :springgreen;
+    --cor_ILHA_5  :orange;
+    --cor_ILHA_6  :royalblue;
+    --cor_ILHA_7  :yellow;
+    --cor_ILHA_8  :purple;
+    --cor_ILHA_9  :blue;
+    --cor_ILHA_10 :cadetblue;
+    --cor_ILHA_11 :magenta;
+    --cor_ILHA_12 :seagreen;
+    --cor_ILHA_13 :sandybrown;
+    --cor_ILHA_14 :skyblue;
+    --cor_ILHA_15 :plum;
+    --cor_ILHA_16 :turquoise;
+
+    --cor_NLRG:gray;
+    --cor_ESC: purple;
+    --cor_URG: red;   
+    --cor_ADV: yellow;
+    --cor_NORM:green; 
+}

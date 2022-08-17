@@ -1,0 +1,197 @@
+/* tratar flags de qualidade */
+
+function prepare(obj,data) { // svg element para acomodar o flag de qualidade
+    let p = obj.parentNode;
+
+    let pos_indq = obj.getAttribute('data-sage:indq');
+    if (pos_indq==null || pos_indq=='INDQ_IGN') return; 
+
+    let qualid = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    if (!isNaN(data['a1_flags'])) { 
+        let bbx = obj.getBBox(); //x y width height
+        let fontsz =bbx.width/2;
+        if (fontsz < 12) fontsz = 12;
+        qualid.setAttributeNS(null,"font-size",fontsz );
+        qualid.setAttributeNS(null,"class","indq");
+        qualid.setAttributeNS(null,"stroke","none");
+        qualid.setAttributeNS(null,"x",bbx.x+bbx.width);
+        qualid.setAttributeNS(null,"y",bbx.y+bbx.height/2);
+        if (pos_indq=='INDQ_CIMA') {
+            //qualid.setAttributeNS(null,"y",bbx.y);
+            qualid.setAttributeNS(null,"dominant-baseline","text-top");
+        }
+        else if (pos_indq=='INDQ_MEIO') {
+            //qualid.setAttributeNS(null,"y",bbx.y+bbx.height/2);
+            qualid.setAttributeNS(null,"dominant-baseline","middle");
+        }
+        else if (pos_indq=='INDQ_BAIXO') {
+            //qualid.setAttributeNS(null,"y",bbx.y+bbx.height);
+            qualid.setAttributeNS(null,"dominant-baseline","hanging");
+        }
+    }
+  return qualid;
+}
+
+function digital_qualid(obj, data) {
+    let p = obj.parentNode;
+    // remover o flag anterior
+    let prev_flag = p.querySelector('text'); // achar o flag
+    if (prev_flag) p.removeChild(prev_flag);
+
+    let qualid = prepare(obj,data);
+    if (!qualid) return;
+
+    //letra e cor
+    let style  = window.getComputedStyle(document.documentElement); // root
+    let charac = '?';
+    let color  = 'white';
+    if (bit_test(data['a1_flags'],5)) { // K_PDS_FLG_MANUA 32 Manual local
+         charac = style.getPropertyValue('--char_INDIC_QUALID_MANUA_LOCAL');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_MANUA_LOCAL');
+         charac = charac==''?'m'         :charac;
+         color  = color ==''?'gold':color;
+    }
+    else if (bit_test(data['a1_flags'],8)) { // K_PDS_FLG_NOSUP 256 Ponto nao supervisionado
+         charac = style.getPropertyValue('--char_INDIC_QUALID_NOSUP');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_NOSUP');
+         charac = charac==''?'n'         :charac;
+         color  = color ==''?'lightblue':color;
+    }
+    else if (bit_test(data['a1_flags'],6)) { // K_PDS_FLG_NINCI 64 Nao inicializado local
+         charac = style.getPropertyValue('--char_INDIC_QUALID_NAOINIC');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_NAOINIC');
+         charac = charac==''?'n'         :charac;
+         color  = color ==''?'cyan':color;
+    }
+    // if com tpcal K_PDS_FLG_FOVAR K_PDS_FLG_MAORG!!!
+    else if (bit_test(data['a1_flags'],1)) { // K_PDS_FLG_FOVAR 2 Fora de varredura
+         charac = style.getPropertyValue('--char_INDIC_QUALID_FOVAR_LOCAL');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_FOVAR_LOCAL');
+         charac = charac==''?'d'         :charac;
+         color  = color ==''?'gold':color;
+    }
+    else if (!(bit_test(data['a1_flags'],11)) || // K_PDS_FLG_SACOK 2048 SAC operacional neste NO
+         bit_test(data['a1_flags'], 2)) { // K_PDS_FLG_FALHA 4   Falha de aquisicao localFALHA
+         charac = style.getPropertyValue('--char_INDIC_QUALID_INVAL_LOCAL');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_INVAL_LOCAL');
+         charac = charac==''?'x'         :charac;
+         color  = color ==''?'gold':color;
+    }
+    else if (bit_test(data['a1_flags'], 4)) { // K_PDS_FLG_MAORG 16 Manual na origem
+         charac = style.getPropertyValue('--char_INDIC_QUALID_MANUA_ORIG');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_MANUA_ORIG');
+         charac = charac==''?'m'         :charac;
+         color  = color ==''?'white':color;
+    }
+    else if (bit_test(data['a1_flags'], 13)) { // K_PDS_FLG_FVORG 8192 Fora de varredura na origem
+         charac = style.getPropertyValue('--char_INDIC_QUALID_FOVAR_ORIG');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_FOVAR_ORIG');
+         charac = charac==''?'d'         :charac;
+         color  = color ==''?'white':color;
+    }
+    else if (bit_test(data['a1_flags'], 3)) { // K_PDS_FLG_IVORG  8 Invalido na origem
+         charac = style.getPropertyValue('--char_INDIC_QUALID_INVAL_ORIG');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_INVAL_ORIG');
+         charac = charac==''?'x'         :charac;
+         color  = color ==''?'white':color;
+    }
+    else if (bit_test(data['a1_flags'], 26)) { // K_PDS_FLG_INVRT 67108864 Estado considerado invertido
+         charac = style.getPropertyValue('--char_INDIC_QUALID_INVERTIDO');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_INVERTIDO');
+         charac = charac==''?'i'         :charac;
+         color  = color ==''?'cyan':color;
+    }
+    qualid.innerHTML = charac;
+    qualid.setAttributeNS(null,"fill",color);
+    p.appendChild(qualid);
+}
+
+function analog_qualid(obj, data) {
+    let p = obj.parentNode;
+    if (p.children[1]) p.removeChild(p.children[1]); // remover o flag anterior
+
+    let qualid = prepare(obj,data);
+    if (!qualid) return;
+
+    //letra e cor
+    let style  = window.getComputedStyle(document.documentElement); // root
+    let charac = '?';
+    let color  = 'white';
+    if (bit_test(data['a1_flags'],19)) { // K_PAS_FLG_SUBST 524288 0x80000LL  Substituido pela Analise de Redes
+         charac = style.getPropertyValue('--char_INDIC_QUALID_SUBST');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_SUBST');
+         charac = charac==''?'e'         :charac;
+         color  = color ==''?'yellow':color;
+    }
+    else if (bit_test(data['a1_flags'], 5))  { // K_PAS_FLG_MANUA 32 0x20  Manual local
+         charac = style.getPropertyValue('--char_INDIC_QUALID_MANUA_LOCAL');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_MANUA_LOCAL');
+         charac = charac==''?'m'         :charac;
+         color  = color ==''?'gold':color;
+    }
+    else if (bit_test(data['a1_flags'], 8))  { // K_PAS_FLG_NOSUP 256  0x100 Ponto nao supervisionado
+         charac = style.getPropertyValue('--char_INDIC_QUALID_NOSUP');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_NOSUP');
+         charac = charac==''?'n'         :charac;
+         color  = color ==''?'lightblue':color;
+    }
+    else if (bit_test(data['a1_flags'], 6))  { // K_PAS_FLG_NINIC 64 0x40 Nao inicializado
+         charac = style.getPropertyValue('--char_INDIC_QUALID_NAOINIC');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_NAOINIC');
+         charac = charac==''?'n'         :charac;
+         color  = color ==''?'cyan':color;
+    }
+    // if com tpcal K_PAS_FLG_FOVAR K_PAS_FLG_MAORG!!!
+    else if (bit_test(data['a1_flags'], 1))  { // K_PAS_FLG_FOVAR 2 0x2 Fora de varredura
+         charac = style.getPropertyValue('--char_INDIC_QUALID_FOVAR_LOCAL');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_FOVAR_LOCAL');
+         charac = charac==''?'d'         :charac;
+         color  = color ==''?'gold':color;
+    }
+    else if (!(bit_test(data['a1_flags'], 11)) || // K_PAS_FLG_SACOK 2048 0x800 SAC operacional neste NO
+             bit_test(data['a1_flags'],  2)){  // K_PAS_FLG_FALHA    4 0x4   Falha de aquisicao
+         charac = style.getPropertyValue('--char_INDIC_QUALID_INVAL_LOCAL');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_INVAL_LOCAL');
+         charac = charac==''?'x'         :charac;
+         color  = color ==''?'gold':color;
+    }
+    else if (bit_test(data['a1_flags'], 22))  { // K_PAS_FLG_RAZOA 4194304 0x400000 Indicador de razoabilidade da medida 
+         charac = style.getPropertyValue('--char_INDIC_QUALID_RAZOA');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_RAZOA');
+         charac = charac==''?'z'         :charac;
+         color  = color ==''?'white':color;
+    }
+    else if (bit_test(data['a1_flags'], 4))  { // K_PAS_FLG_MAORG 16 0x10 Manual na origem
+         charac = style.getPropertyValue('--char_INDIC_QUALID_MANUA_ORIG');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_MANUA_ORIG');
+         charac = charac==''?'m'         :charac;
+         color  = color ==''?'white':color;
+    }
+    else if (bit_test(data['a1_flags'], 13))  { // K_PAS_FLG_FVORG 8192 0x2000 Fora de varredura na origem
+         charac = style.getPropertyValue('--char_INDIC_QUALID_FOVAR_ORIG');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_FOVAR_ORIG');
+         charac = charac==''?'d'         :charac;
+         color  = color ==''?'white':color;
+    }
+    else if (bit_test(data['a1_flags'], 3))  { // K_PAS_FLG_IVORG 8 0x8 Invalido na origem
+         charac = style.getPropertyValue('--char_INDIC_QUALID_INVAL_ORIG');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_INVAL_ORIG');
+         charac = charac==''?'x'         :charac;
+         color  = color ==''?'white':color;
+    }
+    else if (bit_test(data['a1_flags'], 0))  { // K_PAS_FLG_ERREE 1 0x1 Erro grosseiro de estimacao do estado
+         charac = style.getPropertyValue('--char_INDIC_QUALID_ERREE');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_ERREE');
+         charac = charac==''?'g'         :charac;
+         color  = color ==''?'yellow':color;
+    }
+    else if (bit_test(data['a1_flags'], 26))  { // K_PAS_FLG_INVRT 67108864 0x4000000 Sinal de valor considerado invertido
+         charac = style.getPropertyValue('--char_INDIC_QUALID_INVERTIDO');
+         color  = style.getPropertyValue( '--cor_INDIC_QUALID_INVERTIDO');
+         charac = charac==''?'i'         :charac;
+         color  = color ==''?'cyan':color;
+    }
+    qualid.innerHTML = charac;
+    qualid.setAttributeNS(null,"fill",color);
+    p.appendChild(qualid);
+}

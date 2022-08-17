@@ -1,0 +1,10 @@
+/*
+ * barTipSmallScreen
+ * No celular nao foi possivel fixar no canto.
+ * O canto se move no zoom e deixa de estar visivel.
+ * No celular o click na medida leva a outra tela com os limites.
+ */
+div.bartip {
+  display: none;
+}
+

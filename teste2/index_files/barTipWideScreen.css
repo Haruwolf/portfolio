@@ -1,0 +1,22 @@
+/*
+ * barTipWideScreen
+ * barTip para mostrar os limites fixo no canto superior esquerdo
+ */
+div.bartip {
+/*
+  max-width: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+*/
+}
+
+.bartipHide  {
+  max-height: 0;
+  pointer-events: none;
+  display:none;
+}
+
+.icon:hover {
+  fill: greenyellow;
+}

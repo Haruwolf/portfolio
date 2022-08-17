@@ -1,0 +1,820 @@
+
+var socket_di;
+var envi='';    //environment topsim ou libctrl
+var view='scada';
+var indq=false; // default sem indicador de qualidade
+var unit=false; // default sem mostrar unidade
+
+console.log("Debug: Carregando main.js");
+
+//socket_di = new WebSocket(get_appropriate_ws_url());
+socket_di = new WebSocket((location.protocol.match(/^https/) ? "wss" : "ws")+"://"+window.location.host+"/ws?Id=teste");
+//socket_di = new WebSocket("ws://"+window.location.host+"/sage/");
+
+//function corStatus(obj,atr,val) { 
+//    if (view=='ilhamento' && atr=='ilha') {
+//        obj.classList.remove('highlight'); //remover animacao
+//        var ilha_nome = '--cor_ILHA_FG';
+//        if (!isNaN(val)) { ilha_nome='--cor_ILHA_'+val; }
+//        var style = window.getComputedStyle(document.documentElement); // root
+//        obj.style.stroke=style.getPropertyValue(ilha_nome);
+//    }
+//    else if (view=='scada' && atr!='ilha') {
+//        obj.classList.remove('highlight'); //remover animacao
+//        var style = window.getComputedStyle(document.documentElement); // root
+//        if (val%2 == 0) obj.style.stroke=style.getPropertyValue('--cor_aberto');
+//        else            obj.style.stroke=style.getPropertyValue('--cor_fechado');
+//    }
+//    else if (view=='anormal' && atr!='ilha') {
+//        if (val%2 == 0) obj.setAttribute('class','highlight'); //eqp desligado
+//        else { obj.style.stroke='skyblue';
+//               obj.classList.remove('highlight'); //remover animacao
+//             }
+//    }
+//}
+//function fillStatus(obj,atr,val){
+//    if (val%2 == 0) obj.style.fill="none";       //aberto
+//    else            obj.style.fill=window.getComputedStyle(document.documentElement).getPropertyValue('--cor_fechado'); // root
+//}
+//function busStatus(val) { 
+//                          if (val%2 == 0) return "lightblue";  // desligado
+//                          else            return "fuchsia";  }
+function nomeRgalr(val)  { if (Number.isInteger(val)==false) return "";
+                          switch(val) { // usado para montar o nome do marker do arrow da LT
+                            case 0: return 'NLRG'; // K_REG_NLRG
+                            case 1: return 'ESC'; // K_REG_IESC
+                            case 2: return 'URG'; // K_REG_IURG
+                            case 3: return 'ADV'; // K_REG_IADV
+                            case 4: return 'NORM'; // K_REG_NORM
+                            case 5: return 'ADV'; // K_REG_SADV
+                            case 6: return 'URG'; // K_REG_SURG
+                            case 7: return 'ESC'; // K_REG_SESC
+                            default:return "";
+                          }
+                         }
+function bit_test(num, bit){ return ((num>>bit) % 2 != 0) }
+
+function reversePath (obj) {
+    d = obj.getAttribute("data-sage:d_ori");
+    s = d.split(/(?=[ML])/);
+    s = s.reverse();
+    len = s.length;
+    s[0] = s[0].replace('L','M');
+    s[len-1] = s[len-1].replace('M','L');
+    n = '';
+    for (var i = 0; i< len; i++) {
+        n = n + s[i]+ ' ' ;
+    }
+    obj.setAttribute("d",n);
+}
+
+function mySort(arr)
+{
+    var regex = /col([0-9]+)/;
+
+    function map(str) {
+        return Number(regex.exec(str)[1]);
+    }
+
+    return arr
+    .sort(
+        function (a,b) {
+            var av = map(a), bv = map(b);
+            return av < bv ? -1 : av > bv ? 1 : 0;
+        })
+}
+
+function updSeccionadora(obj, data) {
+        p = obj.getAttribute('d');
+        if (data['a1_flags']%2 != 0) {
+            p = p.replace(/l 0.0 (.*)/, "l 0.0 16.0");
+            obj.setAttribute('d',p);
+            obj.setAttribute('stroke-width',3);
+        } else {
+            p = p.replace(/l 0.0 (.*)/,"l 0.0 4.0 m -4.0 4.0 l 8.0 0.0 m -4.0 4.0 l 0.0 4.0 ");
+            obj.setAttribute('d',p);
+            obj.setAttribute('stroke-width',1);
+        }
+        updDig(obj,data);
+}
+
+function updDig(obj, data) {
+        if (view=='scada') {
+            var style = window.getComputedStyle(document.documentElement); // root
+            obj.style.stroke = corDig(data);
+            if (data['a1_flags']%2==0) { obj.style.fill = 'none';           } //aberto sem fill, vazado
+            else                       { obj.style.fill = obj.style.stroke; } //fill somente se fechado
+        } else if (view=='anormal') { 
+            let estado_referencia = bit_test(data['a1_flags'],21); //((val&2097152)==2097152 ? 1:0); //K_PDS_FLG_ESREF
+            let estado_atual      = data['a1_flags']&1;
+            if (estado_atual!=estado_referencia) {
+                obj.setAttribute('class','highlight');
+                obj.style.stroke='orange'; //anormal
+                if (estado_atual=0) obj.style.fill='none';   //aberto
+                else                obj.style.fill='orange'; //fechado anormal
+            }
+            else {
+                obj.classList.remove('highlight'); //remover animacao
+                obj.style.fill='skyblue';
+                obj.style.stroke='skyblue';
+            }
+        } else if (view=='ilhamento' && !isNaN(data['ilha'])) {
+            var ilha_nome = '--cor_ILHA_'+data['ilha'];
+            var style = window.getComputedStyle(document.documentElement); // root
+            obj.style.stroke=style.getPropertyValue(ilha_nome);
+        }
+        if (!isNaN(data['a1_flags']) && indq) { 
+            digital_qualid(obj, data);
+        }
+}
+
+function updChaveDistrib(obj, data) {
+        var id_open = obj.getAttribute("id")+"Open";
+        var id_close = obj.getAttribute("id")+"Close";
+        var o_open = document.getElementById(id_open);
+        var o_close = document.getElementById(id_close);
+        if (data['a1_flags']%2 != 0) { //fechado
+            o_open.setAttribute("visibility","hidden");
+            o_close.setAttribute("visibility","visible");
+        } else { //aberto
+            o_open.style.fill='none'; // precaucao, se alguem settar o fill
+            o_open.setAttribute("visibility","visible");
+            o_close.setAttribute("visibility","hidden");
+        }
+        updDig(obj,data);
+}
+
+function updDisjuntor(obj,data){
+    if (view=='ilhamento') { obj.style.fill='none'; return; }
+    updDig(obj,data);
+}
+
+function updNoEletrico(obj, data) {
+        if (!isNaN(data['rgalr'])) { // fill na cor da regiao de alarme
+            obj.style.fill = corAna(data);
+        }
+        if (data['indlig']) {  // split
+            var id_split = obj.getAttribute("id")+"indlig";
+            var split = document.getElementById(id_split);
+            if (bit_test(data['indlig'],11)) split.setAttribute("visibility","visible");  // 2048 - K_EQP_ETP_SPLIT 2^11
+            else                  split.setAttribute("visibility","hidden");
+        } 
+}
+
+function updLT(obj, data) {
+    if (view=='ilhamento') {
+        var ilha_nome = '--cor_ILHA_FG';
+        if (!isNaN(data['ilha'])) { ilha_nome='--cor_ILHA_'+data['ilha']; }
+        var style = window.getComputedStyle(document.documentElement); // root
+        obj.style.stroke=style.getPropertyValue(ilha_nome);
+    }
+    else if (view=='scada') {
+        obj.style.stroke = obj.getAttribute("data-sage:stroke"); //cor original
+        if (!isNaN(data['rgalr'])) { 
+            nome = 'arrow'+nomeRgalr(data['rgalr']);
+            obj.setAttribute("data-sage:arrowRgalr",nome);
+        } 
+        if (!isNaN(data['indlig'])) { // atende Barra
+            obj.style.fill = "none";
+            if (bit_test(data['indlig'],10)) obj.setAttribute("stroke-dasharray","none");  // 1024 - K_EQP_ETP_ESTAD 2^10
+            else                             obj.setAttribute("stroke-dasharray","10,5");  // bit apagado desligado tracejado
+        }
+        if (!isNaN(data['indligd'])) {
+            obj.style.fill = "none";
+            if (bit_test(data['indligd'],10)) obj.setAttribute("stroke-dasharray","none");  // 1024 - K_EQP_ETP_ESTAD 2^10
+            else                              obj.setAttribute("stroke-dasharray","10,5");  // bit apagado desligado tracejado
+        }
+        if (!isNaN(data['indligp'])) {
+            obj.style.fill = "none";
+            if (bit_test(data['indligp'],10)) obj.setAttribute("stroke-dasharray","none");  // 1024 - K_EQP_ETP_ESTAD 2^10
+            else                              obj.setAttribute("stroke-dasharray","10,5");  // bit apagado desligado tracejado
+        }
+        if (!isNaN(data['fluxo']) && obj.getAttribute("data-sage:seta")!="NAO") { // sentido da seta
+            if (data['fluxo']>0) { // fluxo positivo mantem o path original
+                obj.setAttribute("d", obj.getAttribute("data-sage:d_ori"));
+                nome = 'url(#'+ obj.getAttribute("data-sage:arrowRgalr") +')';
+                obj.setAttribute("marker-start",nome);
+                obj.setAttribute("marker-end","none");
+            } else { // fluxo negativo inverter o path para o marker (seta) ficar invertido
+                reversePath(obj)
+                nome = 'url(#'+ obj.getAttribute("data-sage:arrowRgalr") +')';
+                obj.setAttribute("marker-end",nome);
+                obj.setAttribute("marker-start","none");
+            }
+            if ( obj.getAttribute("data-sage:arrowRgalr")=='arrowgreen' && obj.getAttribute("data-sage:seta")=='INIBE_NORM'){
+                obj.setAttribute("marker-start","none");
+                obj.setAttribute("marker-end","none");
+            }
+        }
+    }
+    else if (view=='anormal') {
+            if (bit_test(data['indligd'],10)) { //ligado
+                obj.classList.remove('highlight'); //remover animacao
+                obj.style.stroke='skyblue';
+            }
+            else { //desligado
+                obj.setAttribute('class','highlight'); //desligado
+                obj.style.stroke='orange'; //anormal
+            }
+            if (bit_test(data['indligp'],10)) { //ligado
+                obj.classList.remove('highlight'); //remover animacao
+                obj.style.stroke='skyblue';
+            }
+            else { //desligado
+                obj.setAttribute('class','highlight'); //desligado
+                obj.style.stroke='orange'; //anormal
+            }
+    }
+}
+
+function updGrafBarra(obj, data) {
+        //var v = parseInt(val,10);
+        var v = data['value'];
+        var dir = obj.getAttribute("data-sage:direcao");
+        var vi =  parseInt(obj.getAttribute("data-sage:vini"));
+        var vf =  parseInt(obj.getAttribute("data-sage:vfim"));
+        var to =  parseInt(obj.getAttribute("data-sage:total"));
+        var sz;
+        if ((vf - vi) == 0 ) sz = 0;
+        else                 sz = (v * to) / (vf - vi);
+        delta = obj.getAttribute("data-sage:total")
+        delta = (delta)-sz;
+        switch (dir) {
+           case "N": obj.setAttribute("transform","translate(0,"+delta+")");
+           case "S": obj.setAttribute("height",sz); break;
+           case "W": obj.setAttribute("transform","translate("+delta+",0)");
+           case "E": obj.setAttribute("width",sz); break;
+           default: console.log("direcao" + dir + " desconhecido");
+        }
+        return; // para nao trocar a cor do stroke 
+}
+
+function updDial(obj, data) {
+        var v = Math.abs(data['value'])
+        var vi =  parseFloat(obj.getAttribute("data-sage:vmin"));
+        var vf =  parseFloat(obj.getAttribute("data-sage:vmax"));
+        var sentido =  (obj.getAttribute("data-sage:sentido"));
+        var mostrador =  (obj.getAttribute("data-sage:mostrador"));
+        var r = obj.getAttribute('r');
+        var d = 2*3.1428*r;
+        if ((vf - vi) == 0 ) sz = 0;
+        else                 sz = d * (v - vi) / (vf - vi);
+        //obj.setAttribute("stroke-dasharray",dash);
+        //obj.setAttribute("stroke-dashoffset","25"); //comecar posicao 12:00
+
+        // donut animation
+        ///var length = obj.getTotalLength();
+        // Clear any previous transition
+        obj.style.transition = obj.style.WebkitTransition = 'none';
+        // Set up the starting positions
+        ///obj.style.strokeDasharray = length + ' ' + length;
+        ///obj.style.strokeDashoffset = length;
+        obj.style.strokeDasharray = sz + ' ' + d;
+        obj.style.strokeDashoffset = sz;
+        // Trigger a layout so styles are calculated & the browser
+        // picks up the starting position before animating
+        obj.getBoundingClientRect();
+        // Define our transition
+        obj.style.transition = obj.style.WebkitTransition =
+        'stroke-dashoffset 2s ease-in-out';
+        // Go!
+        obj.style.strokeDashoffset = '0';
+
+        // medida no centro
+        let dial_med = obj.getAttribute('id')+'dial';
+        updMedida(document.getElementById(dial_med), data);
+}
+
+function updPizza(obj, data) {
+        if (view=='anormal') {
+          if (!isNaN(data['rgalr'])) 
+             if (data['rgalr']!=4) obj.style.stroke = corAna(data);
+        }
+        obj.setAttribute("data-sage:valor",data['value']);
+        var vi = 0;
+        var vf = 0;
+        var g = obj.parentNode; //group
+        for (let i = 0; i < g.children.length; i++) { //cada circle
+          let vc = parseFloat(g.children[i].getAttribute("data-sage:valor"));
+          vf += vc;
+        }
+        var r = obj.getAttribute('r');
+        var d = 2*3.1428*r;
+        let aux = 0, off=0;
+        if ((vf - vi) == 0 ) sz = 0;
+        else {
+          for (let i = 0; i < g.children.length; i++) { //cada circle
+            let circle = g.children[i]
+            let v = Math.abs(parseFloat(circle.getAttribute("data-sage:valor"),10));
+            sz = d * (v - vi) / (vf - vi);
+            off = d - aux;
+            aux += sz; //somatorio dos segmentos anteriores
+
+            let l = d - sz;
+            circle.style.strokeDasharray = sz + ' ' + l;
+            circle.style.strokeDashoffset = off;
+          }
+        }
+}
+
+function updFasor(obj, data) {
+        var g  = obj.parentNode; //group
+        if (view=='anormal') g.style.stroke='skyblue';
+        obj.setAttribute('data-sage:ang', data['value']); // angulo
+        //angulo
+        let cx = parseFloat(obj.getAttribute('x1'));
+        let cy = parseFloat(obj.getAttribute('y1'));
+        let ref = parseFloat(g.children[0].getAttribute('data-sage:ang')); // angulo de ref no primeiro fasor
+        let deg = data['value'] - ref;
+        obj.setAttribute('transform','rotate('+(-1)*deg+','+cx+','+cy+')')
+        //flag de qualidade
+        let invalido = bit_test(data['ang_a1_flags'],3)||bit_test(data['mag_a1_flags'],3);//K_PAS_FLG_IVORG
+        if (invalido)  obj.setAttribute('stroke-dasharray',' 4 2');
+        else           obj.setAttribute('stroke-dasharray','none');
+        //magnitute
+        let mag = data['mag'];
+        let lsupu = data['mag_lsupu'];
+        let lsupe = data['mag_lsupe'];
+        let r = parseFloat(obj.getAttribute('r')); // raio do circulo (guardado no line)
+        let r_min = r*0.5;
+        let r_max = r*0.8;
+        if (lsupu >= 9999) { //limite aberto
+           obj.setAttribute('x2',cx+r);
+        } else if (mag <= lsupu) {
+           let l = mag*r/lsupu;
+           obj.setAttribute('x2', (l<r_min ? cx+r_min : cx+l));
+        } else {
+           let raio_envoltoria =       (r-cx) * 0.5;
+           let raio_do_circulo = 0.8 * (r-cx) * 0.5;
+           let l = r + (raio_envoltoria - raio_do_circulo) * (mag - lsupu)/ (lsupe - lsupu)
+           obj.setAttribute('x2',cx+l);
+        }
+
+}
+
+function clearTable(obj) {
+        var i,col;
+        tbody = obj.querySelector('tbody');
+        for (col=0; col < tbody.rows[0].cells.length; col++) {
+            for (i=0; i < tbody.rows.length; i++) {
+                tbody.rows[i].style.visibility='visible';
+                cell = tbody.rows[i].cells[col];
+                //console.log("i="+i+" col="+col);
+                cell.innerHTML = '';
+            }
+        }
+
+        var id_total = obj.getAttribute("id")+"total";
+        var total = document.getElementById(id_total);
+        total.textContent = '0';
+
+        var id_page = obj.getAttribute("id")+"page";
+        var page = document.getElementById(id_page);
+        page.textContent = '0';
+}
+
+function updTabular(obj, data) {
+        if (!Array.isArray(data['tbl'])) {
+           if (data['tbl'].startsWith('Erro na execucao da consulta')) { 
+               clearTable(obj);
+               obj.rows[1].cells[0].textContent=data['tbl'];
+               return;
+           }
+        }
+        if (data['csv']) { 
+            var val = data['csv'];
+            // csv
+            var finalVal = '';
+            var result = '';
+            //obter o head para o csv
+            ncols = obj.rows[0].cells.length;
+            for (var col=0; col < ncols; col++) {
+                 if (col!=0)  finalVal += ",";
+                 finalVal += obj.rows[0].cells[col].textContent.trim();
+            }
+            finalVal += "\n";
+            var keys = Object.keys(val);
+            for (var i = 0, col=0; i < val.length; i++) {
+                var v = val[keys[i]];
+                //console.log("keys["+i+"]="+keys[i]+" v="+v);
+                if (v === "undefined" || v == '?') { return; }
+                var ord = mySort(Object.keys(val[i]));
+                result = '';
+                ord.forEach(function(k) {
+                    if (result != '') result += ",";
+                        result += v[k];
+                    col++;
+                })
+                finalVal += result + "\n";
+            }
+            var link = document.createElement("a");
+            link.setAttribute("href", 'data:text/csv;charset=utf-8,' + encodeURIComponent(finalVal));
+            link.setAttribute("download", "my_data.csv");
+            document.body.appendChild(link); // Required for FF
+            link.click(); // This will download the data file named "my_data.csv".
+            return;
+        }
+        if (data['status']) { 
+            // indicar que falhou o update
+            var clk = document.getElementById("clock");
+            var sts = document.getElementById("status");
+            sts.textContent = clk.textContent +" "+ data['status'];
+            return;
+        }
+        //if (atr=='rowid') {  // definindo a coluna que contem a chave para o update
+        //    var edit_butts = document.getElementsByClassName('fa fa-edit');
+        //    Array.prototype.forEach.call(edit_butts, function(butt, index) {
+        //        butt.setAttribute('value',val);
+        //    });
+        //    return;
+        //}
+        if (data.hasOwnProperty('ttl')) { 
+            var id_total = obj.getAttribute("id")+"total";
+            var total = document.getElementById(id_total);
+            if (total) { total.textContent = data['ttl']=='?' ? '0':data['ttl']; }
+            if (isNaN(data['ttl'])) {
+                tbody = obj.querySelector('tbody');
+                for (var row=0; row<tbody.rows.length; row++){ 
+                    tbody.rows[row].style.visibility='collapse';
+                }
+            }
+        }
+        if (data.hasOwnProperty('page')) { 
+            var id_page = obj.getAttribute("id")+"page";
+            var page = document.getElementById(id_page);
+            if (page) { page.textContent =  data['page']=='?' ? '0':data['page']; }
+        }
+        var val = data['tbl'];
+        var keys = Object.keys(val);
+        tbody = obj.querySelector('tbody');
+        for (var i = 0, col=0; i < val.length; i++) {
+            var v = val[keys[i]];
+            //console.log("keys["+i+"]="+keys[i]+" v="+v);
+            if (v === "undefined" || v == '?') { return; }
+            col=0;
+            tbody.rows[i].style.visibility='visible';
+            var ord = mySort(Object.keys(val[i]));
+            ord.forEach(function(k) {
+                cell = tbody.rows[i].cells[col];
+                var t = cell.innerHTML;
+                if (!(t.startsWith('<select') || t.startsWith('<input'))) { //modo de edicao, nao atualizar a celula
+                    if ((typeof v[k] == 'string') && t.indexOf('<input') !== 0) {
+                            cell.innerHTML = v[k];
+                    }
+                    else if (t.indexOf('<input') !== 0) { //modo de edicao, nao atualizar a celula
+                        if (Object.prototype.hasOwnProperty.call(v, k)) {
+                            cell.textContent = v[k];
+                        }
+                    }
+                }
+                col++;
+            })
+        }
+        for (var row=val.length; row<tbody.rows.length; row++){ // resultado da query menos linhas do que o tabular
+            tbody.rows[row].style.visibility='collapse';
+        }
+}
+
+function updMedida(obj, data) {
+        let dec = parseInt(obj.getAttribute("data-sage:dec"));
+        if (!isNaN(data['value'])) {
+            if (Number.isInteger(dec) && typeof data['value']=='number') {
+                if (obj.hasAttribute('data-sage:prefix')) { //Tem seta
+                   obj.textContent = Math.abs(data['value']).toFixed(dec); // fabsoluto e fixando casas decimais
+                   //seta
+                   let prefix = document.createElementNS("http://www.w3.org/2000/svg",'tspan');
+                   if (data['value']<0) {//inverte a seta se negativo
+                      //prefix.style.transform = 'rotate(180)'; nao funciona no tspan!!!
+                      prefix.innerHTML = obj.getAttribute('data-sage:negprefix');
+                   }
+                   else {
+                      prefix.innerHTML = obj.getAttribute('data-sage:prefix');
+                   }
+                   obj.insertBefore(prefix,obj.childNodes[0])
+                }
+                else obj.textContent = data['value'].toFixed(dec); // fixando casas decimais
+                if (unit) obj.textContent = obj.textContent+' '+data['unit'];  // unidades
+                if (obj.hasAttribute('data-sage:suffix')) { //Tem unidade
+                   let suffix = document.createElementNS("http://www.w3.org/2000/svg",'tspan');
+                   suffix.textContent = obj.getAttribute('data-sage:suffix');
+                   obj.appendChild(suffix);
+                }
+            }
+            else obj.textContent = '?';
+        }
+        if (!isNaN(data['rgalr'])) { 
+           if (view=='anormal' && data['rgalr']==4){
+              obj.style.fill = 'skyblue';
+              obj.style.stroke = 'none';
+           }
+           else { // rgalr<>4 usar a cor do alarme
+              obj.style.fill = corAna(data);
+              obj.style.stroke = 'none';
+           }
+        }
+        if (!isNaN(data['a1_flags']) && indq) { 
+            analog_qualid(obj, data);
+        }
+        if (!isNaN(data['linfa'])) { obj.dataset['sage:linfa']=data['linfa']; }
+        if (!isNaN(data['linfu'])) { obj.dataset['sage:linfu']=data['linfu']; }
+        if (!isNaN(data['linfe'])) { obj.dataset['sage:linfe']=data['linfe']; }
+        if (!isNaN(data['lsupa'])) { obj.dataset['sage:lsupa']=data['lsupa']; }
+        if (!isNaN(data['lsupu'])) { obj.dataset['sage:lsupu']=data['lsupu']; }
+        if (!isNaN(data['lsupe'])) { obj.dataset['sage:lsupe']=data['lsupe']; }
+        if (!isNaN(data['value'])) { obj.dataset['sage:value']=data['value']; }
+}
+
+function updDecorativo(obj, data) {
+        if (obj.hasAttribute('data-sage:cor')) { //Tem enumerado
+            var c=obj.getAttribute("data-sage:cor").split(" ");
+            if (obj.hasAttribute('stroke')) { //ENUM_BG
+                obj.style.fill=c[data['value']];
+            }
+            else { //ENUM_FG
+                obj.style.stroke=c[data['value']];
+            }
+        }
+        return;
+}
+
+function updEnumerado(obj, data) {
+    let children = obj.querySelectorAll('tspan');
+    children.forEach(child => child.style.display='none');
+    let n = parseInt(data['value']);
+    children[n].style.display='block';
+}
+
+var Scada = function () {}
+Scada.prototype.updGenerico = function (obj, data) {
+    var obj_tipo = obj.getAttribute("data-sage:tipo");
+         if (obj_tipo == "Fasor")        { updFasor       (obj, data); }
+    else if (obj_tipo == "Seccionadora") { updSeccionadora(obj, data); }
+    else if (obj_tipo == "ChaveDistrib") { updChaveDistrib(obj, data); }
+    else if (obj_tipo == "Disjuntor")    { updDisjuntor   (obj, data); }
+    else if (obj_tipo == "NoEletrico")   { updNoEletrico  (obj, data); }
+    else if (obj_tipo == "LT")           { updLT          (obj, data); }
+    else if (obj_tipo == "GrafBarra")    { updGrafBarra   (obj, data); }
+    else if (obj_tipo == "Medida")       { updMedida      (obj, data); }
+    else if (obj_tipo == "Dial")         { updDial        (obj, data); }
+    else if (obj_tipo == "Pizza")        { updPizza       (obj, data); }
+    else if (obj_tipo == "Decorativo")   { updDecorativo  (obj, data); }
+    else if (obj_tipo == "Enumerado")    { updEnumerado   (obj, data); }
+    else if (obj_tipo == "Tabular")      { updTabular     (obj, data); }
+    else if (obj.localName == "text" && obj.getAttribute('font-family')=='FontAwesome') { obj.innerHTML=data['value']; return; }
+    else if (obj.localName == "text")  { obj.textContent=data['value']; }
+    else if (obj.localName == "label") { obj.innerHTML  =data['value']; }
+}
+
+//var BusColoring = function () {}
+//BusColoring.prototype.updGenerico = function (obj, atr, val) {
+//    obj.style.stroke = busStatus(val);
+//    if (obj.getAttribute("data-sage:tipo") == "LT") {
+//        obj.style.fill = "none"; 
+//    } else {
+//        obj.style.fill = fillStatus(obj,atr,val);
+//    }
+//    adj = obj.getAttribute("data-sage:adjacent");
+//    if (adj) {
+//        a = adj.split(' ');
+//        for (var i = 0; i < a.length; i++) {
+//            ctx.updGenerico (document.getElementById(a[i]), atr, val);
+//        }
+//    }
+//}
+
+var ctx = new Scada();      //contexto: scada ou bus coloring
+
+//socket_di = new WebSocket("ws://"+window.location.host+"/foobar/");
+try {
+	socket_di.onopen = function() {
+      socket_di.send(window.location.pathname);
+      if (document.getElementById("hamburger")) {
+		   document.getElementById("hamburger").style.color = "#40ff40";
+      }
+	} 
+
+	socket_di.onmessage =function got_packet(msg) {
+      if (document.getElementById("clock")) {
+          if (msg.data.indexOf(" scheduled ") !== -1) {
+            document.getElementById("clock").innerHTML = msg.data.replace(' scheduled ','');
+            return;
+         }
+      }
+      if (msg.data=='invalido') { //token invalido volta para o index (login)
+          window.location="/";
+          return;
+      }
+      if (msg.data=='topsim') { envi='topsim';
+          return;
+      }
+      if (msg.data=='unit') { unit=true;
+          return;
+      }
+      //if (msg.data.indexOf(" Error 401 ") !== -1) {
+      //   document.getElementsByTagName("body")[0].innerHTML = "<div style='text-align: center; padding-top: 0px; padding-bottom: 0px; background-color: yellow; color:black; '>Error 401 Unauthorized (N&atilde;o autorizado)</div>";
+      //   return;
+      //}
+      if (msg.data.indexOf('<form ') !== -1) {
+          ctrl = document.getElementById('ctrl');
+          ctrl.innerHTML = msg.data;
+          return;
+      }
+      {
+          //console.log(msg.data);
+          //var json = JSON.parse('{"ID887": {"trv.id col1,aco.id col2,trv.idestcon col3,cir.idextd col4,trv.indctl_fp col5,trv.posicao col6,trv.tap col7,trv.tap_fp col8,trm.vnom col9,trv.indtap col10,trv.a_pas col11,trv.erro_fp col12,tela.id col13": [{"col8": 0.0, "col9": 138.0, "col6": 0.0, "col7": 138.0, "col4": "ACRB_138_A", "col5": 0, "col2": "ACO_N", "col3": "ACRB_138_A", "col1": "ACRB_230_TRATR1", "col10": 0, "col11": 39834, "col12": 0, "col13": "Centro/COSR-NCO/AC/SE/Uni_RIO_BRANCO_1_ACRB"}, {"col8": 0.0, "col9": 138.0, "col6": 9.0, "col7": 138.0, "col4": "ACRB_138_A", "col5": 0, "col2": "ACO_N", "col3": "ACRB_138_A", "col1": "ACRB_230_TRATR2", "col10": 0, "col11": 39838, "col12": 0, "col13": "Centro/COSR-NCO/AC/SE/Uni_RIO_BRANCO_1_ACRB"}, {"col8": 0.0, "col9": 69.0, "col6": 9.0, "col7": 69.005, "col4": "ACRB_69P0_A", "col5": 0, "col2": "ACO_N", "col3": "ACRB_69P0_A", "col1": "ACRB_230_TRTF1", "col10": 0, "col11": 39878, "col12": 0, "col13": "Centro/COSR-NCO/AC/SE/Uni_RIO_BRANCO_1_ACRB"}, {"col8": 0.0, "col9": 69.0, "col6": 9.0, "col7": 69.0, "col4": "ACRB_69P0_A", "col5": 0, "col2": "ACO_N", "col3": "ACRB_69P0_A", "col1": "ACRB_230_TRTF2", "col10": 0, "col11": 39882, "col12": 0, "col13": "Centro/COSR-NCO/AC/SE/Uni_RIO_BRANCO_1_ACRB"}, {"col8": 0.0, "col9": 69.0, "col6": 9.0, "col7": 69.0, "col4": "ACRB_69P0_A", "col5": 0, "col2": "ACO_N", "col3": "ACRB_69P0_A", "col1": "ACRB_230_TRTF3", "col10": 0, "col11": 39886, "col12": 0, "col13": "Centro/COSR-NCO/AC/SE/Uni_RIO_BRANCO_1_ACRB"}, {"col8": 0.0, "col9": 230.0, "col6": 7.0, "col7": 230.0, "col4": "ALART_230_A", "col5": 0, "col2": "ACO_NE", "col3": "ALART_69P0_A", "col1": "ALART_230_TRT1", "col10": 0, "col11": 48522, "col12": 0, "col13": "Centro/COSR-NE/AL/SE/Uni_ARAPIRACA_III_ALART"}, {"col8": 0.0, "col9": 230.0, "col6": 7.0, "col7": 230.0, "col4": "ALART_230_A", "col5": 0, "col2": "ACO_NE", "col3": "ALART_69P0_A", "col1": "ALART_230_TRT2", "col10": 0, "col11": 48526, "col12": 0, "col13": "Centro/COSR-NE/AL/SE/Uni_ARAPIRACA_III_ALART"}, {"col8": 0.0, "col9": 230.0, "col6": 7.0, "col7": 230.0, "col4": "ALMCO_230_A", "col5": 0, "col2": "ACO_NE", "col3": "ALMCO_69P0_E", "col1": "ALMCO_230_TRT1", "col10": 0, "col11": 48548, "col12": 0, "col13": "Centro/COSR-NE/AL/SE/Uni_MACEIO_ALMCO"}, {"col8": 0.0, "col9": 230.0, "col6": 7.0, "col7": 230.0, "col4": "ALMCO_230_A", "col5": 0, "col2": "ACO_NE", "col3": "ALMCO_69P0_A", "col1": "ALMCO_230_TRT2", "col10": 0, "col11": 48549, "col12": 0, "col13": "Centro/COSR-NE/AL/SE/Uni_MACEIO_ALMCO"}, {"col8": 0.0, "col9": 230.0, "col6": 7.0, "col7": 230.0, "col4": "ALMCO_230_A", "col5": 0, "col2": "ACO_NE", "col3": "ALMCO_69P0_F", "col1": "ALMCO_230_TRT3", "col10": 0, "col11": 48550, "col12": 0, "col13": "Centro/COSR-NE/AL/SE/Uni_MACEIO_ALMCO"}]}}');
+          //var json = JSON.parse('{"ID882": {"page": 1, "tbl": [{"col4": "ARRI_500_A", "col2": "ACO_AR", "col3": "ARRI_18P0_B", "col1": "ARRI_18P0_UG1"}], "ttl": 1941}}');
+          var json = JSON.parse(msg.data);
+          for (var id in json) {
+              if (json.hasOwnProperty(id)) {
+                  var data = json[id];
+                  let o = document.getElementById(id);
+                  if (o) {
+                      ctx.updGenerico(o, data);
+                      //else {
+                      //    //console.log("keys=",Object.keys(data));
+                      //    for (var atr in data) {
+                      //        //console.log("atr ="+atr+" data="+data );
+                      //        if (data.hasOwnProperty(atr)) {
+                      //            var val = data[atr];
+                      //            //console.log(id+' '+atr+' '+val);
+                      //            scanSVG(id,atr,val);
+                      //        }
+                      //    }
+                      //}
+                  } // loop dados de cada id
+              }
+          } // loop json
+      }
+   }
+
+	socket_di.onclose = function(){
+      if (document.getElementById("hamburger")) {
+		   document.getElementById("hamburger").style.color = "#ff4040";
+      }
+      if (document.getElementById("menuToggle")) {
+		   document.getElementById("menuToggle").style.background = "#ff4040";
+      }
+	}
+} catch(exception) {
+	alert('<p>Error' + exception);  
+}
+
+//function scanSVG (id,atr,val) {
+//    t = document.getElementById(id)
+//    if (t) {
+//            ctx.updGenerico(t, atr, val);
+//    }
+//}
+
+function fim() { socket_di.send("fim"); }
+
+function setBCol()  { ctx = new BusColoring(); }
+
+function saveOriginal() { // guarda a cor original
+    let svg = document.getElementById('unifilar')
+    //let all = svg.querySelectorAll('*');
+    let all = [].slice.call(svg.querySelectorAll('*')); //convert HTMLCollection to Array
+    all.forEach(function (elem) {
+        if (elem.hasAttribute('stroke')) {
+            elem.setAttribute('data-sage:stroke',elem.style.stroke); //copia a cor original
+        }
+    });
+}
+
+function paintNormal() { // normal color to all
+    let svg = document.getElementById('unifilar')
+    let all = svg.querySelectorAll('*');
+    all.forEach(function (elem) {
+        elem.style.stroke='skyblue';
+    });
+}
+
+function paintOriginal() { // restaurar cor original do unifilar
+    let svg = document.getElementById('unifilar')
+    let all = svg.querySelectorAll('*');
+    all.forEach(function (elem) {
+        if (elem.hasAttribute('data-sage:stroke')) {
+            elem.classList.remove('highlight'); //remover animacao
+            elem.style.stroke= elem.getAttribute('data-sage:stroke');
+        }
+    });
+}
+
+function clearIndQ() { // remover todos o indicadores de qualid
+    let svg = document.getElementById('unifilar')
+    let all = svg.getElementsByClassName('indq');
+    while (all.length) all[0].parentNode.removeChild(all[0]);
+}
+
+//function setScada() { socket_di.send("scada"); ctx = new Scada(); }
+//function setScada() { location.reload(); } // reload para recuperar a cor original
+function setScada()  { paintOriginal(); view='scada'; }
+function setIlha()   { paintOriginal(); view='ilhamento'; }
+function setAnormal(){ paintNormal();   view='anormal'; }
+function setIndQual(){ indq = indq==false ? true : false; if (!indq) clearIndQ(); } // exibir ou nao os indicadores de qualidade
+function setUnit()   { unit = unit==false ? true : false; } // exibir ou nao as unidades
+
+function reverse() { obj=document.getElementById('ID78366para');
+    //return;
+    d = obj.getAttribute("d");
+    console.log(d);
+    s = d.split(/(?=[ML])/);
+    console.log(s);
+    console.log(s.length);
+    s = s.reverse();
+    console.log(s);
+    len = s.length;
+    s[0] = s[0].replace('L','M');
+    s[len-1] = s[len-1].replace('M','L');
+    console.log(s);
+    n = '';
+    for (var i = 0; i< len; i++) {
+        n = n + s[i]+ ' ' ;
+    }
+    console.log(n);
+    obj.setAttribute("d",n);
+    //l = obj.getAttribute('d');
+    //console.log(l);
+    //s = l.split(/(?=[LMC])/);
+    //console.log(s);
+    ////s=["M 451.0 679.0 ", "L 471.0 659.0 ", "L 431.0 699.0 ", "L 331.0 699.0 ", "L 238.0 770.0 ", "L 133.9 770.1 "]
+    //n = 'M ';
+    //for (var i = s.length-1; i >= 0; i--) {
+    //    p = s[i].split(' ');
+    //    console.log(s[i]);
+    //    n += p[1] + ' ' + p[2]
+    //    if (i>0) n += ' L ';
+    //}
+    //console.log(n);
+    //obj.setAttribute('d',n);
+}
+
+function tabSort (tabid,no,mode)                                    { socket_di.send("sort " +tabid+" "+no+" "+mode); }
+function tabFilt (tabid,no,filt)                                    { socket_di.send("filt " +tabid+" "+no+" "+filt); }
+function tabPage (tabid,page)                                       { socket_di.send("page " +tabid+" "+page); }
+function tabRows (tabid,obj)                                        { socket_di.send("trows "+tabid+" "+obj.value); }
+function tabOrder(tabid,fromCol,toCol) { if (fromCol===toCol) return; socket_di.send("order "+tabid+" "+fromCol+" "+toCol); }
+function tabUpd  (tabid,no,val)                                     { socket_di.send("upd "  +tabid+" "+no+" "+val); }
+function tabCsv  (tabid)                                            { socket_di.send("csv "  +tabid); }
+
+function put(ent,atr,key,kval,val,svgid) { socket_di.send("put "+ent+" "+atr+" "+key+" "+kval+" "+val+" "+svgid); }
+function invert(id,iden)                 { socket_di.send("invert "+id+" "+iden); }
+function libctrl(id,ent,page)            { socket_di.send("libctrl "+id+" "+ent+" "+page); }
+
+function dlg(id,ref){
+   if (envi=='') { // form com todos os atributos
+       //window.location="/entry/atrib.py?ent=pds&id=ACRB_230_CHSD603_S";
+       window.location=ref;
+   }
+   else if (envi=='topsim') { // topsim == true
+       var iden = ''
+       iden = ref.split('=').pop(); //string after last =
+
+       var tipo = document.getElementById(id).getAttribute('data-sage:tipo');
+       if (tipo=='Seccionadora' || tipo=='Disjuntor') { // alerta confirmar inverter estado do digital
+           var r = confirm("Inverter o estado de "+iden+"?");
+           if (r == true) { 
+               invert(id,iden);
+           }
+       }
+       else if (tipo=='Medida') {
+           var v = prompt("Qual o novo valor de "+iden+"?");
+           if (v!=null) {
+               //put('none','valor_fp','none','none',v,id);
+               put('pas','valor_fp','id',iden,v,'none');
+           }
+       }
+   }
+   else if (envi=='libctrl') { // dlg libctrl
+       var iden = ''
+       iden = ref.split('=').pop(); //string after last =
+       var page = window.location.href.split('?')[0];
+
+       var tipo = document.getElementById(id).getAttribute('data-sage:tipo');
+       if (tipo=='Seccionadora' || tipo=='Disjuntor') { // alerta confirmar inverter estado do digital
+           libctrl(iden,'pds',page);
+       }
+       else if (tipo=='Medida') {
+           libctrl(iden,'pas',page);
+       }
+   }
+}
+
+function filtro(f) {
+ var svg = document.getElementById('unifilar');
+ var all = svg.getElementsByTagName("*");
+ for(var i=0; i < all.length; i++) {
+    if (all[i].getAttribute(f)) {
+        if (getComputedStyle(all[i], null).display==='none')
+           all[i].style.display='block';
+        else
+           all[i].style.display='none';
+    }
+ }
+}
+
+
+
+
+
+
