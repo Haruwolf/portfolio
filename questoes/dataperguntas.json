@@ -1,0 +1,54 @@
+{
+  "perguntas": [
+    {
+      "id": 1,
+      "titulo": "A Organização Mundial de Saúde e o Ministério da Saúde lançaram a campanha 90-70-90 para eliminação do câncer cervical. Nesta iniciativa, eles apresentam dados de custo efetividade com o uso do teste PCR DNA HPV. Qual é único o teste PCR DNA HPV aprovado pelo FDA, com genotipagem estendida para screening do cancer cervical?",
+      "alternativas": [
+        "a) BD ONCLARITY™ HPV ASSAY",
+        "b) PCR DNA HPV Genotipagem estendida",
+        "c) Ainda não está disponível no Brasil"
+      ],
+      "resposta": 0
+    },
+    {
+      "id": 2,
+      "titulo": "Quais são os genótipos que o BD ONCLARITY™ HPV ASSAY detecta?",
+      "alternativas": [
+        "a) Tipos 16 e 18",
+        "b) Não detecta os genótipos, informa se é positivo ou negativo para HPV",
+        "c) 14 genótipos, sendo 6 tipos individuais e 8 tipos em 3 pequenos grupos: 16, 18, 31, 45, 51, 52, 58 e 33, 56 59 e 66, 35 39 e 68"
+      ],
+      "resposta": 2
+    },
+    {
+      "id": 3,
+      "titulo": "Quais são as principais características do BD ONCLARITY™ HPV ASSAY?",
+      "alternativas": [
+        "a) Controle Interno de Amostra com Betaglobina. Região analisada E6/E7, não possui reação cruzada com tipos de HPV de baixo risco e não possui risco de deleção da região L1 como outros kits disponíveis no mercado",
+        "b) Genotipagem estendida (além dos tipos 16 e 18), permite acompanhar através do tipo detectado a persistência viral ao longo do tempo, fator importante para o desenvolvimento do Câncer Cervical",
+        "c) Todas as alternativas anteriores"
+      ],
+      "resposta": 1
+    },
+    {
+      "id": 4,
+      "titulo": "Qual o único teste PCR DNA HPV com Claim aprovado na Anvisa para a paciente realizar a auto coleta?",
+      "alternativas": [
+        "a) Todos são aprovados para fazer auto coleta",
+        "b) BD ONCLARITY™ HPV ASSAY",
+        "c) Não existe"
+      ],
+      "resposta": 2
+    },
+    {
+      "id": 5,
+      "titulo": "Quais são os testes disponíveis na BD para o diagnóstico das Infecções Sexualmente Transmissíveis?",
+      "alternativas": [
+        "a) CT e GC e TV",
+        "b) Painel Vaginal",
+        "c) Todas anteriores"
+      ],
+      "resposta": 2
+    }
+  ]
+}
