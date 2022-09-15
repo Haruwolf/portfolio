@@ -4199,8 +4199,6 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.SetLayerVisible,
 		C3.Plugins.System.Acts.SnapshotCanvas,
 		C3.Plugins.Audio.Acts.Play,
-		C3.Plugins.Keyboard.Cnds.OnKey,
-		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.Audio.Acts.SetSilent,
 		C3.Plugins.Audio.Cnds.IsSilent,
 		C3.Plugins.Sprite.Acts.SetAnimFrame,
@@ -4212,21 +4210,19 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Cnds.CompareFrame,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
 		C3.Plugins.Audio.Acts.FadeVolume,
-		C3.Plugins.Text.Exps.UID,
-		C3.Plugins.System.Acts.CreateObject,
-		C3.Plugins.Text.Exps.Y,
-		C3.Plugins.System.Cnds.EveryTick,
 		C3.Behaviors.Tween.Acts.TweenTwoProperties,
 		C3.Plugins.System.Exps.layoutwidth,
 		C3.Plugins.Sprite.Exps.AnimationFrame,
 		C3.Plugins.Sprite.Acts.SetAnim,
-		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.Sprite.Acts.SetOpacity,
+		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Width,
 		C3.Plugins.Sprite.Exps.Height,
+		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.Text.Exps.X,
+		C3.Plugins.Text.Exps.Y,
 		C3.Plugins.System.Acts.SubVar,
 		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.Sprite.Acts.SetX,
@@ -4256,6 +4252,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Touch.Cnds.IsTouchingObject,
 		C3.Plugins.Sprite.Acts.SetAnimSpeed,
 		C3.Plugins.Sprite.Acts.Destroy,
+		C3.Plugins.System.Cnds.EveryTick,
+		C3.Plugins.Keyboard.Cnds.OnKey,
 		C3.Plugins.Audio.Acts.StopAll,
 		C3.Plugins.AJAX.Acts.RequestFile,
 		C3.Plugins.Json.Acts.Parse,
@@ -4671,14 +4669,6 @@ self.C3_ExpressionFuncs = [
 		() => "Etapa3",
 		() => 8,
 		() => "Certificado",
-		() => 10,
-		() => 1192,
-		() => 20,
-		() => 1740,
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 80);
-		},
 		() => 50,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -4692,8 +4682,8 @@ self.C3_ExpressionFuncs = [
 		() => 1920,
 		() => 1080,
 		() => -800,
-		() => 1500,
-		() => -1500,
+		() => 2000,
+		() => -2000,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 1);
@@ -4714,6 +4704,7 @@ self.C3_ExpressionFuncs = [
 			return () => (90 + (v0.GetValue() * n1.ExpObject()));
 		},
 		() => "Great",
+		() => 10,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 400);
@@ -4813,6 +4804,7 @@ self.C3_ExpressionFuncs = [
 		() => 2800,
 		() => 540,
 		() => "Default",
+		() => 20,
 		() => "Gabarito - Q1",
 		() => "Gabarito - Q2",
 		() => "Gabarito - Q3",
@@ -4832,6 +4824,7 @@ self.C3_ExpressionFuncs = [
 		() => 520,
 		() => 17,
 		() => -1080,
+		() => 1500,
 		() => "Animation 2",
 		() => "json",
 		() => "estados",
@@ -4890,8 +4883,7 @@ self.C3_ExpressionFuncs = [
 			return () => (v0.GetValue() + 1);
 		},
 		() => "Viviane",
-		() => 1000,
-		() => -2000
+		() => 1000
 ];
 
 

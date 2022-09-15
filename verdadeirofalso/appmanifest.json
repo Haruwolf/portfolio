@@ -1,6 +1,6 @@
 {
-	"name": "PLAY - Jogos Educacionais Online",
-	"short_name": "PLAY - Jogos Educacionais Online",
+	"name": "Verdadeiro e Falso",
+	"short_name": "Verdadeiro e Falso",
 	"description": "Game educativo para ensinar técnicas de terapia infusional com a seringa BD.",
 	"start_url": "index.html",
 	"display": "fullscreen",
