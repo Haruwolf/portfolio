@@ -1959,15 +1959,15 @@ C3.PropertyTrackState.PropertyInterpolationAdapter.NoInterpolationAdapter=NoInte
 {
 'use strict';const C3=self.C3;const NS=C3.PropertyTrackState.PropertyInterpolationAdapter;const INSTANCE_FUNC_MAP=new Map;const add=(prop,setter,absolute_setter,getter,round,fRound=false,init=null,reset=null)=>{INSTANCE_FUNC_MAP.set(prop,{setter,absolute_setter,getter,round,fRound,init,reset})};add("offsetX",(wi,v,t,a)=>{if(a._propertyTrack.GetResultMode()==="relative")wi.OffsetX(v,t.GetTimeline().GetTransformWithSceneGraph());else wi.OffsetX(v)},(wi,v)=>wi.SetX(v),wi=>wi.GetX(),true);
 add("offsetY",(wi,v,t,a)=>{if(a._propertyTrack.GetResultMode()==="relative")wi.OffsetY(v,t.GetTimeline().GetTransformWithSceneGraph());else wi.OffsetY(v)},(wi,v)=>wi.SetY(v),wi=>wi.GetY(),true);
-add("offsetWidth",(wi,v,t,a,noChanges)=>{if(v===0)return;if(a._propertyTrack.GetResultMode()==="relative"&&wi.HasParent()){if(isNaN(a._absoluteToFactor)){const parents=[];let parent=wi.GetParent();while(parent){parents.push(parent);parent=parent.GetParent()}parents.reverse();const get_track=(wi,t)=>{return t.GetTimeline().GetTrackFromInstance(wi.GetInstance())};const get_original_size=(wi,t)=>{const track=get_track(wi,t);if(track)return track.GetOriginalWidth();const sdki=wi.GetInstance().GetSdkInstance();
-if(sdki.IsOriginalSizeKnown())return sdki.GetOriginalWidth();return wi._GetSceneGraphInfo()._GetStartWidth()};const get_last_property_keyframe_value=(wi,t,propertyName)=>{const track=get_track(wi,t);if(!track)return 0;const propertyTrack=track.GetPropertyTrack(propertyName);if(!propertyTrack)return 0;const parentPropertyKeyframeData=propertyTrack.GetPropertyTrackDataItem().GetPropertyKeyframeData();if(!parentPropertyKeyframeData)return 0;const parentLastPropertyKeyframeDataItem=parentPropertyKeyframeData.GetLastPropertyKeyframeDataItem();
-if(!parentLastPropertyKeyframeDataItem)return 0;return parentLastPropertyKeyframeDataItem.GetValue()};let p=parents[0];const ownStartSize=p._GetSceneGraphInfo()._GetStartWidth();const ownStartScale=p._GetSceneGraphInfo().GetStartScaleX();let absoluteToFactor=ownStartSize*ownStartScale;absoluteToFactor+=get_last_property_keyframe_value(p,t,"offsetWidth");absoluteToFactor+=get_original_size(p,t)*get_last_property_keyframe_value(p,t,"offsetScaleX");for(let i=1;i<parents.length;i++){p=parents[i];absoluteToFactor*=
-p._GetSceneGraphInfo().GetStartScaleX();absoluteToFactor+=get_last_property_keyframe_value(p,t,"offsetWidth");absoluteToFactor+=get_original_size(p,t)*get_last_property_keyframe_value(p,t,"offsetScaleX")}a._absoluteToFactor=absoluteToFactor===0?Number.EPSILON:absoluteToFactor}if(noChanges)return;wi.OffsetWidth(v/a._absoluteToFactor,true)}else wi.OffsetWidth(v)},(wi,v)=>wi.SetWidth(v),wi=>wi.GetWidth(),true);
-add("offsetHeight",(wi,v,t,a,noChanges)=>{if(v===0)return;if(a._propertyTrack.GetResultMode()==="relative"&&wi.HasParent()){if(isNaN(a._absoluteToFactor)){const parents=[];let parent=wi.GetParent();while(parent){parents.push(parent);parent=parent.GetParent()}parents.reverse();const get_track=(wi,t)=>{return t.GetTimeline().GetTrackFromInstance(wi.GetInstance())};const get_original_size=(wi,t)=>{const track=get_track(wi,t);if(track)return track.GetOriginalHeight();const sdki=wi.GetInstance().GetSdkInstance();
-if(sdki.IsOriginalSizeKnown())return sdki.GetOriginalHeight();return wi._GetSceneGraphInfo()._GetStartHeight()};const get_last_property_keyframe_value=(wi,t,propertyName)=>{const track=t.GetTimeline().GetTrackFromInstance(wi.GetInstance());if(!track)return 0;const propertyTrack=track.GetPropertyTrack(propertyName);if(!propertyTrack)return 0;const parentPropertyKeyframeData=propertyTrack.GetPropertyTrackDataItem().GetPropertyKeyframeData();if(!parentPropertyKeyframeData)return 0;const parentLastPropertyKeyframeDataItem=
-parentPropertyKeyframeData.GetLastPropertyKeyframeDataItem();if(!parentLastPropertyKeyframeDataItem)return 0;return parentLastPropertyKeyframeDataItem.GetValue()};let p=parents[0];const ownStartSize=p._GetSceneGraphInfo()._GetStartHeight();const ownStartScale=p._GetSceneGraphInfo().GetStartScaleY();let absoluteToFactor=ownStartSize*ownStartScale;absoluteToFactor+=get_last_property_keyframe_value(p,t,"offsetHeight");absoluteToFactor+=get_original_size(p,t)*get_last_property_keyframe_value(p,t,"offsetScaleY");
-for(let i=1;i<parents.length;i++){p=parents[i];absoluteToFactor*=p._GetSceneGraphInfo().GetStartScaleY();absoluteToFactor+=get_last_property_keyframe_value(p,t);absoluteToFactor+=get_original_size(p,t)*get_last_property_keyframe_value(p,t,"offsetScaleY")}a._absoluteToFactor=absoluteToFactor===0?Number.EPSILON:absoluteToFactor}if(noChanges)return;wi.OffsetHeight(v/a._absoluteToFactor,true)}else wi.OffsetHeight(v)},(wi,v)=>wi.SetHeight(v),wi=>wi.GetHeight(),true);
-add("offsetAngle",(wi,v)=>wi.OffsetAngle(v),(wi,v)=>wi.SetAngle(v),wi=>wi.GetAngle(),false);
+add("offsetWidth",(wi,v,t,a,noChanges)=>{if(v===0)return;if(a._propertyTrack.GetResultMode()==="relative"&&wi.HasParent()&&wi.GetTransformWithParentWidth()){if(isNaN(a._absoluteToFactor)){const parents=[];let parent=wi.GetParent();while(parent){parents.push(parent);parent=parent.GetParent()}parents.reverse();const get_track=(wi,t)=>{return t.GetTimeline().GetTrackFromInstance(wi.GetInstance())};const get_original_size=(wi,t)=>{const track=get_track(wi,t);if(track)return track.GetOriginalWidth();const sdki=
+wi.GetInstance().GetSdkInstance();if(sdki.IsOriginalSizeKnown())return sdki.GetOriginalWidth();return wi._GetSceneGraphInfo()._GetStartWidth()};const get_last_property_keyframe_value=(wi,t,propertyName)=>{const track=get_track(wi,t);if(!track)return 0;const propertyTrack=track.GetPropertyTrack(propertyName);if(!propertyTrack)return 0;const parentPropertyKeyframeData=propertyTrack.GetPropertyTrackDataItem().GetPropertyKeyframeData();if(!parentPropertyKeyframeData)return 0;const parentLastPropertyKeyframeDataItem=
+parentPropertyKeyframeData.GetLastPropertyKeyframeDataItem();if(!parentLastPropertyKeyframeDataItem)return 0;return parentLastPropertyKeyframeDataItem.GetValue()};let p=parents[0];const ownStartSize=p._GetSceneGraphInfo()._GetStartWidth();const ownStartScale=p._GetSceneGraphInfo().GetStartScaleX();let absoluteToFactor=ownStartSize*ownStartScale;absoluteToFactor+=get_last_property_keyframe_value(p,t,"offsetWidth");absoluteToFactor+=get_original_size(p,t)*get_last_property_keyframe_value(p,t,"offsetScaleX");
+for(let i=1;i<parents.length;i++){p=parents[i];absoluteToFactor*=p._GetSceneGraphInfo().GetStartScaleX();absoluteToFactor+=get_last_property_keyframe_value(p,t,"offsetWidth");absoluteToFactor+=get_original_size(p,t)*get_last_property_keyframe_value(p,t,"offsetScaleX")}a._absoluteToFactor=absoluteToFactor===0?Number.EPSILON:absoluteToFactor}if(noChanges)return;wi.OffsetWidth(v/a._absoluteToFactor,true)}else wi.OffsetWidth(v)},(wi,v)=>wi.SetWidth(v),wi=>wi.GetWidth(),true);
+add("offsetHeight",(wi,v,t,a,noChanges)=>{if(v===0)return;if(a._propertyTrack.GetResultMode()==="relative"&&wi.HasParent()&&wi.GetTransformWithParentHeight()){if(isNaN(a._absoluteToFactor)){const parents=[];let parent=wi.GetParent();while(parent){parents.push(parent);parent=parent.GetParent()}parents.reverse();const get_track=(wi,t)=>{return t.GetTimeline().GetTrackFromInstance(wi.GetInstance())};const get_original_size=(wi,t)=>{const track=get_track(wi,t);if(track)return track.GetOriginalHeight();
+const sdki=wi.GetInstance().GetSdkInstance();if(sdki.IsOriginalSizeKnown())return sdki.GetOriginalHeight();return wi._GetSceneGraphInfo()._GetStartHeight()};const get_last_property_keyframe_value=(wi,t,propertyName)=>{const track=t.GetTimeline().GetTrackFromInstance(wi.GetInstance());if(!track)return 0;const propertyTrack=track.GetPropertyTrack(propertyName);if(!propertyTrack)return 0;const parentPropertyKeyframeData=propertyTrack.GetPropertyTrackDataItem().GetPropertyKeyframeData();if(!parentPropertyKeyframeData)return 0;
+const parentLastPropertyKeyframeDataItem=parentPropertyKeyframeData.GetLastPropertyKeyframeDataItem();if(!parentLastPropertyKeyframeDataItem)return 0;return parentLastPropertyKeyframeDataItem.GetValue()};let p=parents[0];const ownStartSize=p._GetSceneGraphInfo()._GetStartHeight();const ownStartScale=p._GetSceneGraphInfo().GetStartScaleY();let absoluteToFactor=ownStartSize*ownStartScale;absoluteToFactor+=get_last_property_keyframe_value(p,t,"offsetHeight");absoluteToFactor+=get_original_size(p,t)*
+get_last_property_keyframe_value(p,t,"offsetScaleY");for(let i=1;i<parents.length;i++){p=parents[i];absoluteToFactor*=p._GetSceneGraphInfo().GetStartScaleY();absoluteToFactor+=get_last_property_keyframe_value(p,t);absoluteToFactor+=get_original_size(p,t)*get_last_property_keyframe_value(p,t,"offsetScaleY")}a._absoluteToFactor=absoluteToFactor===0?Number.EPSILON:absoluteToFactor}if(noChanges)return;wi.OffsetHeight(v/a._absoluteToFactor,true)}else wi.OffsetHeight(v)},(wi,v)=>wi.SetHeight(v),wi=>wi.GetHeight(),
+true);add("offsetAngle",(wi,v)=>wi.OffsetAngle(v),(wi,v)=>wi.SetAngle(v),wi=>wi.GetAngle(),false);
 add("offsetOpacity",(wi,v,t,a)=>{const o=wi.GetOpacity();const nv=o+v;const min=0;const max=1;if(a._clampAccumulator===0){if(nv>max)a._clampAccumulator+=nv-max;else if(nv<min)a._clampAccumulator+=nv;wi.OffsetOpacity(v)}else{const nv=wi.GetOpacity()+v;if(v>0&&a._clampAccumulator>0){if(nv>max)a._clampAccumulator+=nv-max}else if(v>0&&a._clampAccumulator<0){a._clampAccumulator+=v;if(a._clampAccumulator>0)a._clampAccumulator=0}else if(v<0&&a._clampAccumulator>0){a._clampAccumulator+=v;if(a._clampAccumulator<
 0)a._clampAccumulator=0}else if(v<0&&a._clampAccumulator<0)if(nv<min)a._clampAccumulator+=nv}},(wi,v)=>{wi.SetOpacity(v)},wi=>{return wi.GetOpacity()},false,true,a=>{a._clampAccumulator=0;switch(a._propertyTrack.GetResultMode()){case "relative":{const propertyTrackData=a._propertyTrack.GetPropertyTrackData();const propertyTrackDataItem=a._propertyTrack.GetPropertyTrackDataItem();const propertyKeyframeData=propertyTrackDataItem.GetPropertyKeyframeData();const propertyKeyframeDataItems=propertyKeyframeData.GetPropertyKeyframeDataItemArray();
 let startingAbsoluteOpacity=a.GetWorldInfo().GetOpacity();let currentAbsoluteOpacity=startingAbsoluteOpacity;for(const propertyKeyframeDataItem of propertyKeyframeDataItems){const time=propertyKeyframeDataItem.GetTime();const currentRelativeOpacity=a._propertyTrack.GetInterpolatedValue(time);currentAbsoluteOpacity=startingAbsoluteOpacity+currentRelativeOpacity;currentAbsoluteOpacity=C3.clamp(currentAbsoluteOpacity,0,1)}a._totalForewardOpacityDelta=startingAbsoluteOpacity-currentAbsoluteOpacity;a._totalForewardOpacityDelta=
@@ -4003,12 +4003,6 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Json.Exps.Get,
 		C3.Plugins.System.Cnds.ForEachOrdered,
 		C3.Plugins.Sprite.Acts.SetPosToObject,
-		C3.Plugins.System.Cnds.CompareVar,
-		C3.Plugins.Sprite.Acts.SetAnimFrame,
-		C3.Plugins.Text.Acts.SetPos,
-		C3.Plugins.Sprite.Exps.ImagePointX,
-		C3.Plugins.Sprite.Exps.ImagePointY,
-		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Plugins.System.Cnds.CompareBoolVar,
 		C3.Plugins.System.Acts.SetBoolVar,
@@ -4018,14 +4012,17 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.Sprite.Acts.SetInstanceVar,
+		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.Json.Exps.ArraySize,
 		C3.Plugins.System.Acts.WaitForPreviousActions,
 		C3.Plugins.Text.Acts.MoveToTop,
 		C3.Plugins.Text.Acts.MoveToLayer,
 		C3.Plugins.Text.Acts.AppendText,
+		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.Sprite.Cnds.CompareFrame,
 		C3.Plugins.Text.Acts.SetOpacity,
 		C3.Plugins.System.Acts.SnapshotCanvas,
+		C3.Plugins.Text.Acts.SetPos,
 		C3.Plugins.Text.Exps.X,
 		C3.Plugins.Text.Exps.Y,
 		C3.Plugins.System.Cnds.Every,
@@ -4331,20 +4328,7 @@ self.C3_ExpressionFuncs = [
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => (f0() + 1);
 		},
-		() => 7,
 		() => 1,
-		p => {
-			const n0 = p._GetNode(0);
-			const n1 = p._GetNode(1);
-			const n2 = p._GetNode(2);
-			return () => (n0.ExpObject((n1.ExpInstVar_Family() + 1)) + n2.ExpInstVar_Family());
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			const n1 = p._GetNode(1);
-			const n2 = p._GetNode(2);
-			return () => (n0.ExpObject((n1.ExpInstVar_Family() + 1)) - n2.ExpInstVar_Family());
-		},
 		p => {
 			const n0 = p._GetNode(0);
 			return () => n0.ExpObject();
@@ -4363,8 +4347,6 @@ self.C3_ExpressionFuncs = [
 			return () => (and("score=", v0.GetValue()) + "&");
 		},
 		() => 3,
-		() => 1298,
-		() => 700,
 		() => " pontos",
 		() => -5,
 		() => -1080,
