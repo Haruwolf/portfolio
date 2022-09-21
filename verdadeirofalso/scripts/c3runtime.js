@@ -4214,12 +4214,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Exps.layoutwidth,
 		C3.Plugins.Sprite.Exps.AnimationFrame,
 		C3.Plugins.Sprite.Acts.SetAnim,
+		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.Sprite.Acts.SetOpacity,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Width,
 		C3.Plugins.Sprite.Exps.Height,
-		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.Text.Exps.X,
 		C3.Plugins.Text.Exps.Y,
@@ -4255,6 +4255,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Keyboard.Cnds.OnKey,
 		C3.Plugins.Audio.Acts.StopAll,
+		C3.Plugins.Text.Acts.MoveToLayer,
+		C3.Plugins.Text.Acts.Destroy,
 		C3.Plugins.AJAX.Acts.RequestFile,
 		C3.Plugins.Json.Acts.Parse,
 		C3.Plugins.AJAX.Exps.LastData,
@@ -4475,6 +4477,7 @@ self.C3_JsPropNameTable = [
 	{FCoinsString: 0},
 	{PTentativas: 0},
 	{TPerguntasString: 0},
+	{Score: 0},
 	{PerguntasRespondidas: 0},
 	{HRErros: 0},
 	{HRErrosString: 0},
@@ -4725,6 +4728,7 @@ self.C3_ExpressionFuncs = [
 			const v0 = p._GetNode(0).GetVar();
 			return () => and("-", v0.GetValue());
 		},
+		() => 30,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => n0.ExpInstVar();
