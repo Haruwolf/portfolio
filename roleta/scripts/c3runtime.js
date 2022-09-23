@@ -3864,7 +3864,10 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.Wait,
 		C3.Plugins.System.Exps.choose,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
-		C3.Plugins.System.Cnds.TriggerOnce
+		C3.Plugins.System.Cnds.TriggerOnce,
+		C3.Plugins.Sprite.Acts.SetAnimFrame,
+		C3.Plugins.Sprite.Cnds.CompareFrame,
+		C3.Plugins.Sprite.Cnds.CompareOpacity
 	];
 };
 self.C3_JsPropNameTable = [
@@ -3879,6 +3882,7 @@ self.C3_JsPropNameTable = [
 	{circleChoice: 0},
 	{Sprite: 0},
 	{Audio: 0},
+	{Win: 0},
 	{rouletteState: 0},
 	{none: 0},
 	{holding: 0},
@@ -3892,7 +3896,7 @@ self.C3_JsPropNameTable = [
 	{Fone: 0},
 	{Garrafa: 0},
 	{Bloco: 0},
-	{Moleskine: 0},
+	{Estojo: 0},
 	{Copo: 0},
 	{angleRoll: 0},
 	{offsetAngle: 0},
@@ -4036,11 +4040,15 @@ self.C3_ExpressionFuncs = [
 		() => "stopped",
 		() => -100,
 		() => "cheer",
-		() => 5,
+		() => 2,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0(8, 8, 8, 8, 7, 7, 2, 3, 3, 3, 1, 4, 5, 5, 5, 5, 5, 6, 6, 6);
-		}
+			return () => f0(8, 7, 7, 7, 7, 7, 2, 2, 3, 3, 3, 1, 4, 4, 4, 4, 5, 6, 6, 6);
+		},
+		() => 100,
+		() => 1,
+		() => 95,
+		() => "fade"
 ];
 
 

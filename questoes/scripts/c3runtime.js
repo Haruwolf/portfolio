@@ -4022,6 +4022,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Cnds.CompareFrame,
 		C3.Plugins.Text.Acts.SetOpacity,
 		C3.Plugins.Text.Acts.Destroy,
+		C3.Plugins.System.Acts.ResetGlobals,
 		C3.Plugins.Text.Acts.SetPos,
 		C3.Plugins.Text.Exps.X,
 		C3.Plugins.Text.Exps.Y,

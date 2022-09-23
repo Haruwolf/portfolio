@@ -4212,8 +4212,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Audio.Acts.FadeVolume,
 		C3.Behaviors.Tween.Acts.TweenTwoProperties,
 		C3.Plugins.System.Exps.layoutwidth,
-		C3.Plugins.Sprite.Exps.AnimationFrame,
 		C3.Plugins.Sprite.Acts.SetAnim,
+		C3.Plugins.Sprite.Exps.AnimationFrame,
 		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.Sprite.Acts.SetOpacity,
 		C3.Plugins.System.Acts.CreateObject,
@@ -4257,6 +4257,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Audio.Acts.StopAll,
 		C3.Plugins.Text.Acts.MoveToLayer,
 		C3.Plugins.Text.Acts.Destroy,
+		C3.Plugins.System.Acts.ResetGlobals,
+		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.AJAX.Acts.RequestFile,
 		C3.Plugins.Json.Acts.Parse,
 		C3.Plugins.AJAX.Exps.LastData,
@@ -4687,6 +4689,10 @@ self.C3_ExpressionFuncs = [
 		() => -800,
 		() => 2000,
 		() => -2000,
+		p => {
+			const n0 = p._GetNode(0);
+			return () => ((n0.ExpObject() + 1)).toString();
+		},
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 1);
