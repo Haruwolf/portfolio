@@ -4022,12 +4022,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Cnds.CompareFrame,
 		C3.Plugins.Text.Acts.SetOpacity,
 		C3.Plugins.Text.Acts.Destroy,
-		C3.Plugins.System.Acts.ResetGlobals,
 		C3.Plugins.Text.Acts.SetPos,
 		C3.Plugins.Text.Exps.X,
 		C3.Plugins.Text.Exps.Y,
 		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.Text.Acts.SetFontSize,
+		C3.Plugins.System.Acts.ResetGlobals,
 		C3.Plugins.AJAX.Acts.Post
 	];
 };
@@ -4353,7 +4353,7 @@ self.C3_ExpressionFuncs = [
 		() => -5,
 		() => -1080,
 		() => -200,
-		() => 4,
+		() => 0.2,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() - 90);
