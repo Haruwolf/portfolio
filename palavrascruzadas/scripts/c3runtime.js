@@ -4608,6 +4608,7 @@ self.C3_ExpressionFuncs = [
 			const v3 = p._GetNode(3).GetVar();
 			return () => ((f0(Math.floor((v1.GetValue() / 60)), 1) + ":") + f2(Math.floor((v3.GetValue() % 60)), 2));
 		},
+		() => 0.1,
 		() => "Escolher veículo",
 		() => "Carro",
 		p => {
